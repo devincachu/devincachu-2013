@@ -26,11 +26,6 @@ def pip_install():
     run('CFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib %(virtualenv)s/bin/pip install -r %(project_root)s/requirements_env.txt' % env)
 
 
-def create_local_settings():
-    with cd(env.project_root):
-        run('%(virtualenv)s/bin/python gerar_settings_local.py %(app_root)s/settings_local.py.example' % env)
-
-
 def collect_static_files():
     with cd(env.app_root):
         run('%(virtualenv)s/bin/python manage.py collectstatic -v 0 --noinput' % env)
