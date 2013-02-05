@@ -4,7 +4,7 @@ import unittest
 from django.template import response
 from django.test import client
 
-from inscricao import forms, models, views
+from .. import forms, models, views
 
 MOCKED_CHECKOUT_CODE = "E4B1F4E7D3D3E0D1144ABF9A9D6DFD49"
 

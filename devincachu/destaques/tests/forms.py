@@ -3,7 +3,7 @@ import unittest
 
 from django import forms as django_forms
 
-from destaques import forms, models
+from .. import forms, models
 
 
 class DestaqueAdminFormTestCase(unittest.TestCase):

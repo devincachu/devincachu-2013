@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.template import defaultfilters as filters
 
-from palestras import forms, models
+from . import forms, models
 
 
 class PalestranteAdmin(admin.ModelAdmin):

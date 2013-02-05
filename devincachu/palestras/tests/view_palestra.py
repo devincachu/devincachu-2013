@@ -7,7 +7,7 @@ from django.test import client
 from django.views.generic import detail
 from lxml import html
 
-from palestras import models, views
+from .. import models, views
 
 
 class PalestraViewTestCase(unittest.TestCase):

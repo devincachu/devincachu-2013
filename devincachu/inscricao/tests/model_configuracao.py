@@ -3,7 +3,7 @@ import unittest
 
 from django.db import models as django_models
 
-from inscricao import models
+from .. import models
 
 
 class ConfiguracaoTestCase(unittest.TestCase):

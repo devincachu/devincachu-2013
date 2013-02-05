@@ -8,9 +8,9 @@ from django.conf import settings
 from django.core import mail, urlresolvers
 from django.template import loader, response
 from django.views.generic import base, detail
-
-from inscricao import forms, models
 from lxml import etree
+
+from . import forms, models
 
 logger = logging.getLogger('devincachu.inscricoes')
 

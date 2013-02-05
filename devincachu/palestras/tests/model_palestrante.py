@@ -3,7 +3,7 @@ import unittest
 
 from django.db import models as django_models
 
-from palestras import models
+from .. import models
 
 
 class ModelPalestranteTestCase(unittest.TestCase):

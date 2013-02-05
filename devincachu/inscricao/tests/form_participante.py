@@ -3,7 +3,7 @@ import unittest
 
 from django import forms as django_forms
 
-from inscricao import models, forms
+from .. import models, forms
 
 
 class ParticipanteFormTestCase(unittest.TestCase):

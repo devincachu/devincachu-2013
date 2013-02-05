@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from inscricao import models
+from . import models
 
 
 class ParticipanteForm(forms.ModelForm):

@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.views.generic import detail, list
 
-from palestras import models
+from . import models
 
 
 class PalestrantesView(list.ListView):

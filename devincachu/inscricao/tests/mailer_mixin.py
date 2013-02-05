@@ -3,7 +3,7 @@ import unittest
 
 from django.core import mail
 
-from inscricao import views
+from .. import views
 
 
 class MailerMixinTestCase(unittest.TestCase):

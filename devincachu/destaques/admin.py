@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from destaques import forms, models
+from . import forms, models
 
 
 class DestaqueAdmin(admin.ModelAdmin):

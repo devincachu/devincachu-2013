@@ -67,7 +67,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.contrib.messages.context_processors.messages',
-    "core.processors.get_base_url",
+    "devincachu.core.processors.get_base_url",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -111,10 +111,10 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.flatpages',
     'compressor',
-    'core',
-    'destaques',
-    'palestras',
-    'inscricao',
+    'devincachu.core',
+    'devincachu.destaques',
+    'devincachu.palestras',
+    'devincachu.inscricao',
 )
 
 LOGGING = {

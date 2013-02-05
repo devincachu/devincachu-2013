@@ -4,7 +4,7 @@ import unittest
 from django.contrib.auth import models as auth_models
 from django.db import models as django_models
 
-from destaques import models
+from .. import models
 
 
 class DestaqueTestCase(unittest.TestCase):

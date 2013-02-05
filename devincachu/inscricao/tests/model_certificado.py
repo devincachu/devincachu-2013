@@ -4,7 +4,7 @@ import unittest
 from django.core import management
 from django.db import models as django_models
 
-from inscricao import models
+from .. import models
 
 
 class CertificadoTestCase(unittest.TestCase):

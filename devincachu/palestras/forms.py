@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django import forms
 
-from palestras import models
+from . import models
 
 
 class PalestranteAdminForm(forms.ModelForm):

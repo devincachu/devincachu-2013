@@ -4,7 +4,7 @@ import unittest
 from django.test import client
 from django.views.generic import base
 
-from inscricao import models, views
+from .. import models, views
 
 
 class NotificacaoTestCase(unittest.TestCase):

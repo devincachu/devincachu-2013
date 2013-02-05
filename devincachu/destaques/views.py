@@ -3,7 +3,7 @@ from django.conf import settings
 from django.template import response
 from django.views.generic import base
 
-from destaques import models
+from . import models
 
 
 class IndexView(base.View):

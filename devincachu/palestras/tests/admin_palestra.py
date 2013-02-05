@@ -5,7 +5,7 @@ from django.contrib import admin as django_admin
 from django.core import management
 from django.test import client
 
-from palestras import admin, forms, models
+from .. import admin, forms, models
 
 
 class AdminPalestraTestCase(unittest.TestCase):

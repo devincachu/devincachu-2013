@@ -5,7 +5,7 @@ from django.contrib import admin as django_admin
 from django.contrib.auth import models as auth_models
 from django.test import client
 
-from destaques import admin, forms, models
+from .. import admin, forms, models
 
 
 class DestaqueAdminTestCase(unittest.TestCase):

@@ -1,1 +1,1 @@
-from core.tests.processors import *
+from .processors import *

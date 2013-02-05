@@ -7,7 +7,7 @@ from django.test import client
 from django.views.generic import list as vlist
 from lxml import html
 
-from palestras import models, views
+from .. import models, views
 
 
 class ProgramacaoViewTestCase(unittest.TestCase):

@@ -5,7 +5,7 @@ from django.views.generic import base, detail
 from django.template import response
 from django.test import client
 
-from inscricao import forms, models, views
+from .. import forms, models, views
 
 
 class ViewCertificadoTestCase(test.TestCase):

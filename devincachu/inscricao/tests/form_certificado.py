@@ -4,7 +4,7 @@ import unittest
 from django import forms as django_forms
 from django.core import management
 
-from inscricao import forms, models
+from .. import forms, models
 
 
 class FormValidacaoCertificadoTestCase(unittest.TestCase):

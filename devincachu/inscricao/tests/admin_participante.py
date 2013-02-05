@@ -4,7 +4,7 @@ import unittest
 from django.contrib import admin as django_admin
 from django.test import client
 
-from inscricao import admin, models
+from .. import admin, models
 
 
 class AdminParticipanteTestCase(unittest.TestCase):

@@ -8,7 +8,7 @@ from django.test import client
 from django.views.generic import base
 from lxml import html
 
-from destaques import models, views
+from .. import models, views
 
 
 class IndexViewTestCase(unittest.TestCase):
