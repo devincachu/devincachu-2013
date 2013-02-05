@@ -1,4 +1,4 @@
-#Site do Dev in Cachu 2012
+#Site do Dev in Cachu 2013
 
 Para subir o ambiente local, crie um virtualenv e instale as dependências rodando:
 
