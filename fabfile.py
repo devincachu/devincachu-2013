@@ -10,7 +10,7 @@ env.project_root = os.path.join(env.base_dir, 'devincachu')
 env.app_root = os.path.join(env.project_root, 'devincachu')
 env.virtualenv = os.path.join(env.project_root, 'env')
 env.shell = '/bin/sh -c'
-env.hosts = ['2012.devincachu.com.br']
+env.hosts = ['2013.devincachu.com.br']
 env.user = 'devincachu'
 
 
@@ -43,7 +43,7 @@ def syncdb():
 
 def start_gunicorn():
     with cd(env.app_root):
-        run('%(virtualenv)s/bin/gunicorn_django --pid=gunicorn.pid --daemon --workers=3 --access-logfile=devincachu_access.log --error-logfile=devincachu_error.log --bind=127.0.0.1:8888' % env)
+        run('%(virtualenv)s/bin/gunicorn --pid=gunicorn.pid --daemon --workers=3 --access-logfile=devincachu_access.log --error-logfile=devincachu_error.log --bind=127.0.0.1:8989 devincachu.wsgi' % env)
 
 
 def stop_gunicorn():
