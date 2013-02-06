@@ -96,7 +96,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = "devincachu.urls"
 
-COMPRESS_ENABLED = not DEBUG
+TEST_RUNNER = 'devincachu.runner.DiscoveryRunner'
 
 COMPRESS_CSS_FILTERS = (
     "compressor.filters.css_default.CssAbsoluteFilter",

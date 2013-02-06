@@ -37,5 +37,8 @@ class PalestraAdmin(admin.ModelAdmin):
     nomes_palestrantes.short_description = u"Palestrante(s)"
 
 
-admin.site.register(models.Palestra, PalestraAdmin)
-admin.site.register(models.Palestrante, PalestranteAdmin)
+try:
+    admin.site.register(models.Palestra, PalestraAdmin)
+    admin.site.register(models.Palestrante, PalestranteAdmin)
+except admin.sites.AlreadyRegistered:
+    pass

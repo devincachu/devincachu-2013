@@ -43,6 +43,9 @@ class ParticipanteAdmin(admin.ModelAdmin):
     search_fields = (u"nome", u"email",)
     actions = (confirmar_presenca,)
 
-admin.site.register(models.Checkout, CheckoutAdmin)
-admin.site.register(models.Configuracao, ConfiguracaoAdmin)
-admin.site.register(models.Participante, ParticipanteAdmin)
+try:
+    admin.site.register(models.Checkout, CheckoutAdmin)
+    admin.site.register(models.Configuracao, ConfiguracaoAdmin)
+    admin.site.register(models.Participante, ParticipanteAdmin)
+except admin.sites.AlreadyRegistered:
+    pass
