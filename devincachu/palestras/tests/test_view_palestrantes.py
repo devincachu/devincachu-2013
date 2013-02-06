@@ -121,7 +121,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
     def test_deve_ter_og_description_descrevendo_a_pagina_de_palestrantes(self):
         esperado = u"Veja mais informações dos palestrantes do Dev in Cachu 2012. Conheça quem são e de onde vêm os palestrantes dessa edição"
         description = self.dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1")
-        self.assertEquals(esperado, description)
+        self.assertEquals(esperado, unicode(description))
 
 
 class TemplatePalestranteSemPalestrantesTestCase(test.TestCase):

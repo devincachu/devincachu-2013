@@ -19,7 +19,7 @@ class Palestrante(models.Model):
     listagem = models.BooleanField(verbose_name=u"Exibir na página de palestrantes?", default=False)
 
     def __repr__(self):
-        return '<Palestrante: "%s">' % self.nome
+        return u'<Palestrante: "%s">' % self.nome
 
     def __unicode__(self):
         return self.nome
@@ -45,7 +45,7 @@ class Palestra(models.Model):
         return nomes
 
     def __repr__(self):
-        return "<Palestra: %s>" % self.titulo
+        return u"<Palestra: %s>" % self.titulo
 
     def __unicode__(self):
         return self.titulo

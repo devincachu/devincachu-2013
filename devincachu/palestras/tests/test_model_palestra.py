@@ -115,7 +115,7 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_deve_ter_representacao_simples_que_utilize_titulo_da_palestra(self):
         palestra = models.Palestra(titulo=u"Testando aplicações web")
-        self.assertEquals('<Palestra: Testando aplicações web>', repr(palestra))
+        self.assertEquals(u'<Palestra: Testando aplicações web>', repr(palestra))
 
     def test_deve_exibir_titulo_como_unicode(self):
         palestra = models.Palestra(titulo=u"Testando aplicações web")

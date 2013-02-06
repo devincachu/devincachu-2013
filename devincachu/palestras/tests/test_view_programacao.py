@@ -58,7 +58,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
 
         dom = html.fromstring(response.content)
         title_obtido = dom.xpath('//a[@href="%s"]' % palestra.get_absolute_url())[0].attrib["title"].encode("iso-8859-1")
-        self.assertEquals(u"Oi, você vem sempre aqui?", title_obtido)
+        self.assertEquals(u"Oi, você vem sempre aqui?", unicode(title_obtido))
 
     def test_deve_definir_canonical_url(self):
         esperado = "%s/programacao/" % settings.BASE_URL
@@ -74,7 +74,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@name="keywords"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_meta_description(self):
         esperado = u"Grade de programação do Dev in Cachu 2012"
@@ -82,7 +83,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@name="description"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
+        self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_description(self):
         esperado = u"Conheça as atrações e os convidados especiais do Dev in Cachu 2012"
@@ -90,7 +92,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_title_descrevendo_a_pagin(self):
         esperado = u"Grade de programação do Dev in Cachu 2012"
@@ -98,14 +101,16 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:title"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_type_activity(self):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(u"activity", dom.xpath('//meta[@property="og:type"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@property="og:type"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(u"activity", unicode(obtido))
 
     def test_deve_ter_og_url(self):
         esperado = "%s/programacao/" % settings.BASE_URL
@@ -113,7 +118,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:url"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@property="og:url"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_image_apontando_para_logo_do_devincachu(self):
         esperado = "%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
@@ -121,4 +127,5 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:image"]')[0].attrib["content"].encode("iso-8859-1"))
+        obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"].encode("iso-8859-1")
+        self.assertEquals(esperado, unicode(obtido))
