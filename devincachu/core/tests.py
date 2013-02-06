@@ -9,7 +9,7 @@ import unittest
 from django.conf import settings
 from django.test import client
 
-from .. import processors
+from . import processors
 
 
 class ProcessorsTestCase(unittest.TestCase):
