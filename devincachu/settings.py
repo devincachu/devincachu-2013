@@ -33,9 +33,9 @@ DATABASES = {
 if os.environ.get("DEVINCACHU_MEMCACHED"):
     CACHES = {
         'default': {
-                    'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-                    'LOCATION': os.environ.get("DEVINCACHU_MEMCACHED"),
-                }
+            'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+            'LOCATION': os.environ.get("DEVINCACHU_MEMCACHED"),
+        }
     }
 
 TIME_ZONE = "America/Sao_Paulo"
@@ -161,7 +161,7 @@ LOGGING = {
             "propagate": True,
         },
         "devincachu.inscricoes": {
-            "handlers": ["inscricoes",],
+            "handlers": ["inscricoes"],
             "level": "INFO",
             "propagate": False,
         }
@@ -181,7 +181,8 @@ PAGSEGURO = {
 PAGSEGURO_BASE = "https://ws.pagseguro.uol.com.br/v2"
 PAGSEGURO_CHECKOUT = "%s/checkout" % PAGSEGURO_BASE
 PAGSEGURO_TRANSACTIONS = "%s/transactions" % PAGSEGURO_BASE
-PAGSEGURO_TRANSACTIONS_NOTIFICATIONS = "%s/notifications" % PAGSEGURO_TRANSACTIONS
+PAGSEGURO_TRANSACTIONS_NOTIFICATIONS = "%s/notifications" % \
+                                       PAGSEGURO_TRANSACTIONS
 
 EMAIL_HOST = os.environ.get("DEVINCACHU_EMAIL_HOST")
 EMAIL_PORT = os.environ.get("DEVINCACHU_EMAIL_PORT")
