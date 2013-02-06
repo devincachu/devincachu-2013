@@ -66,7 +66,7 @@ STATICFILES_FINDERS = (
     "compressor.finders.CompressorFinder",
 )
 
-SECRET_KEY = os.environ["DEVINCACHU_SECRET_KEY"]
+SECRET_KEY = os.environ.get("DEVINCACHU_SECRET_KEY", "not-secret")
 
 TEMPLATE_LOADERS = (
     "django.template.loaders.filesystem.Loader",
@@ -169,9 +169,9 @@ LOGGING = {
 }
 
 PAGSEGURO = {
-    "email": os.environ["DEVINCACHU_PS_EMAIL"],
+    "email": os.environ.get("DEVINCACHU_PS_EMAIL", "ps@devincachu.com.br"),
     "charset": "UTF-8",
-    "token": os.environ["DEVINCACHU_PS_TOKEN"],
+    "token": os.environ.get("DEVINCACHU_PS_TOKEN", "not-secret"),
     "currency": "BRL",
     "itemId1": "0001",
     "itemDescription1": u"Inscrição no Dev in Cachu 2013",
