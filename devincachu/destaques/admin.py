@@ -33,5 +33,8 @@ class ChamadaAdmin(DestaqueAdmin):
     def queryset(self, request):
         return admin.ModelAdmin.queryset(self, request)
 
-admin.site.register(models.Destaque, DestaqueAdmin)
-admin.site.register(models.Chamada, ChamadaAdmin)
+try:
+    admin.site.register(models.Destaque, DestaqueAdmin)
+    admin.site.register(models.Chamada, ChamadaAdmin)
+except admin.sites.AlreadyRegistered:
+    pass
