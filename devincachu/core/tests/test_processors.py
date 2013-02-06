@@ -23,4 +23,7 @@ class ProcessorsTestCase(unittest.TestCase):
         self.assertEquals(esperado, processors.get_base_url(self.request))
 
     def test_deve_estar_registrado_nos_CONTEXT_PROCESSORS(self):
-        self.assertIn("devincachu.core.processors.get_base_url", settings.TEMPLATE_CONTEXT_PROCESSORS)
+        self.assertIn(
+            "devincachu.core.processors.get_base_url",
+            settings.TEMPLATE_CONTEXT_PROCESSORS,
+        )
