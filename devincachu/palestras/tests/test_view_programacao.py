@@ -42,7 +42,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         palestras = response.context_data["palestras"]
-        titulos_esperados = [u"Recepção e credenciamento", u"Escalando aplicações Django", "Arquitetura escalável de aplicação de alto desempenho", u"Almoço"]
+        titulos_esperados = [u"Recepção e credenciamento", u"Escalando aplicações Django", u"Arquitetura escalável de aplicação de alto desempenho", u"Almoço"]
         titulos_obtidos = [p.titulo for p in palestras]
         self.assertEquals(titulos_esperados, titulos_obtidos)
 
