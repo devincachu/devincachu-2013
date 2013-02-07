@@ -50,7 +50,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
         view = views.PalestrantesView.as_view()
         self.response = view(request)
         self.response.render()
-        self.dom = html.fromstring(self.response.content)
+        self.dom = html.fromstring(self.response.content.decode("utf-8"))
 
     def test_deve_trazer_listagem_de_palestrantes_em_ul_com_class_palestrante(self):
         lis = self.dom.xpath('//ul[@class="palestrantes"]/li')
@@ -120,7 +120,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
 
     def test_deve_ter_og_description_descrevendo_a_pagina_de_palestrantes(self):
         esperado = u"Veja mais informações dos palestrantes do Dev in Cachu 2012. Conheça quem são e de onde vêm os palestrantes dessa edição"
-        description = self.dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1")
+        description = self.dom.xpath('//meta[@property="og:description"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(description))
 
 
