@@ -50,7 +50,7 @@ class PalestraView(detail.DetailView):
 
     def get_queryset(self):
         slugs_palestrantes = self.kwargs[u"palestrantes"].split(u"/")
-        return models.Palestra.objects.filter(slug=self.kwargs[u"slug"], palestrantes__slug__in=slugs_palestrantes).distinct(u"pk")
+        return models.Palestra.objects.filter(slug=self.kwargs[u"slug"], palestrantes__slug__in=slugs_palestrantes).distinct()
 
     def get_context_data(self, **kwargs):
         context = super(PalestraView, self).get_context_data(**kwargs)
