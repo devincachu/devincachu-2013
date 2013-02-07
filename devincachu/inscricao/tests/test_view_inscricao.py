@@ -170,6 +170,10 @@ class ViewInscricaoFalhaComunicacaoPagSeguroTestCase(unittest.TestCase):
         view.gerar_cobranca = lambda p: None
         cls.response = view.post(request)
 
+    @classmethod
+    def tearDownClass(cls):
+        models.Participante.objects.filter(**cls.dados).delete()
+
     def test_deve_renderizar_template_falha_comunicacao_pagseguro(self):
         self.assertEqual(u"falha_comunicacao_pagseguro.html",
                          self.response.template_name)
