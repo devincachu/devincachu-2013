@@ -20,7 +20,9 @@ class IndexViewTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        management.call_command("loaddata", "destaques-e-chamadas.yaml", verbosity=0)
+        management.call_command("loaddata",
+                                "destaques-e-chamadas.yaml",
+                                verbosity=0)
 
     @classmethod
     def tearDownClass(cls):
@@ -39,12 +41,12 @@ class IndexViewTestCase(unittest.TestCase):
         r = urlresolvers.resolve('/')
         self.assertEquals(f.func_name, r.func.func_name)
 
-    def test_metodo_obter_destaques_deve_trazer_apenas_instancias_de_Destaque_excluindo_Chamada(self):
+    def test_metodo_obter_destaques_deve_trazer_apenas_destaques(self):
         destaques = self.view.obter_destaques()
         for destaque in destaques:
             self.assertNotIsInstance(destaque, models.Chamada)
 
-    def test_metodo_obter_destaque_deve_trazer_no_maximo_quatorze_destaques(self):
+    def test_metodo_obter_destaque_deve_trazer_no_maximo_14_destaques(self):
         destaques = self.view.obter_destaques()
         self.assertEquals(14, len(destaques))
 
@@ -85,12 +87,12 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         self.assertEquals("index.html", r.template_name)
 
-    def test_metodo_get_deve_colocar_resultado_do_metodo_obter_destaques_na_variavel_de_contexto_destaques(self):
+    def test_metodo_get_deve_colocar_destaques_no_contexto(self):
         destaques = list(self.view.obter_destaques())
         r = self.view.get(self.request)
         self.assertEquals(destaques, list(r.context_data['destaques']))
 
-    def test_metodo_get_deve_colocar_resultado_do_metodo_obter_chamada_na_variavel_de_contexto_chamada(self):
+    def test_metodo_get_deve_colocar_chamada_no_contexto(self):
         chamada = models.Chamada.objects.get(pk=5)
         r = self.view.get(self.request)
         self.assertEquals(chamada, r.context_data['chamada'])
@@ -104,58 +106,72 @@ class IndexViewTestCase(unittest.TestCase):
     def test_deve_ter_canonical_url_da_home(self):
         r = self.view.get(self.request)
         r.render()
-        dom = html.fromstring(r.content)
+        dom = html.fromstring(r.content.decode("utf-8"))
         esperado = "%s/" % settings.BASE_URL
-        self.assertEquals(esperado, dom.xpath('//link[@rel="canonical"]')[0].attrib["href"])
+        obtido = dom.xpath('//link[@rel="canonical"]')[0].attrib["href"]
+        self.assertEquals(esperado, obtido)
 
     def test_meta_keywords(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"devincachu, dev in cachu 2012, evento de informática, desenvolvimento de software, cachoeiro de itapemirim"
-        self.assertEquals(esperado, dom.xpath('//meta[@name="keywords"]')[0].attrib["content"])
+        esperado = u"devincachu, dev in cachu 2012, evento de " +\
+                   u"informática, desenvolvimento de software, " +\
+                   u"cachoeiro de itapemirim"
+        obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_meta_description(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Dev in Cachu 2012 - evento sobre desenvolvimento de software no sul do Espírito Santo"
-        self.assertEquals(esperado, dom.xpath('//meta[@name="description"]')[0].attrib["content"])
+        esperado = u"Dev in Cachu 2012 - evento sobre desenvolvimento " +\
+                   u"de software no sul do Espírito Santo"
+        obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_og_title_deve_ter_nome_e_edicao_do_evento(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"Dev in Cachu 2012"
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:title"]')[0].attrib["content"])
+        obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_og_type_deve_ser_website(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"website"
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:type"]')[0].attrib["content"])
+        obtido = dom.xpath('//meta[@property="og:type"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_og_url_deve_ser_BASE_URL_com_barra_no_final(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"%s/" % settings.BASE_URL
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:url"]')[0].attrib["content"])
+        obtido = dom.xpath('//meta[@property="og:url"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_og_image_deve_ser_logomarca_padrao_do_evento(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:image"]')[0].attrib["content"])
+        obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"]
+        self.assertEquals(esperado, obtido)
 
     def test_og_description_deve_trazer_descricao_do_evento(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Maior evento de desenvolvimento de software do sul do Espírito Santo. Organizado com o objetivo de difundir técnicas e práticas de desenvolvimento de software, trazendo diversos temas"
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:description"]')[0].attrib["content"])
+        esperado = u"Maior evento de desenvolvimento de software do sul " +\
+                   u"do Espírito Santo. Organizado com o objetivo de " +\
+                   u"difundir técnicas e práticas de desenvolvimento de " +\
+                   u"software, trazendo diversos temas"
+        tag = dom.xpath('//meta[@property="og:description"]')[0]
+        self.assertEquals(esperado, tag.attrib["content"])
 
 
 class IndexViewSemDados(unittest.TestCase):
@@ -169,10 +185,10 @@ class IndexViewSemDados(unittest.TestCase):
         self.request = factory.get("/")
         self.view = views.IndexView()
 
-    def test_metodo_obter_destaques_deve_retornar_lista_vazia_quando_nao_houver_dados(self):
+    def test_metodo_obter_destaques_ausencia_de_dados(self):
         self.assertEquals(0, len(self.view.obter_destaques()))
 
-    def test_metodo_obter_chamada_deve_retornar_None_quando_nao_houver_dados(self):
+    def test_metodo_obter_chamada_ausencia_de_dados(self):
         self.assertIsNone(self.view.obter_chamada())
 
     def test_se_nao_houver_chamada_nao_deve_exibir_div(self):
