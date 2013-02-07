@@ -37,14 +37,25 @@ class Participante(models.Model):
     )
 
     nome = models.CharField(max_length=100)
-    nome_cracha = models.CharField(max_length=100, verbose_name=u"Nome no crachá", blank=True, null=True)
+    nome_cracha = models.CharField(max_length=100,
+                                   verbose_name=u"Nome no crachá",
+                                   blank=True, null=True)
     cidade = models.CharField(max_length=255, verbose_name=u"Cidade/Estado")
     sexo = models.CharField(max_length=1, choices=SEXOS)
     email = models.EmailField(max_length=100)
-    status = models.CharField(max_length=20, choices=STATUS, default=u'AGUARDANDO')
-    tamanho_camiseta = models.CharField(max_length=2, verbose_name=u"Tamanho da camiseta", choices=TAMANHOS_DE_CAMISETA)
-    instituicao_ensino = models.CharField(max_length=100, verbose_name=u"Instituição de ensino (para estudantes)", blank=True, null=True)
-    empresa = models.CharField(max_length=100, verbose_name=u"Empresa onde trabalha", blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS,
+                              default=u'AGUARDANDO')
+    tamanho_camiseta = models.CharField(max_length=2,
+                                        verbose_name=u"Tamanho da camiseta",
+                                        choices=TAMANHOS_DE_CAMISETA)
+    instituicao_ensino = models.CharField(
+        max_length=100,
+        verbose_name=u"Instituição de ensino (para estudantes)",
+        blank=True,
+        null=True)
+    empresa = models.CharField(max_length=100,
+                               verbose_name=u"Empresa onde trabalha",
+                               blank=True, null=True)
     presente = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -59,7 +70,9 @@ class Checkout(models.Model):
     participante = models.ForeignKey(Participante)
 
     def __unicode__(self):
-        return "%s (%s - %s)" % (self.codigo, self.participante.nome, self.participante.email)
+        return "%s (%s - %s)" % (self.codigo,
+                                 self.participante.nome,
+                                 self.participante.email)
 
 
 class Certificado(models.Model):
@@ -88,7 +101,10 @@ class Certificado(models.Model):
     def _calcular_hash(cls, participante):
         rand = random.randint(1, 9999)
         now = datetime.datetime.now()
-        bstr = "%s%s%04d%s" % (participante.nome, participante.email, rand, now.isoformat())
+        bstr = "%s%s%04d%s" % (participante.nome,
+                               participante.email,
+                               rand,
+                               now.isoformat())
         return hashlib.sha1(bstr).hexdigest()
 
 

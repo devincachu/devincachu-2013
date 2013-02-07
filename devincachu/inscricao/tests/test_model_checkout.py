@@ -40,6 +40,8 @@ class CheckoutTestCase(unittest.TestCase):
         self.assertEqual(models.Participante, field.related.parent_model)
 
     def test__unicode__deve_retornar_codigo_e_nome_do_participante(self):
-        participante = models.Participante(nome=u"Francisco Souza", email="chico@devincachu.com.br")
+        participante = models.Participante(nome=u"Francisco Souza",
+                                           email="chico@devincachu.com.br")
         checkout = models.Checkout(codigo=u"123", participante=participante)
-        self.assertEqual(u"123 (Francisco Souza - chico@devincachu.com.br)", unicode(checkout))
+        self.assertEqual(u"123 (Francisco Souza - chico@devincachu.com.br)",
+                         unicode(checkout))

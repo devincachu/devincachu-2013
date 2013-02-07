@@ -25,7 +25,8 @@ class ValidacaoCertificado(forms.Form):
     def obter_certificado(self):
         if self.is_valid():
             try:
-                return models.Certificado.objects.select_related("participante").get(codigo=self.cleaned_data["codigo"])
+                qs = models.Certificado.objects.select_related("participante")
+                return qs.get(codigo=self.cleaned_data["codigo"])
             except models.Certificado.DoesNotExist:
                 return None
 
@@ -37,6 +38,7 @@ class BuscarCertificado(forms.Form):
     def obter_certificado(self):
         if self.is_valid():
             try:
-                return models.Certificado.objects.select_related("participante").get(participante__email=self.cleaned_data["email"])
+                qs = models.Certificado.objects.select_related("participante")
+                return qs.get(participante__email=self.cleaned_data["email"])
             except models.Certificado.DoesNotExist:
                 return None

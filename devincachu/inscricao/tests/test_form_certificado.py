@@ -39,18 +39,18 @@ class FormValidacaoCertificadoTestCase(unittest.TestCase):
         f = forms.ValidacaoCertificado.base_fields["codigo"]
         self.assertEqual(f.max_length, 30)
 
-    def test_obter_certificado_deve_retornar_certificado_identificado_pelo_codigo(self):
+    def test_obter_certificado_deve_retornar_certificado_pelo_codigo(self):
         form = forms.ValidacaoCertificado({"codigo": "2012080439"})
         esperado = models.Certificado.objects.get(codigo="2012080439")
         obtido = form.obter_certificado()
         self.assertEqual(esperado, obtido)
 
-    def test_obter_certificado_deve_retornar_None_se_o_formulario_nao_for_valido(self):
+    def test_obter_certificado_retorna_None_se_o_formulario_for_invalido(self):
         form = forms.ValidacaoCertificado()
         obtido = form.obter_certificado()
         self.assertEqual(None, obtido)
 
-    def test_obter_certificado_deve_retornar_None_se_o_certificado_com_o_codigo_informado_nao_existir(self):
+    def test_obter_certificado_retorna_None_se_o_codigo_nao_existir(self):
         form = forms.ValidacaoCertificado({"codigo": "123bla"})
         obtido = form.obter_certificado()
         self.assertEqual(None, obtido)
@@ -83,18 +83,20 @@ class FormBuscaCertificadoTestCase(unittest.TestCase):
         f = forms.BuscarCertificado.base_fields["email"]
         self.assertEqual(100, f.max_length)
 
-    def test_obter_certificado_deve_retornar_certificado_para_email_do_usuario(self):
-        form = forms.BuscarCertificado({"email": "joaozinho@devincachu.com.br"})
+    def test_obter_certificado_deve_retornar_certificado_do_usuario(self):
+        form = forms.BuscarCertificado({"email":
+                                        "joaozinho@devincachu.com.br"})
         esperado = models.Certificado.objects.get(pk=1)
         obtido = form.obter_certificado()
         self.assertEqual(esperado, obtido)
 
-    def test_obter_certificado_deve_retornar_None_se_o_formulario_nao_for_valido(self):
+    def test_obter_certificado_retorna_None_se_o_formulario_for_invalido(self):
         form = forms.BuscarCertificado({"email": "123"})
         obtido = form.obter_certificado()
         self.assertEqual(None, obtido)
 
-    def test_obter_certificado_deve_retornar_None_se_o_certificado_com_o_codigo_informado_nao_existir(self):
-        form = forms.BuscarCertificado({"email": "mariazinha@devincachu.com.br"})
+    def test_obter_certificado_retorna_None_se_o_usuario_nao_existir(self):
+        form = forms.BuscarCertificado({"email":
+                                        "mariazinha@devincachu.com.br"})
         obtido = form.obter_certificado()
         self.assertEqual(None, obtido)

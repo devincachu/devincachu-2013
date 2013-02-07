@@ -23,7 +23,8 @@ logger = logging.getLogger('devincachu.inscricoes')
 class MailerMixin():
 
     def enviar_email(self, assunto, corpo, destinatarios):
-        mail.send_mail(assunto, corpo, "contato@devincachu.com.br", destinatarios, fail_silently=True)
+        mail.send_mail(assunto, corpo, "contato@devincachu.com.br",
+                       destinatarios, fail_silently=True)
 
 
 class Inscricao(base.View, MailerMixin):
@@ -46,7 +47,11 @@ class Inscricao(base.View, MailerMixin):
 
     def get(self, request):
         contexto = self.obter_contexto(self.configuracao)
-        return response.TemplateResponse(request, self.templates[self.configuracao.status], contexto)
+        return response.TemplateResponse(
+            request,
+            self.templates[self.configuracao.status],
+            contexto,
+        )
 
     def obter_contexto(self, configuracao):
         status = configuracao.status
@@ -59,29 +64,40 @@ class Inscricao(base.View, MailerMixin):
         return {"form": form, "configuracao": configuracao}
 
     def enviar_email_sucesso(self, checkout):
-        conteudo = loader.render_to_string("email_aguardando.html", {"checkout": checkout})
+        conteudo = loader.render_to_string("email_aguardando.html",
+                                           {"checkout": checkout})
         assunto = u"[Dev in Cachu 2012] Inscrição recebida"
         self.enviar_email(assunto, conteudo, [checkout.participante.email])
 
     def enviar_email_falha(self, participante):
-        conteudo = loader.render_to_string("email_falha.html", {"participante": participante})
+        conteudo = loader.render_to_string("email_falha.html",
+                                           {"participante": participante})
         assunto = u"[Dev in Cachu 2012] Inscrição recebida"
-        self.enviar_email(assunto, conteudo, [participante.email, "contato@devincachu.com.br"])
+        self.enviar_email(assunto, conteudo,
+                          [participante.email, "contato@devincachu.com.br"])
 
     def gerar_cobranca(self, participante):
-        headers = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        }
         payload = settings.PAGSEGURO
         payload["itemAmount1"] = "%.2f" % self.configuracao.valor_inscricao
         payload["reference"] = "%s" % participante.pk
-        response = requests.post(settings.PAGSEGURO_CHECKOUT, data=payload, headers=headers)
+        response = requests.post(settings.PAGSEGURO_CHECKOUT,
+                                 data=payload, headers=headers)
         if response.ok:
             dom = etree.fromstring(response.content)
             codigo_checkout = dom.xpath("//code")[0].text
             return codigo_checkout
         else:
-            logger.error("\n\n\n########## Erro na inscrição do participante %d - %s (%s) ##########" % (participante.pk, participante.nome, participante.email))
-            logger.error("Erro na comunicação com PagSeguro: %s - %s" % (response.status_code, response.content))
-            logger.error("#################################################################\n\n\n")
+            logger.error("\n\n\n########## Erro na inscrição do " +
+                         "participante %d - %s (%s) ##########" % (
+                             participante.pk, participante.nome,
+                             participante.email)
+                         )
+            logger.error("Erro na comunicação com PagSeguro: %s - %s" %
+                         (response.status_code, response.content))
+            logger.error("#############################################\n\n\n")
             return None
 
     def post(self, request):
@@ -91,15 +107,28 @@ class Inscricao(base.View, MailerMixin):
             codigo_checkout = self.gerar_cobranca(participante)
 
             if codigo_checkout:
-                checkout = models.Checkout.objects.create(codigo=codigo_checkout, participante=participante)
+                checkout = models.Checkout.objects.create(
+                    codigo=codigo_checkout,
+                    participante=participante,
+                )
                 self.enviar_email_sucesso(checkout)
-                return response.TemplateResponse(request, "aguardando_pagamento.html", {"checkout": checkout})
+                return response.TemplateResponse(
+                    request,
+                    "aguardando_pagamento.html",
+                    {"checkout": checkout},
+                )
 
             self.enviar_email_falha(participante)
-            return response.TemplateResponse(request, "falha_comunicacao_pagseguro.html", {"participante": participante})
+            return response.TemplateResponse(
+                request,
+                "falha_comunicacao_pagseguro.html",
+                {"participante": participante},
+            )
 
         contexto = {"form": form, "configuracao": self.configuracao}
-        return response.TemplateResponse(request, "inscricoes_abertas.html", contexto)
+        return response.TemplateResponse(request,
+                                         "inscricoes_abertas.html",
+                                         contexto)
 
 
 class Notificacao(base.View, MailerMixin):
@@ -113,7 +142,8 @@ class Notificacao(base.View, MailerMixin):
 
     def enviar_email_confirmacao(self, participante):
         assunto = u"[Dev in Cachu 2012] Inscrição confirmada"
-        conteudo = loader.render_to_string("inscricao_confirmada.html", {"participante": participante})
+        conteudo = loader.render_to_string("inscricao_confirmada.html",
+                                           {"participante": participante})
         destinatarios = [participante.email]
         self.enviar_email(assunto, conteudo, destinatarios)
 
@@ -126,7 +156,8 @@ class Notificacao(base.View, MailerMixin):
 
     def enviar_email_cancelamento(self, participante):
         assunto = u"[Dev in Cachu 2012] Inscrição cancelada"
-        conteudo = loader.render_to_string("inscricao_cancelada.html", {"participante": participante})
+        conteudo = loader.render_to_string("inscricao_cancelada.html",
+                                           {"participante": participante})
         destinatarios = [participante.email]
         self.enviar_email_cancelamento(assunto, conteudo, destinatarios)
 
@@ -137,18 +168,21 @@ class Notificacao(base.View, MailerMixin):
         self.enviar_email_cancelamento(participante)
 
     def consultar_transacao(self, codigo_transacao):
-        url_transacao = "%s/%s?email=%s&token=%s" % (settings.PAGSEGURO_TRANSACTIONS, codigo_transacao, settings.PAGSEGURO["email"], settings.PAGSEGURO["token"])
-        url_notificacao = "%s/%s?email=%s&token=%s" % (settings.PAGSEGURO_TRANSACTIONS_NOTIFICATIONS, codigo_transacao, settings.PAGSEGURO["email"], settings.PAGSEGURO["token"])
-
+        url_transacao = "%s/%s?email=%s&token=%s" % (
+            settings.PAGSEGURO_TRANSACTIONS, codigo_transacao,
+            settings.PAGSEGURO["email"], settings.PAGSEGURO["token"],
+        )
+        url_notificacao = "%s/%s?email=%s&token=%s" % (
+            settings.PAGSEGURO_TRANSACTIONS_NOTIFICATIONS, codigo_transacao,
+            settings.PAGSEGURO["email"], settings.PAGSEGURO["token"],
+        )
         response = requests.get(url_transacao)
         if not response.ok:
             response = requests.get(url_notificacao)
-
         if response.ok:
             dom = etree.fromstring(response.content)
             status_transacao = int(dom.xpath("//status")[0].text)
             referencia = int(dom.xpath("//reference")[0].text)
-
             return status_transacao, referencia
 
         logger.error(u"\n\n")
@@ -156,7 +190,9 @@ class Notificacao(base.View, MailerMixin):
         logger.error(u"url requisitada (transação): %s" % url_transacao)
         logger.error(u"url requisitada (notificação): %s" % url_notificacao)
         logger.error(u"código da transação: %s" % codigo_transacao)
-        logger.error(u"Response obtido: %s\n%s" % (response.status_code, response.content))
+        logger.error(u"Response obtido: %s\n%s" % (
+            response.status_code, response.content
+        ))
         logger.error(u"\n\n")
 
         return None, None
@@ -190,7 +226,11 @@ class ValidacaoCertificado(base.View):
 
     def get(self, request):
         form = forms.ValidacaoCertificado()
-        return response.TemplateResponse(request, "form_validacao_certificado.html", {"form": form})
+        return response.TemplateResponse(
+            request,
+            "form_validacao_certificado.html",
+            {"form": form},
+        )
 
     def post(self, request):
         contexto = {}
@@ -210,7 +250,9 @@ class BuscarCertificado(base.View):
 
     def get(self, request):
         form = forms.BuscarCertificado()
-        return response.TemplateResponse(request, "form_busca_certificado.html", {"form": form})
+        return response.TemplateResponse(request,
+                                         "form_busca_certificado.html",
+                                         {"form": form})
 
     def post(self, request):
         msg = None
@@ -219,13 +261,21 @@ class BuscarCertificado(base.View):
         if cert is None and form.is_valid():
             email = form.cleaned_data["email"]
             try:
-                participante = models.Participante.objects.get(email=email, presente=True)
+                participante = models.Participante.objects.get(email=email,
+                                                               presente=True)
                 cert = models.Certificado.gerar_certificado(participante)
             except models.Participante.DoesNotExist:
                 cert = None
-                msg = u"E-mail não encontrado. Certifique-se de que você digitou o e-mail corretamente. Caso você considere essa mensagem incorreta, por favor entre em contato conosco"
+                msg = u"E-mail não encontrado. Certifique-se de que você " +\
+                      u"digitou o e-mail corretamente. Caso você considere " +\
+                      u"essa mensagem incorreta, por favor entre em " +\
+                      u"contato conosco"
         if not form.is_valid():
             msg = u"O campo e-mail é obrigatório e deve ser um e-mail válido."
         if cert is not None:
-            return http.HttpResponseRedirect(urlresolvers.reverse("certificado", kwargs={"slug": cert.hash}))
-        return response.TemplateResponse(request, "form_busca_certificado.html", {"form": form, "msg": msg})
+            return http.HttpResponseRedirect(
+                urlresolvers.reverse("certificado", kwargs={"slug": cert.hash})
+            )
+        return response.TemplateResponse(request,
+                                         "form_busca_certificado.html",
+                                         {"form": form, "msg": msg})

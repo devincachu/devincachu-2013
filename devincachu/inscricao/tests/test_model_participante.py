@@ -79,7 +79,8 @@ class ParticipanteTestCase(unittest.TestCase):
         self.assertEqual(100, field.max_length)
 
     def test_email_e_status_devem_ser_unique_juntos(self):
-        self.assertEqual((u'email', u'status',), models.Participante._meta.unique_together[0])
+        self.assertEqual((u'email', u'status'),
+                         models.Participante._meta.unique_together[0])
 
     def test_deve_ter_campo_status(self):
         self.assertIn("status", self.field_names)
@@ -114,15 +115,18 @@ class ParticipanteTestCase(unittest.TestCase):
         self.assertIn("tamanho_camiseta", self.field_names)
 
     def test_tamanho_de_camiseta_deve_ser_CharField(self):
-        field = models.Participante._meta.get_field_by_name("tamanho_camiseta")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "tamanho_camiseta")[0]
         self.assertIsInstance(field, django_models.CharField)
 
     def test_tamanho_de_camiseta_deve_ter_no_maximo_2_caracteres(self):
-        field = models.Participante._meta.get_field_by_name("tamanho_camiseta")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "tamanho_camiseta")[0]
         self.assertEqual(2, field.max_length)
 
     def test_tamanho_de_camiseta_deve_ter_verbose_name_descritivo(self):
-        field = models.Participante._meta.get_field_by_name("tamanho_camiseta")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "tamanho_camiseta")[0]
         self.assertEqual(u"Tamanho da camiseta", field.verbose_name)
 
     def test_tamanho_de_camiseta_deve_ter_options_limitadas(self):
@@ -132,28 +136,34 @@ class ParticipanteTestCase(unittest.TestCase):
             (u'G', u'G (58cm x 76cm)'),
             (u'GG', u'GG (62cm x 80cm)'),
         )
-        field = models.Participante._meta.get_field_by_name("tamanho_camiseta")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "tamanho_camiseta")[0]
         self.assertEqual(esperado, field.choices)
 
     def test_deve_ter_instituicao_de_ensino(self):
         self.assertIn("instituicao_ensino", self.field_names)
 
     def test_instituicao_de_ensino_deve_ser_do_tipo_CharField(self):
-        field = models.Participante._meta.get_field_by_name("instituicao_ensino")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "instituicao_ensino")[0]
         self.assertIsInstance(field, django_models.CharField)
 
     def test_instituicao_de_ensino_deve_ter_no_maximo_100_caracteres(self):
-        field = models.Participante._meta.get_field_by_name("instituicao_ensino")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "instituicao_ensino")[0]
         self.assertEqual(100, field.max_length)
 
     def test_instituicao_de_ensino_nao_deve_ser_obrigatorio(self):
-        field = models.Participante._meta.get_field_by_name("instituicao_ensino")[0]
+        field = models.Participante._meta.get_field_by_name(
+            "instituicao_ensino")[0]
         self.assertTrue(field.blank)
         self.assertTrue(field.null)
 
-    def test_instituicao_de_ensino_deve_ter_verbose_name_explicitando_que_eh_um_campo_para_estudantes(self):
-        field = models.Participante._meta.get_field_by_name("instituicao_ensino")[0]
-        self.assertEqual(u"Instituição de ensino (para estudantes)", field.verbose_name)
+    def test_instituicao_de_ensino_verbose_name_deve_citar_estudante(self):
+        field = models.Participante._meta.get_field_by_name(
+            "instituicao_ensino")[0]
+        self.assertEqual(u"Instituição de ensino (para estudantes)",
+                         field.verbose_name)
 
     def test_deve_ter_empresa(self):
         self.assertIn("empresa", self.field_names)
@@ -171,7 +181,7 @@ class ParticipanteTestCase(unittest.TestCase):
         self.assertTrue(field.blank)
         self.assertTrue(field.null)
 
-    def test_empresa_deve_ter_verbose_name_explicitando_que_eh_um_campo_para_pessoas_que_trabalham(self):
+    def test_empresa_deve_ter_verbose_name_empresa_onde_trabalha(self):
         field = models.Participante._meta.get_field_by_name("empresa")[0]
         self.assertEqual(u"Empresa onde trabalha", field.verbose_name)
 
@@ -203,7 +213,8 @@ class ParticipanteTestCase(unittest.TestCase):
 
     def test__repr__deve_ter_nome(self):
         participante = models.Participante(nome=u"Francisco Souza")
-        self.assertEqual(u"<Participante: Francisco Souza>", repr(participante))
+        self.assertEqual(u"<Participante: Francisco Souza>",
+                         repr(participante))
 
     def test__unicode__deve_ser_o_nome(self):
         participante = models.Participante(nome=u"Francisco Souza")

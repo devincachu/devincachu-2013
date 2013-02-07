@@ -23,7 +23,8 @@ class AdminCheckoutTestCase(unittest.TestCase):
         self.assertIn(models.Checkout, django_admin.site._registry)
 
     def test_model_Checkout_deve_estar_registrado_com_CheckoutAdmin(self):
-        self.assertIsInstance(django_admin.site._registry[models.Checkout], admin.CheckoutAdmin)
+        self.assertIsInstance(django_admin.site._registry[models.Checkout],
+                              admin.CheckoutAdmin)
 
     def test_deve_exibir_codigo_na_listagem(self):
         self.assertIn("codigo", admin.CheckoutAdmin.list_display)
@@ -53,7 +54,8 @@ class AdminCheckoutTestCase(unittest.TestCase):
         participante = models.Participante(email=u"f@souza.cc")
         checkout = models.Checkout(participante=participante)
         cadmin = admin.CheckoutAdmin(checkout, None)
-        self.assertEqual(participante.email, cadmin.email_participante(checkout))
+        self.assertEqual(participante.email,
+                         cadmin.email_participante(checkout))
 
     def test_nao_deve_ser_possivel_adicionar_checkouts_pelo_admin(self):
         cadmin = admin.CheckoutAdmin(models.Checkout(), None)

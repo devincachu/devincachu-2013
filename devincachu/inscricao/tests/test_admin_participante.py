@@ -17,11 +17,11 @@ class AdminParticipanteTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.participante = models.Participante.objects.create(
-                nome=u"Francisco Souza",
-                cidade=u"Cachoeiro de Itapemirim",
-                sexo=u"M",
-                email=u"francisco@devincachu.com.br",
-                status=u"CONFIRMADO",
+            nome=u"Francisco Souza",
+            cidade=u"Cachoeiro de Itapemirim",
+            sexo=u"M",
+            email=u"francisco@devincachu.com.br",
+            status=u"CONFIRMADO",
         )
 
     @classmethod
@@ -31,8 +31,9 @@ class AdminParticipanteTestCase(unittest.TestCase):
     def test_model_Participante_deve_estar_registrado_no_admin(self):
         self.assertIn(models.Participante, django_admin.site._registry)
 
-    def test_model_Participante_deve_estar_registrado_com_a_classe_ParticipanteAdmin(self):
-        self.assertIsInstance(django_admin.site._registry[models.Participante], admin.ParticipanteAdmin)
+    def test_model_Participante_eh_registrado_com_ParticipanteAdmin(self):
+        self.assertIsInstance(django_admin.site._registry[models.Participante],
+                              admin.ParticipanteAdmin)
 
     def test_deve_exibir_nome_na_listagem(self):
         self.assertIn("nome", admin.ParticipanteAdmin.list_display)
@@ -50,7 +51,8 @@ class AdminParticipanteTestCase(unittest.TestCase):
         self.assertIn("empresa", admin.ParticipanteAdmin.list_display)
 
     def test_deve_exibir_instituicao_ensino_na_listagem(self):
-        self.assertIn("instituicao_ensino", admin.ParticipanteAdmin.list_display)
+        self.assertIn("instituicao_ensino",
+                      admin.ParticipanteAdmin.list_display)
 
     def test_deve_exibir_tamanho_de_camiseta_na_listagem(self):
         self.assertIn("tamanho_camiseta", admin.ParticipanteAdmin.list_display)
@@ -83,13 +85,16 @@ class AdminParticipanteTestCase(unittest.TestCase):
         factory = client.RequestFactory()
         request = factory.get("/admin/inscricao/participante/")
         qs = models.Participante.objects.filter(pk=self.participante.pk)
-        mdladmin = admin.ParticipanteAdmin(models.Participante, django_admin.site)
+        mdladmin = admin.ParticipanteAdmin(models.Participante,
+                                           django_admin.site)
         admin.confirmar_presenca(mdladmin, request, qs)
         p = models.Participante.objects.get(pk=self.participante.pk)
         self.assertTrue(p.presente)
 
     def test_action_confirma_presenca_descricao(self):
-        self.assertEqual(u"Confirmar presença", admin.confirmar_presenca.short_description)
+        self.assertEqual(u"Confirmar presença",
+                         admin.confirmar_presenca.short_description)
 
     def test_deve_ter_action_de_confirmar_presenca(self):
-        self.assertIn(admin.confirmar_presenca, admin.ParticipanteAdmin.actions)
+        self.assertIn(admin.confirmar_presenca,
+                      admin.ParticipanteAdmin.actions)

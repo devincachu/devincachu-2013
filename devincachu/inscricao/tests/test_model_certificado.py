@@ -22,11 +22,11 @@ class CertificadoTestCase(unittest.TestCase):
         self.assertIn("participante", self.field_names)
 
     def test_participante_deve_ser_uma_FK(self):
-        field, _, _, _ = models.Certificado._meta.get_field_by_name("participante")
+        field = models.Certificado._meta.get_field_by_name("participante")[0]
         self.assertIsInstance(field, django_models.ForeignKey)
 
     def test_participante_deve_apontar_para_Participante(self):
-        field, _, _, _ = models.Certificado._meta.get_field_by_name("participante")
+        field = models.Certificado._meta.get_field_by_name("participante")[0]
         self.assertEqual(models.Participante, field.related.parent_model)
 
     def test_deve_ter_campo_codigo(self):
@@ -86,14 +86,14 @@ class GeracaoCertificadoTestCase(unittest.TestCase):
     def tearDownClass(cls):
         management.call_command("flush", interactive=False, verbosity=0)
 
-    def test_gerar_certificado_cria_certificado_para_participante_presente(self):
+    def test_gerar_certificado_cria_certificado(self):
         participante = models.Participante.objects.get(pk=3)
         certificado = models.Certificado.gerar_certificado(participante)
         self.assertIsNotNone(certificado.pk)
         self.assertEqual(8, certificado.horas)
         self.assertEqual(participante, certificado.participante)
 
-    def test_gerar_certificado_retorna_None_se_o_participante_nao_esteve_no_evento(self):
+    def test_gerar_certificado_retorna_None_para_participante_ausente(self):
         participante = models.Participante.objects.get(pk=1)
         certificado = models.Certificado.gerar_certificado(participante)
         self.assertIsNone(certificado)

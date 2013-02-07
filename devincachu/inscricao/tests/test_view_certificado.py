@@ -35,7 +35,7 @@ class ViewCertificadoTestCase(test.TestCase):
     def test_context_object_name_deve_ser_certificado(self):
         self.assertEqual(u"certificado", views.Certificado.context_object_name)
 
-    def test_queryset_deve_fazer_uma_query_so_para_obter_informacao_de_participante(self):
+    def test_queryset_deve_fazer_uma_query_so_para_obter_participante(self):
         with self.assertNumQueries(1):
             v = views.Certificado()
             self.assertEqual("Joaozinho", v.queryset[0].participante.nome)
@@ -63,7 +63,7 @@ class ValidacaoCertificado(test.TestCase):
     def test_deve_herdar_de_view(self):
         assert issubclass(views.ValidacaoCertificado, base.View)
 
-    def test_metodo_get_deve_renderizar_template_form_validacao_certificado(self):
+    def test_metodo_get_template(self):
         request = self.factory.get("/certificado/validar")
         v = views.ValidacaoCertificado()
         r = v.get(request)
@@ -77,32 +77,36 @@ class ValidacaoCertificado(test.TestCase):
         form = r.context_data["form"]
         self.assertIsInstance(form, forms.ValidacaoCertificado)
 
-    def test_metodo_post_deve_renderizar_template_certificado_valido_se_o_codigo_estiver_correto(self):
-        request = self.factory.post("/certificado/validar", {"codigo": "2012080439"})
+    def test_metodo_post_template(self):
+        request = self.factory.post("/certificado/validar",
+                                    {"codigo": "2012080439"})
         v = views.ValidacaoCertificado()
         r = v.post(request)
         self.assertIsInstance(r, response.TemplateResponse)
         self.assertEqual("certificado_valido.html", r.template_name)
 
-    def test_metodo_post_deve_trazer_certificado_no_contexto_da_resposta_se_o_codigo_estiver_correto(self):
-        request = self.factory.post("/certificado/validar", {"codigo": "2012080439"})
+    def test_metodo_post_deve_trazer_certificado_no_contexto(self):
+        request = self.factory.post("/certificado/validar",
+                                    {"codigo": "2012080439"})
         v = views.ValidacaoCertificado()
         r = v.post(request)
         esperado = models.Certificado.objects.all()[0]
         obtido = r.context_data["certificado"]
         self.assertEqual(esperado, obtido)
 
-    def test_post_renderiza_o_template_de_formulario_com_mensagem_caso_nao_seja_possivel_encontrar_certificado(self):
+    def test_post_certificado_nao_localizado(self):
         inputs = ({}, {"codigo": ""}, {"codigo": "123ble"})
         for input in inputs:
             request = self.factory.post("/certificado/validar", input)
             v = views.ValidacaoCertificado()
             r = v.post(request)
-            self.assertEqual("form_validacao_certificado.html", r.template_name)
+            self.assertEqual("form_validacao_certificado.html",
+                             r.template_name)
             form = r.context_data["form"]
             self.assertIsInstance(form, forms.ValidacaoCertificado)
             msg = r.context_data["msg"]
-            self.assertEqual(u"Código inválido, verifique o valor digitado", msg)
+            self.assertEqual(u"Código inválido, verifique o valor digitado",
+                             msg)
 
 
 class BuscarCertificadoViewTestCase(test.TestCase):
@@ -125,53 +129,66 @@ class BuscarCertificadoViewTestCase(test.TestCase):
         resp = view.get(request)
         self.assertIsInstance(resp, response.TemplateResponse)
 
-    def test_deve_renderizar_template_de_formulario_de_busca_de_certificado(self):
+    def test_template_busca(self):
         request = self.factory.get("/certificado/")
         view = views.BuscarCertificado()
         resp = view.get(request)
         self.assertEqual("form_busca_certificado.html", resp.template_name)
 
-    def test_deve_incluir_uma_instancia_do_formulario_no_context(self):
+    def test_deve_incluir_uma_instancia_do_formulario_no_contexto(self):
         request = self.factory.get("/certificado/")
         view = views.BuscarCertificado()
         resp = view.get(request)
-        self.assertIsInstance(resp.context_data["form"], forms.BuscarCertificado)
+        self.assertIsInstance(resp.context_data["form"],
+                              forms.BuscarCertificado)
 
     def test_post_deve_redirecionar_para_pagina_do_certificado(self):
         certificado = models.Certificado.objects.get(pk=1)
-        request = self.factory.post("/certificado/", {"email": "joaozinho@devincachu.com.br"})
+        request = self.factory.post("/certificado/",
+                                    {"email": "joaozinho@devincachu.com.br"})
         view = views.BuscarCertificado()
         resp = view.post(request)
         self.assertIsInstance(resp, http.HttpResponseRedirect)
-        self.assertEqual("/certificado/%s/" % certificado.hash, resp["Location"])
+        self.assertEqual("/certificado/%s/" % certificado.hash,
+                         resp["Location"])
 
-    def test_post_deve_criar_certificado_no_banco_de_dados_caso_nao_exista_e_redirecionar_para_o_mesmo(self):
-        request = self.factory.post("/certificado/", {"email": "pedrinho@devincachu.com.br"})
+    def test_post_deve_criar_certificado_no_banco_de_dados(self):
+        request = self.factory.post("/certificado/",
+                                    {"email": "pedrinho@devincachu.com.br"})
         view = views.BuscarCertificado()
         resp = view.post(request)
         self.assertIsInstance(resp, http.HttpResponseRedirect)
-        certificado = models.Certificado.objects.get(participante__email="pedrinho@devincachu.com.br")
-        self.assertEqual("/certificado/%s/" % certificado.hash, resp["Location"])
+        certificado = models.Certificado.objects.get(
+            participante__email="pedrinho@devincachu.com.br",
+        )
+        self.assertEqual("/certificado/%s/" % certificado.hash,
+                         resp["Location"])
 
-    def test_post_deve_retornar_pagina_com_formulario_caso_email_nao_seja_de_participante_presente_com_mensagem(self):
-        request = self.factory.post("/certificado/", {"email": "mariazinha@devincachu.com.br"})
+    def test_post_participante_ausente(self):
+        request = self.factory.post("/certificado/",
+                                    {"email": "mariazinha@devincachu.com.br"})
         view = views.BuscarCertificado()
         resp = view.post(request)
         self.assertIsInstance(resp, response.TemplateResponse)
         self.assertEqual("form_busca_certificado.html", resp.template_name)
-        msg = u"E-mail não encontrado. Certifique-se de que você digitou o e-mail corretamente. Caso você considere essa mensagem incorreta, por favor entre em contato conosco"
+        msg = u"E-mail não encontrado. Certifique-se de que " +\
+              u"você digitou o e-mail corretamente. Caso você considere " +\
+              u"essa mensagem incorreta, por favor entre em contato conosco"
         self.assertEqual(msg, resp.context_data["msg"])
 
-    def test_post_deve_retornar_pagina_com_formulario_caso_email_nao_esteja_inscrito(self):
-        request = self.factory.post("/certificado/", {"email": "patricinha@devincachu.com.br"})
+    def test_post_email_nao_encontrado(self):
+        request = self.factory.post("/certificado/",
+                                    {"email": "patricinha@devincachu.com.br"})
         view = views.BuscarCertificado()
         resp = view.post(request)
         self.assertIsInstance(resp, response.TemplateResponse)
         self.assertEqual("form_busca_certificado.html", resp.template_name)
-        msg = u"E-mail não encontrado. Certifique-se de que você digitou o e-mail corretamente. Caso você considere essa mensagem incorreta, por favor entre em contato conosco"
+        msg = u"E-mail não encontrado. Certifique-se de que " +\
+              u"você digitou o e-mail corretamente. Caso você considere " +\
+              u"essa mensagem incorreta, por favor entre em contato conosco"
         self.assertEqual(msg, resp.context_data["msg"])
 
-    def test_post_deve_retornar_pagina_com_formulario_caso_formulario_nao_seja_valido(self):
+    def test_post_formulario_invalido(self):
         request = self.factory.post("/certificado/", {"email": ""})
         view = views.BuscarCertificado()
         resp = view.post(request)

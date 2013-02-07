@@ -74,7 +74,7 @@ class NotificacaoTestCase(unittest.TestCase):
         response = view.post(request)
         self.assertEqual("OK", response.content)
 
-    def test_deve_mudar_status_de_participante_caso_a_transacao_enviada_seja_confirmada(self):
+    def test_status_para_transacao_confirmada(self):
         view = views.Notificacao()
         view.consultar_transacao = lambda x: (3, self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
@@ -83,7 +83,7 @@ class NotificacaoTestCase(unittest.TestCase):
         participante = models.Participante.objects.get(pk=self.participante.pk)
         self.assertEqual(u"CONFIRMADO", participante.status)
 
-    def test_deve_cancelar_inscricao_caso_a_transacao_enviada_esteja_cancelada(self):
+    def test_status_para_transacao_cancelada(self):
         view = views.Notificacao()
         view.consultar_transacao = lambda x: (7, self.participante.pk)
         view.enviar_email_cancelamento = lambda p: None
