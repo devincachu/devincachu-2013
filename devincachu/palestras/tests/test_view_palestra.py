@@ -74,8 +74,8 @@ class PalestraViewTestCase(unittest.TestCase):
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@name="keywords"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(esperado, dom.xpath('//meta[@name="keywords"]')[0].attrib["content"])
 
     def test_deve_definir_meta_description(self):
         palestra = models.Palestra.objects.get(pk=1)
@@ -83,8 +83,8 @@ class PalestraViewTestCase(unittest.TestCase):
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@name="description"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(esperado, dom.xpath('//meta[@name="description"]')[0].attrib["content"])
 
     def test_deve_definir_og_title_com_titulo_da_palestra(self):
         palestra = models.Palestra.objects.get(pk=1)
@@ -92,16 +92,16 @@ class PalestraViewTestCase(unittest.TestCase):
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:title"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(esperado, dom.xpath('//meta[@property="og:title"]')[0].attrib["content"])
 
     def test_deve_definir_og_type_como_activity(self):
         palestra = models.Palestra.objects.get(pk=1)
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals("activity", dom.xpath('//meta[@property="og:type"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals("activity", dom.xpath('//meta[@property="og:type"]')[0].attrib["content"])
 
     def test_deve_definir_og_url_com_url_da_palestra(self):
         palestra = models.Palestra.objects.get(pk=1)
@@ -109,8 +109,8 @@ class PalestraViewTestCase(unittest.TestCase):
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:url"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(esperado, dom.xpath('//meta[@property="og:url"]')[0].attrib["content"])
 
     def test_deve_usar_foto_do_primeiro_palestrante_como_og_image(self):
         palestra = models.Palestra.objects.get(pk=1)
@@ -119,37 +119,37 @@ class PalestraViewTestCase(unittest.TestCase):
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(esperado, dom.xpath('//meta[@property="og:image"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(esperado, dom.xpath('//meta[@property="og:image"]')[0].attrib["content"])
 
     def test_deve_usar_devincachu_como_og_sitename(self):
         palestra = models.Palestra.objects.get(pk=1)
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals("Dev in Cachu 2012", dom.xpath('//meta[@property="og:site_name"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals("Dev in Cachu 2012", dom.xpath('//meta[@property="og:site_name"]')[0].attrib["content"])
 
     def test_deve_ter_og_description_com_descricao_da_palestra(self):
         palestra = models.Palestra.objects.get(pk=1)
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals(palestra.descricao, dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals(palestra.descricao, dom.xpath('//meta[@property="og:description"]')[0].attrib["content"])
 
     def test_deve_ter_og_locale_pt_BR(self):
         palestra = models.Palestra.objects.get(pk=1)
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals("pt_BR", dom.xpath('//meta[@property="og:locale"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals("pt_BR", dom.xpath('//meta[@property="og:locale"]')[0].attrib["content"])
 
     def test_deve_usar_fb_app_id_apropriado(self):
         palestra = models.Palestra.objects.get(pk=1)
         view = views.PalestraView.as_view()
         response = view(self.request, slug=palestra.slug, palestrantes=u"hannibal-lecter/vito-corleone")
         response.render()
-        dom = html.fromstring(response.content)
-        self.assertEquals("220413784720358", dom.xpath('//meta[@property="fb:app_id"]')[0].attrib["content"].encode("iso-8859-1"))
+        dom = html.fromstring(response.content.decode("utf-8"))
+        self.assertEquals("220413784720358", dom.xpath('//meta[@property="fb:app_id"]')[0].attrib["content"])

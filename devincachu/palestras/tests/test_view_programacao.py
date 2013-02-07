@@ -42,7 +42,6 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         palestras = response.context_data["palestras"]
-
         titulos_esperados = [u"Recepção e credenciamento", u"Escalando aplicações Django", "Arquitetura escalável de aplicação de alto desempenho", u"Almoço"]
         titulos_obtidos = [p.titulo for p in palestras]
         self.assertEquals(titulos_esperados, titulos_obtidos)
@@ -56,8 +55,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
 
-        dom = html.fromstring(response.content)
-        title_obtido = dom.xpath('//a[@href="%s"]' % palestra.get_absolute_url())[0].attrib["title"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        title_obtido = dom.xpath('//a[@href="%s"]' % palestra.get_absolute_url())[0].attrib["title"]
         self.assertEquals(u"Oi, você vem sempre aqui?", unicode(title_obtido))
 
     def test_deve_definir_canonical_url(self):
@@ -73,8 +72,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_meta_description(self):
@@ -82,17 +81,17 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
+        dom = html.fromstring(response.content.decode("utf-8"))
         obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
-        self.assertEquals(esperado, unicode(obtido))
+        self.assertEquals(esperado, obtido)
 
     def test_deve_ter_og_description(self):
         esperado = u"Conheça as atrações e os convidados especiais do Dev in Cachu 2012"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@property="og:description"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@property="og:description"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_title_descrevendo_a_pagin(self):
@@ -100,16 +99,16 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_type_activity(self):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@property="og:type"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@property="og:type"]')[0].attrib["content"]
         self.assertEquals(u"activity", unicode(obtido))
 
     def test_deve_ter_og_url(self):
@@ -117,8 +116,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@property="og:url"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@property="og:url"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(obtido))
 
     def test_deve_ter_og_image_apontando_para_logo_do_devincachu(self):
@@ -126,6 +125,6 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-        dom = html.fromstring(response.content)
-        obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"].encode("iso-8859-1")
+        dom = html.fromstring(response.content.decode("utf-8"))
+        obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"]
         self.assertEquals(esperado, unicode(obtido))
