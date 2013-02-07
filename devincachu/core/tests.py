@@ -20,7 +20,7 @@ class ProcessorsTestCase(unittest.TestCase):
 
     def test_deve_retornar_dicionario_com_BASE_URL(self):
         esperado = {u"BASE_URL": settings.BASE_URL}
-        self.assertEquals(esperado, processors.get_base_url(self.request))
+        self.assertEqual(esperado, processors.get_base_url(self.request))
 
     def test_deve_estar_registrado_nos_CONTEXT_PROCESSORS(self):
         self.assertIn(

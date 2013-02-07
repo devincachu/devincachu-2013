@@ -26,7 +26,7 @@ class ConfiguracaoTestCase(unittest.TestCase):
 
     def test_valor_da_inscricao_deve_ter_verbose_name_com_special_chars(self):
         field = models.Configuracao._meta.get_field_by_name("valor_inscricao")[0]
-        self.assertEquals(u"Valor da inscrição", field.verbose_name)
+        self.assertEqual(u"Valor da inscrição", field.verbose_name)
 
     def test_deve_ter_campo_informando_se_a_inscricao_esta_aberta(self):
         self.assertIn("status", self.field_names)
@@ -37,7 +37,7 @@ class ConfiguracaoTestCase(unittest.TestCase):
 
     def test_status_deve_ter_no_maximo_10_caracteres(self):
         field = models.Configuracao._meta.get_field_by_name("status")[0]
-        self.assertEquals(10, field.max_length)
+        self.assertEqual(10, field.max_length)
 
     def test_status_deve_ser_fechadas_abertas_ou_encerradas(self):
         esperado = (
@@ -46,14 +46,14 @@ class ConfiguracaoTestCase(unittest.TestCase):
             (u"encerradas", u"Inscrições encerradas"),
         )
         field = models.Configuracao._meta.get_field_by_name("status")[0]
-        self.assertEquals(esperado, field.choices)
+        self.assertEqual(esperado, field.choices)
 
     def test__unicode__deve_retornar_informando_que_eh_model_de_configuracao_de_inscricao(self):
         configuracao = models.Configuracao.objects.get()
-        self.assertEquals(u"Configuração das inscrições do Dev in Cachu 2012", unicode(configuracao))
+        self.assertEqual(u"Configuração das inscrições do Dev in Cachu 2012", unicode(configuracao))
 
     def test_verbose_name_deve_ter_acento_e_cedilha(self):
-        self.assertEquals(u"Configuração das inscrições", models.Configuracao._meta.verbose_name)
+        self.assertEqual(u"Configuração das inscrições", models.Configuracao._meta.verbose_name)
 
     def test_verbose_name_plural_deve_ser_igual_verbose_name(self):
-        self.assertEquals(models.Configuracao._meta.verbose_name, models.Configuracao._meta.verbose_name_plural)
+        self.assertEqual(models.Configuracao._meta.verbose_name, models.Configuracao._meta.verbose_name_plural)

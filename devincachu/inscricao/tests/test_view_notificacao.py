@@ -46,33 +46,33 @@ class NotificacaoTestCase(unittest.TestCase):
         view.consultar_transacao = lambda x: (3, self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
-        self.assertEquals(200, response.status_code)
+        self.assertEqual(200, response.status_code)
 
     def test_deve_retornar_OK(self):
         view = views.Notificacao()
         view.consultar_transacao = lambda x: (3, self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
-        self.assertEquals("OK", response.content)
+        self.assertEqual("OK", response.content)
 
     def test_apenas_retornar_OK_quando_der_erro_no_response(self):
         view = views.Notificacao()
         view.consultar_transacao = lambda x: (None, None)
         response = view.post(self.request)
-        self.assertEquals("OK", response.content)
+        self.assertEqual("OK", response.content)
 
     def test_apenas_retornar_OK_quando_status_for_diferente_de_3_e_7(self):
         view = views.Notificacao()
         view.consultar_transacao = lambda x: (2, self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
-        self.assertEquals("OK", response.content)
+        self.assertEqual("OK", response.content)
 
     def test_deve_retornar_OK_mesmo_se_nao_tiver_notificationCode(self):
         request = self.factory.post("/notificacao/", {})
         view = views.Notificacao()
         response = view.post(request)
-        self.assertEquals("OK", response.content)
+        self.assertEqual("OK", response.content)
 
     def test_deve_mudar_status_de_participante_caso_a_transacao_enviada_seja_confirmada(self):
         view = views.Notificacao()
@@ -81,7 +81,7 @@ class NotificacaoTestCase(unittest.TestCase):
         view.post(self.request)
 
         participante = models.Participante.objects.get(pk=self.participante.pk)
-        self.assertEquals(u"CONFIRMADO", participante.status)
+        self.assertEqual(u"CONFIRMADO", participante.status)
 
     def test_deve_cancelar_inscricao_caso_a_transacao_enviada_esteja_cancelada(self):
         view = views.Notificacao()
@@ -90,4 +90,4 @@ class NotificacaoTestCase(unittest.TestCase):
         view.post(self.request)
 
         participante = models.Participante.objects.get(pk=self.participante.pk)
-        self.assertEquals(u"CANCELADO", participante.status)
+        self.assertEqual(u"CANCELADO", participante.status)

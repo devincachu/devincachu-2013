@@ -17,13 +17,13 @@ class PalestranteAdminFormTestCase(unittest.TestCase):
         assert issubclass(forms.PalestranteAdminForm, django_forms.ModelForm)
 
     def test_PalestranteAdminForm_deve_ter_model_Palestrante_no_meta(self):
-        self.assertEquals(models.Palestrante, forms.PalestranteAdminForm.Meta.model)
+        self.assertEqual(models.Palestrante, forms.PalestranteAdminForm.Meta.model)
 
     def test_PalestranteAdminForm_deve_excluir_campo_slug(self):
         self.assertIn('slug', forms.PalestranteAdminForm.Meta.exclude)
 
     def test_deve_utilizar_widget_de_textarea_para_minicurriculo(self):
-        self.assertEquals(django_forms.Textarea, forms.PalestranteAdminForm.Meta.widgets['minicurriculo'])
+        self.assertEqual(django_forms.Textarea, forms.PalestranteAdminForm.Meta.widgets['minicurriculo'])
 
 
 class PalestraAdminFormTestCase(unittest.TestCase):
@@ -32,10 +32,10 @@ class PalestraAdminFormTestCase(unittest.TestCase):
         assert issubclass(forms.PalestraAdminForm, django_forms.ModelForm)
 
     def test_PalestraAdminForm_deve_ter_model_Palestra_no_meta(self):
-        self.assertEquals(models.Palestra, forms.PalestraAdminForm.Meta.model)
+        self.assertEqual(models.Palestra, forms.PalestraAdminForm.Meta.model)
 
     def test_PalestraAdminForm_deve_excluir_campo_slug(self):
         self.assertIn('slug', forms.PalestraAdminForm.Meta.exclude)
 
     def test_PalestraAdminForm_deve_utilizar_widget_de_textarea_para_descricao_de_palestra(self):
-        self.assertEquals(django_forms.Textarea, forms.PalestraAdminForm.Meta.widgets['descricao'])
+        self.assertEqual(django_forms.Textarea, forms.PalestraAdminForm.Meta.widgets['descricao'])

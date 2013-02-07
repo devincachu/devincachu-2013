@@ -26,7 +26,7 @@ class CheckoutTestCase(unittest.TestCase):
 
     def test_codigo_deve_ter_no_maximo_100_caracteres(self):
         field = models.Checkout._meta.get_field_by_name("codigo")[0]
-        self.assertEquals(100, field.max_length)
+        self.assertEqual(100, field.max_length)
 
     def test_deve_ter_campo_participante(self):
         self.assertIn("participante", self.field_names)
@@ -37,9 +37,9 @@ class CheckoutTestCase(unittest.TestCase):
 
     def test_participante_deve_apontar_para_model_Participante(self):
         field = models.Checkout._meta.get_field_by_name("participante")[0]
-        self.assertEquals(models.Participante, field.related.parent_model)
+        self.assertEqual(models.Participante, field.related.parent_model)
 
     def test__unicode__deve_retornar_codigo_e_nome_do_participante(self):
         participante = models.Participante(nome=u"Francisco Souza", email="chico@devincachu.com.br")
         checkout = models.Checkout(codigo=u"123", participante=participante)
-        self.assertEquals(u"123 (Francisco Souza - chico@devincachu.com.br)", unicode(checkout))
+        self.assertEqual(u"123 (Francisco Souza - chico@devincachu.com.br)", unicode(checkout))

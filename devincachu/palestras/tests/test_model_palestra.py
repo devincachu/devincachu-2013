@@ -32,11 +32,11 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_titulo_deve_ter_no_maximo_150_caracteres(self):
         field = models.Palestra._meta.get_field_by_name("titulo")[0]
-        self.assertEquals(150, field.max_length)
+        self.assertEqual(150, field.max_length)
 
     def test_titulo_deve_ter_verbose_name_com_caractere_especial(self):
         field = models.Palestra._meta.get_field_by_name("titulo")[0]
-        self.assertEquals(u"Título", field.verbose_name)
+        self.assertEqual(u"Título", field.verbose_name)
 
     def test_model_palestra_deve_ter_slug(self):
         self.assertIn("slug", self.field_names)
@@ -47,7 +47,7 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_slug_deve_ter_no_maximo_150_caracteres(self):
         field = models.Palestra._meta.get_field_by_name("slug")[0]
-        self.assertEquals(150, field.max_length)
+        self.assertEqual(150, field.max_length)
 
     def test_slug_deve_ser_unico(self):
         field = models.Palestra._meta.get_field_by_name("slug")[0]
@@ -62,11 +62,11 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_descricao_deve_ter_no_maximo_2000_caracteres(self):
         field = models.Palestra._meta.get_field_by_name("descricao")[0]
-        self.assertEquals(2000, field.max_length)
+        self.assertEqual(2000, field.max_length)
 
     def test_descricao_deve_ter_verbose_name_com_caracteres_especiais(self):
         field = models.Palestra._meta.get_field_by_name("descricao")[0]
-        self.assertEquals(u"Descrição", field.verbose_name)
+        self.assertEqual(u"Descrição", field.verbose_name)
 
     def test_model_palestra_deve_ter_hora_de_inicio(self):
         self.assertIn("inicio", self.field_names)
@@ -77,7 +77,7 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_inicio_deve_ter_verbose_name_descritivo(self):
         field = models.Palestra._meta.get_field_by_name("inicio")[0]
-        self.assertEquals(u"Horário de início", field.verbose_name)
+        self.assertEqual(u"Horário de início", field.verbose_name)
 
     def test_model_palestra_deve_ter_hora_de_termino(self):
         self.assertIn("termino", self.field_names)
@@ -88,7 +88,7 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_termino_dve_ter_verbose_name_descritivo(self):
         field = models.Palestra._meta.get_field_by_name("termino")[0]
-        self.assertEquals(u"Horário de término", field.verbose_name)
+        self.assertEqual(u"Horário de término", field.verbose_name)
 
     def test_model_palestra_deve_ter_campo_palestrantes(self):
         self.assertIn("palestrantes", self.field_names)
@@ -99,7 +99,7 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_palestrantes_deve_apontar_para_model_Palestrante(self):
         field = models.Palestra._meta.get_field_by_name("palestrantes")[0]
-        self.assertEquals(models.Palestrante, field.related.parent_model)
+        self.assertEqual(models.Palestrante, field.related.parent_model)
 
     def test_palestrantes_deve_aceitar_blank(self):
         field = models.Palestra._meta.get_field_by_name("palestrantes")[0]
@@ -107,25 +107,25 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     def test_palestrantes_deve_ter_related_name_palestras(self):
         field = models.Palestra._meta.get_field_by_name("palestrantes")[0]
-        self.assertEquals(u"palestras", field.rel.related_name)
+        self.assertEqual(u"palestras", field.rel.related_name)
 
     def test_nomes_palestrantes_deve_retornar_nomes_dos_palestrantes_com_virgula_e_e(self):
         palestra = models.Palestra.objects.get(pk=1)
-        self.assertEquals(u"Hannibal Lecter e Vito Corleone", palestra.nomes_palestrantes())
+        self.assertEqual(u"Hannibal Lecter e Vito Corleone", palestra.nomes_palestrantes())
 
     def test_deve_ter_representacao_simples_que_utilize_titulo_da_palestra(self):
         palestra = models.Palestra(titulo=u"Testando aplicativos web")
-        self.assertEquals(u'<Palestra: Testando aplicativos web>', repr(palestra))
+        self.assertEqual(u'<Palestra: Testando aplicativos web>', repr(palestra))
 
     def test_deve_exibir_titulo_como_unicode(self):
         palestra = models.Palestra(titulo=u"Testando aplicações web")
-        self.assertEquals(palestra.titulo, unicode(palestra))
+        self.assertEqual(palestra.titulo, unicode(palestra))
 
     def test_get_absolute_url_deve_retornar_url_para_palestra_quando_a_palestra_tem_palestrante(self):
         palestra = models.Palestra.objects.get(pk=1)
         url_esperada = "/programacao/hannibal-lecter/vito-corleone/%s/" % palestra.slug
-        self.assertEquals(url_esperada, palestra.get_absolute_url())
+        self.assertEqual(url_esperada, palestra.get_absolute_url())
 
     def test_get_absolute_url_deve_retornar_tralha_quando_a_palestra_nao_tem_palestrante(self):
         palestra = models.Palestra.objects.get(pk=2)
-        self.assertEquals("#", palestra.get_absolute_url())
+        self.assertEqual("#", palestra.get_absolute_url())

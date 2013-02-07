@@ -33,13 +33,13 @@ class ViewInscricaoInscricoesFechadasTestCase(unittest.TestCase):
             u"abertas": "inscricoes_abertas.html",
             u"encerradas": "inscricoes_encerradas.html",
         }
-        self.assertEquals(esperado, views.Inscricao.templates)
+        self.assertEqual(esperado, views.Inscricao.templates)
 
     def test_deve_renderizar_template_inscricoes_fechadas_para_status_inscricoes_fechadas(self):
-        self.assertEquals(u"inscricoes_fechadas.html", self.response.template_name)
+        self.assertEqual(u"inscricoes_fechadas.html", self.response.template_name)
 
     def test_deve_ter_contexto_vazio(self):
-        self.assertEquals({}, self.response.context_data)
+        self.assertEqual({}, self.response.context_data)
 
 
 class ViewInscricaoInscricoesAbertasTestCase(unittest.TestCase):
@@ -57,7 +57,7 @@ class ViewInscricaoInscricoesAbertasTestCase(unittest.TestCase):
         cls.response = view.get(request)
 
     def test_deve_renderizar_template_inscricoes_abertas_para_status_inscricoes_abertas(self):
-        self.assertEquals(u"inscricoes_abertas.html", self.response.template_name)
+        self.assertEqual(u"inscricoes_abertas.html", self.response.template_name)
 
     def test_deve_incluir_instancia_de_ParticipanteForm_no_contexto(self):
         context_data = self.response.context_data
@@ -65,7 +65,7 @@ class ViewInscricaoInscricoesAbertasTestCase(unittest.TestCase):
 
     def test_deve_incluir_configuracao_no_contexto(self):
         context_data = self.response.context_data
-        self.assertEquals(self.configuracao, context_data["configuracao"])
+        self.assertEqual(self.configuracao, context_data["configuracao"])
 
 
 class ViewInscricaoInscricoesAbertasComDadosInvalidosNoFormularioTestCase(unittest.TestCase):
@@ -92,11 +92,11 @@ class ViewInscricaoInscricoesAbertasComDadosInvalidosNoFormularioTestCase(unitte
         self.assertIsInstance(self.response, response.TemplateResponse)
 
     def test_deve_renderizar_template_inscricoes_abertas(self):
-        self.assertEquals("inscricoes_abertas.html", self.response.template_name)
+        self.assertEqual("inscricoes_abertas.html", self.response.template_name)
 
     def test_formulario_do_contexto_deve_ter_dados_preenchidos(self):
         form = self.response.context_data["form"]
-        self.assertEquals(sorted(self.dados.items(), key=lambda x: x[0]), sorted(form.data.items(), key=lambda x: x[0]))
+        self.assertEqual(sorted(self.dados.items(), key=lambda x: x[0]), sorted(form.data.items(), key=lambda x: x[0]))
 
 
 class ViewInscricaoInscricoesAbertasComDadosValidosTestCase(unittest.TestCase):
@@ -126,22 +126,22 @@ class ViewInscricaoInscricoesAbertasComDadosValidosTestCase(unittest.TestCase):
         models.Participante.objects.filter(**cls.dados).delete()
 
     def test_deve_renderizar_template_inscricao_confirmada(self):
-        self.assertEquals("aguardando_pagamento.html", self.response.template_name)
+        self.assertEqual("aguardando_pagamento.html", self.response.template_name)
 
     def test_deve_cadastrar_participante_no_banco_de_dados(self):
         participante = models.Participante.objects.get(**self.dados)
-        self.assertEquals(participante.nome, self.dados["nome"])
+        self.assertEqual(participante.nome, self.dados["nome"])
 
     def test_deve_criar_checkout_no_banco_com_codigo_e_participante_cadastro(self):
         participante = models.Participante.objects.get(**self.dados)
         checkout = models.Checkout.objects.get(participante=participante)
-        self.assertEquals(MOCKED_CHECKOUT_CODE, checkout.codigo)
+        self.assertEqual(MOCKED_CHECKOUT_CODE, checkout.codigo)
 
     def test_deve_incluir_checkout_no_contexto(self):
         context_data = self.response.context_data
         participante = models.Participante.objects.get(**self.dados)
         checkout = models.Checkout.objects.get(participante=participante)
-        self.assertEquals(checkout, context_data["checkout"])
+        self.assertEqual(checkout, context_data["checkout"])
 
 
 class ViewInscricaoInscricoesAbertasFalhaComunicacaoPagSeguroTestCase(unittest.TestCase):
@@ -165,9 +165,9 @@ class ViewInscricaoInscricoesAbertasFalhaComunicacaoPagSeguroTestCase(unittest.T
         cls.response = view.post(request)
 
     def test_deve_renderizar_template_falha_comunicacao_pagseguro(self):
-        self.assertEquals(u"falha_comunicacao_pagseguro.html", self.response.template_name)
+        self.assertEqual(u"falha_comunicacao_pagseguro.html", self.response.template_name)
 
     def test_deve_incluir_participante_no_contexto(self):
         participante = models.Participante.objects.get(**self.dados)
         context_data = self.response.context_data
-        self.assertEquals(participante, context_data["participante"])
+        self.assertEqual(participante, context_data["participante"])

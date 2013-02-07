@@ -31,7 +31,7 @@ class DestaqueTestCase(unittest.TestCase):
 
     def test_campo_titulo_deve_ter_no_maximo_60_caracteres(self):
         field = models.Destaque._meta.get_field_by_name("titulo")[0]
-        self.assertEquals(60, field.max_length)
+        self.assertEqual(60, field.max_length)
 
     def test_model_destaque_deve_ter_um_campo_conteudo(self):
         self.assertIn('conteudo', self.field_names)
@@ -46,7 +46,7 @@ class DestaqueTestCase(unittest.TestCase):
 
     def test_campo_conteudo_deve_ter_no_maximo_500_caracteres(self):
         field = models.Destaque._meta.get_field_by_name("conteudo")[0]
-        self.assertEquals(500, field.max_length)
+        self.assertEqual(500, field.max_length)
 
     def test_model_destaque_deve_ter_um_campo_autor(self):
         self.assertIn('autor', self.field_names)
@@ -57,7 +57,7 @@ class DestaqueTestCase(unittest.TestCase):
 
     def test_campo_autor_deve_ser_uma_FK_para_o_model_User_da_app_auth(self):
         field = models.Destaque._meta.get_field_by_name("autor")[0]
-        self.assertEquals(auth_models.User, field.related.parent_model)
+        self.assertEqual(auth_models.User, field.related.parent_model)
 
     def test_model_destaque_deve_ter_data(self):
         self.assertIn('data', self.field_names)
@@ -76,15 +76,15 @@ class DestaqueTestCase(unittest.TestCase):
 
     def test_repr_Destaque(self):
         destaque = models.Destaque(titulo=u"Dev in Cachu", conteudo=u"Oi")
-        self.assertEquals("<Destaque: Dev in Cachu>", destaque.__repr__())
+        self.assertEqual("<Destaque: Dev in Cachu>", destaque.__repr__())
 
     def test_unicode_Destaque(self):
         destaque = models.Destaque(titulo=u"Dev in Cachu", conteudo=u"Oi")
-        self.assertEquals(u"Dev in Cachu", destaque.__unicode__())
+        self.assertEqual(u"Dev in Cachu", destaque.__unicode__())
 
     def test_str_deve_retornar_o_mesmo_que_unicode(self):
         destaque = models.Destaque(titulo=u"Dev in Cachu", conteudo=u"Oi")
-        self.assertEquals(destaque.__unicode__(), destaque.__str__())
+        self.assertEqual(destaque.__unicode__(), destaque.__str__())
 
 
 class ChamadaTestCase(unittest.TestCase):
@@ -109,7 +109,7 @@ class ChamadaTestCase(unittest.TestCase):
 
     def test_campo_titulo_veja_mais_deve_ter_no_maximo_40_caracteres(self):
         field = models.Chamada._meta.get_field_by_name("titulo_veja_mais")[0]
-        self.assertEquals(40, field.max_length)
+        self.assertEqual(40, field.max_length)
 
     def test_model_chamada_deve_ter_campo_url_link(self):
         self.assertIn('url_link', self.field_names)
@@ -124,8 +124,8 @@ class ChamadaTestCase(unittest.TestCase):
 
     def test_campo_url_link_deve_ter_no_maximo_255_caracteres(self):
         field = models.Chamada._meta.get_field_by_name("url_link")[0]
-        self.assertEquals(255, field.max_length)
+        self.assertEqual(255, field.max_length)
 
     def test_repr_Chamada(self):
         chamada = models.Chamada(titulo=u"Oi?")
-        self.assertEquals("<Chamada: Oi?>", chamada.__repr__())
+        self.assertEqual("<Chamada: Oi?>", chamada.__repr__())

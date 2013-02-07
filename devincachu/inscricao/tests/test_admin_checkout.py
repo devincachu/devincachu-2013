@@ -47,13 +47,13 @@ class AdminCheckoutTestCase(unittest.TestCase):
         participante = models.Participante(nome=u"Francisco Souza")
         checkout = models.Checkout(participante=participante)
         cadmin = admin.CheckoutAdmin(checkout, None)
-        self.assertEquals(participante.nome, cadmin.nome_participante(checkout))
+        self.assertEqual(participante.nome, cadmin.nome_participante(checkout))
 
     def test_email_participante_deve_retornar_email_do_participante(self):
         participante = models.Participante(email=u"f@souza.cc")
         checkout = models.Checkout(participante=participante)
         cadmin = admin.CheckoutAdmin(checkout, None)
-        self.assertEquals(participante.email, cadmin.email_participante(checkout))
+        self.assertEqual(participante.email, cadmin.email_participante(checkout))
 
     def test_nao_deve_ser_possivel_adicionar_checkouts_pelo_admin(self):
         cadmin = admin.CheckoutAdmin(models.Checkout(), None)

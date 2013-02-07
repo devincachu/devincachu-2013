@@ -17,13 +17,13 @@ class ParticipanteFormTestCase(unittest.TestCase):
         assert issubclass(forms.ParticipanteForm, django_forms.ModelForm)
 
     def test_model_deve_ser_Participante(self):
-        self.assertEquals(models.Participante, forms.ParticipanteForm.Meta.model)
+        self.assertEqual(models.Participante, forms.ParticipanteForm.Meta.model)
 
     def test_nao_deve_trazer_campo_confirmado_do_model(self):
         self.assertIn("status", forms.ParticipanteForm.Meta.exclude)
 
     def test_deve_ter_estilo_para_campos_obrigatorios(self):
-        self.assertEquals("obrigatorio", forms.ParticipanteForm.required_css_class)
+        self.assertEqual("obrigatorio", forms.ParticipanteForm.required_css_class)
 
     def test_deve_ter_estilo_para_campos_com_erro(self):
-        self.assertEquals("error", forms.ParticipanteForm.error_css_class)
+        self.assertEqual("error", forms.ParticipanteForm.error_css_class)

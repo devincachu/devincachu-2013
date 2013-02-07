@@ -39,7 +39,7 @@ class IndexViewTestCase(unittest.TestCase):
     def test_deve_responder_pela_url_raiz(self):
         f = views.IndexView.as_view()
         r = urlresolvers.resolve('/')
-        self.assertEquals(f.func_name, r.func.func_name)
+        self.assertEqual(f.func_name, r.func.func_name)
 
     def test_metodo_obter_destaques_deve_trazer_apenas_destaques(self):
         destaques = self.view.obter_destaques()
@@ -48,7 +48,7 @@ class IndexViewTestCase(unittest.TestCase):
 
     def test_metodo_obter_destaque_deve_trazer_no_maximo_14_destaques(self):
         destaques = self.view.obter_destaques()
-        self.assertEquals(14, len(destaques))
+        self.assertEqual(14, len(destaques))
 
     def test_metodo_obter_destaque_deve_trazer_destaques_mais_recentes(self):
         esperado = [
@@ -69,7 +69,7 @@ class IndexViewTestCase(unittest.TestCase):
         ]
 
         destaques = [d.titulo for d in self.view.obter_destaques()]
-        self.assertEquals(esperado, destaques)
+        self.assertEqual(esperado, destaques)
 
     def test_metodo_obter_chamada_deve_retornar_uma_chamada(self):
         chamada = self.view.obter_chamada()
@@ -77,7 +77,7 @@ class IndexViewTestCase(unittest.TestCase):
 
     def test_metodo_obter_chamada_deve_retornar_chamada_mais_recente(self):
         chamada = self.view.obter_chamada()
-        self.assertEquals(u"Dev in Cachu 2012", chamada.titulo)
+        self.assertEqual(u"Dev in Cachu 2012", chamada.titulo)
 
     def test_metodo_get_deve_retornar_TemplateResponse(self):
         r = self.view.get(self.request)
@@ -85,23 +85,23 @@ class IndexViewTestCase(unittest.TestCase):
 
     def test_metodo_get_deve_renderizar_template_index(self):
         r = self.view.get(self.request)
-        self.assertEquals("index.html", r.template_name)
+        self.assertEqual("index.html", r.template_name)
 
     def test_metodo_get_deve_colocar_destaques_no_contexto(self):
         destaques = list(self.view.obter_destaques())
         r = self.view.get(self.request)
-        self.assertEquals(destaques, list(r.context_data['destaques']))
+        self.assertEqual(destaques, list(r.context_data['destaques']))
 
     def test_metodo_get_deve_colocar_chamada_no_contexto(self):
         chamada = models.Chamada.objects.get(pk=5)
         r = self.view.get(self.request)
-        self.assertEquals(chamada, r.context_data['chamada'])
+        self.assertEqual(chamada, r.context_data['chamada'])
 
     def test_deve_exibir_div_de_chamada_quando_estiver_no_contexto(self):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content)
-        self.assertEquals(1, len(dom.xpath('//div[@class="hero-unit"]')))
+        self.assertEqual(1, len(dom.xpath('//div[@class="hero-unit"]')))
 
     def test_deve_ter_canonical_url_da_home(self):
         r = self.view.get(self.request)
@@ -109,7 +109,7 @@ class IndexViewTestCase(unittest.TestCase):
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = "%s/" % settings.BASE_URL
         obtido = dom.xpath('//link[@rel="canonical"]')[0].attrib["href"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_meta_keywords(self):
         r = self.view.get(self.request)
@@ -119,7 +119,7 @@ class IndexViewTestCase(unittest.TestCase):
                    u"informática, desenvolvimento de software, " +\
                    u"cachoeiro de itapemirim"
         obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_meta_description(self):
         r = self.view.get(self.request)
@@ -128,7 +128,7 @@ class IndexViewTestCase(unittest.TestCase):
         esperado = u"Dev in Cachu 2012 - evento sobre desenvolvimento " +\
                    u"de software no sul do Espírito Santo"
         obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_og_title_deve_ter_nome_e_edicao_do_evento(self):
         r = self.view.get(self.request)
@@ -136,7 +136,7 @@ class IndexViewTestCase(unittest.TestCase):
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"Dev in Cachu 2012"
         obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_og_type_deve_ser_website(self):
         r = self.view.get(self.request)
@@ -144,7 +144,7 @@ class IndexViewTestCase(unittest.TestCase):
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"website"
         obtido = dom.xpath('//meta[@property="og:type"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_og_url_deve_ser_BASE_URL_com_barra_no_final(self):
         r = self.view.get(self.request)
@@ -152,7 +152,7 @@ class IndexViewTestCase(unittest.TestCase):
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"%s/" % settings.BASE_URL
         obtido = dom.xpath('//meta[@property="og:url"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_og_image_deve_ser_logomarca_padrao_do_evento(self):
         r = self.view.get(self.request)
@@ -160,7 +160,7 @@ class IndexViewTestCase(unittest.TestCase):
         dom = html.fromstring(r.content.decode("utf-8"))
         esperado = u"%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
         obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"]
-        self.assertEquals(esperado, obtido)
+        self.assertEqual(esperado, obtido)
 
     def test_og_description_deve_trazer_descricao_do_evento(self):
         r = self.view.get(self.request)
@@ -171,7 +171,7 @@ class IndexViewTestCase(unittest.TestCase):
                    u"difundir técnicas e práticas de desenvolvimento de " +\
                    u"software, trazendo diversos temas"
         tag = dom.xpath('//meta[@property="og:description"]')[0]
-        self.assertEquals(esperado, tag.attrib["content"])
+        self.assertEqual(esperado, tag.attrib["content"])
 
 
 class IndexViewSemDados(unittest.TestCase):
@@ -186,7 +186,7 @@ class IndexViewSemDados(unittest.TestCase):
         self.view = views.IndexView()
 
     def test_metodo_obter_destaques_ausencia_de_dados(self):
-        self.assertEquals(0, len(self.view.obter_destaques()))
+        self.assertEqual(0, len(self.view.obter_destaques()))
 
     def test_metodo_obter_chamada_ausencia_de_dados(self):
         self.assertIsNone(self.view.obter_chamada())
@@ -195,4 +195,4 @@ class IndexViewSemDados(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content)
-        self.assertEquals([], dom.xpath('//div[@class="hero-unit"]'))
+        self.assertEqual([], dom.xpath('//div[@class="hero-unit"]'))

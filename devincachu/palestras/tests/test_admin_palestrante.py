@@ -32,7 +32,7 @@ class PalestranteAdminTestCase(unittest.TestCase):
         self.assertIsInstance(django_admin.site._registry[models.Palestrante], admin.PalestranteAdmin)
 
     def test_PalestranteAdmin_deve_usar_PalestranteAdminForm(self):
-        self.assertEquals(forms.PalestranteAdminForm, admin.PalestranteAdmin.form)
+        self.assertEqual(forms.PalestranteAdminForm, admin.PalestranteAdmin.form)
 
     def test_nome_deve_estar_na_listagem(self):
         self.assertIn('nome', admin.PalestranteAdmin.list_display)
@@ -48,4 +48,4 @@ class PalestranteAdminTestCase(unittest.TestCase):
         adm = admin.PalestranteAdmin(palestrante, None)
         adm.save_model(self.request, palestrante, None, None)
         self.assertIsNotNone(palestrante.pk)
-        self.assertEquals("francisco-souza", palestrante.slug)
+        self.assertEqual("francisco-souza", palestrante.slug)

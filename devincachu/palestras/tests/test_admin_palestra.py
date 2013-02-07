@@ -43,7 +43,7 @@ class AdminPalestraTestCase(unittest.TestCase):
         self.assertIsInstance(django_admin.site._registry[models.Palestra], admin.PalestraAdmin)
 
     def test_PalestraAdmin_deve_usar_PalestraAdminForm(self):
-        self.assertEquals(forms.PalestraAdminForm, admin.PalestraAdmin.form)
+        self.assertEqual(forms.PalestraAdminForm, admin.PalestraAdmin.form)
 
     def test_titulo_deve_estar_listagem(self):
         self.assertIn('titulo', admin.PalestraAdmin.list_display)
@@ -68,7 +68,7 @@ class AdminPalestraTestCase(unittest.TestCase):
         adm = admin.PalestraAdmin(palestra, None)
         adm.save_model(self.request, palestra, None, None)
         self.assertIsNotNone(palestra.pk)
-        self.assertEquals("aprendendo-python", palestra.slug)
+        self.assertEqual("aprendendo-python", palestra.slug)
 
     def test_metodo_palestrantes_do_admin_deve_trazer_nomes_de_palestrantes_separados_por_virgula(self):
         palestra = models.Palestra(**self.dados)
@@ -77,7 +77,7 @@ class AdminPalestraTestCase(unittest.TestCase):
         palestra.palestrantes = models.Palestrante.objects.filter(pk__lt=4)
         palestra.save()
 
-        self.assertEquals(u"Hannibal Lecter, James Bond, Vito Corleone", adm.nomes_palestrantes(palestra))
+        self.assertEqual(u"Hannibal Lecter, James Bond, Vito Corleone", adm.nomes_palestrantes(palestra))
 
     def test_metodo_palestrantes_deve_ter_short_description_indicando_singular_ou_plural(self):
-        self.assertEquals(u"Palestrante(s)", admin.PalestraAdmin.nomes_palestrantes.short_description)
+        self.assertEqual(u"Palestrante(s)", admin.PalestraAdmin.nomes_palestrantes.short_description)

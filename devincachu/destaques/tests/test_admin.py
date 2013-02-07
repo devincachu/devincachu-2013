@@ -68,7 +68,7 @@ class DestaqueAdminTestCase(unittest.TestCase):
                               admin.DestaqueAdmin)
 
     def test_DestaqueAdmin_deve_usar_DestaqueAdminForm(self):
-        self.assertEquals(forms.DestaqueAdminForm, admin.DestaqueAdmin.form)
+        self.assertEqual(forms.DestaqueAdminForm, admin.DestaqueAdmin.form)
 
     def test_titulo_deve_estar_na_listagem(self):
         self.assertIn('titulo', admin.DestaqueAdmin.list_display)
@@ -84,17 +84,17 @@ class DestaqueAdminTestCase(unittest.TestCase):
 
     def test_deve_gravar_usuario_logado_como_autor_de_destaque(self):
         self.admin.save_model(self.request, self.destaque, None, False)
-        self.assertEquals(self.user, self.destaque.autor)
+        self.assertEqual(self.user, self.destaque.autor)
 
     def test_deve_manter_autor_original_quando_estiver_fazendo_update(self):
         self.admin.save_model(self.request, self.destaque, None, False)
         self.request.user = self.user2
         self.admin.save_model(self.request, self.destaque, None, True)
-        self.assertEquals(self.user, self.destaque.autor)
+        self.assertEqual(self.user, self.destaque.autor)
 
     def test_deve_excluir_chamadas_da_listagem(self):
         qs = self.admin.queryset(self.request)
-        self.assertEquals(self.destaque_persistido, qs.get())
+        self.assertEqual(self.destaque_persistido, qs.get())
 
 
 class ChamadaAdminTestCase(unittest.TestCase):
@@ -145,7 +145,7 @@ class ChamadaAdminTestCase(unittest.TestCase):
         assert issubclass(admin.ChamadaAdmin, admin.DestaqueAdmin)
 
     def test_ChamadaAdmin_deve_usar_ChamadaAdminForm(self):
-        self.assertEquals(forms.ChamadaAdminForm, admin.ChamadaAdmin.form)
+        self.assertEqual(forms.ChamadaAdminForm, admin.ChamadaAdmin.form)
 
     def test_titulo_deve_permarnecer_na_listagem(self):
         self.assertIn('titulo', admin.ChamadaAdmin.list_display)
@@ -158,4 +158,4 @@ class ChamadaAdminTestCase(unittest.TestCase):
 
     def test_deve_trazer_apenas_chamada_na_listagem(self):
         qs = self.admin.queryset(self.request)
-        self.assertEquals(self.chamada_persistida, qs.get())
+        self.assertEqual(self.chamada_persistida, qs.get())

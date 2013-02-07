@@ -68,7 +68,7 @@ class CertificadoTestCase(unittest.TestCase):
 
     def test_horas_deve_ser_8_por_padrao(self):
         field, _, _, _ = models.Certificado._meta.get_field_by_name("horas")
-        self.assertEquals(8, field.default)
+        self.assertEqual(8, field.default)
 
     def test_unicode_deve_retornar_codigo_e_nome_do_participante(self):
         p = models.Participante(nome=u"Francisco Souza")
