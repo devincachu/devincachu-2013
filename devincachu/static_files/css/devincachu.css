@@ -4,23 +4,31 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 */
 
-div.home-social {
-	float: left;
-	margin: 10px 0;
+@media (min-width: 768px) {
+	div.home-social {
+		float: left;
+		margin: 10px 0;
+	}
+
+	div#gplus {
+		width: 50px;
+	}
+
+	div#fb {
+		width: 80px;
+	}
+
+	div#twitter {
+		width: 100px;
+	}
+
+	p {
+		clear: both;
+	}
 }
 
-div#gplus {
-	width: 50px;
-}
-
-div#fb {
-	width: 80px;
-}
-
-div#twitter {
-	width: 100px;
-}
-
-p {
-	clear: both;
+@media (max-width: 767px) {
+	div.home-social {
+		display: none;
+	}
 }
