@@ -13,7 +13,7 @@
 		var itens = document.querySelectorAll('.nav > li > a');
 		for (i = 0; i < itens.length; i++) {
 			if (re.test(itens[i].href)) {
-				itens[i].parentNode.classList.add('active');
+				itens[i].classList.add('active');
 				break;
 			}
 		}
