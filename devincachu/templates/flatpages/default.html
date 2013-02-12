@@ -8,10 +8,12 @@
 
 {% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
 
-{% block chamada %}{% endblock %}
-
-{% block coluna_central %}
-    {{ flatpage.content|markdown }}
+{% block conteudo %}
+<div id="flatpage">
+	<div class="container">
+		{{ flatpage.content|markdown }}
+	</div>
+</div>
 {% endblock %}
 
 {% block og %}
