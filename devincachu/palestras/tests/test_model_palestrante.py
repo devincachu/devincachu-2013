@@ -51,26 +51,6 @@ class ModelPalestranteTestCase(unittest.TestCase):
         field = models.Palestrante._meta.get_field_by_name("slug")[0]
         self.assertTrue(field.unique)
 
-    def test_model_palestrante_deve_ter_blog(self):
-        self.assertIn("blog", self.field_names)
-
-    def test_campo_blog_deve_ser_URLField(self):
-        field = models.Palestrante._meta.get_field_by_name("blog")[0]
-        self.assertIsInstance(field, django_models.URLField)
-
-    def test_campo_blog_deve_aceitar_blank(self):
-        field = models.Palestrante._meta.get_field_by_name("blog")[0]
-        self.assertTrue(field.blank)
-
-    def test_campo_blog_deve_ter_verify_false(self):
-        field = models.Palestrante._meta.get_field_by_name("blog")[0]
-        validator = field.validators[1]
-        self.assertFalse(validator.verify_exists)
-
-    def test_campo_blog_deve_ter_no_maximo_255_caracteres(self):
-        field = models.Palestrante._meta.get_field_by_name("blog")[0]
-        self.assertEqual(255, field.max_length)
-
     def test_model_palestrante_deve_ter_campo_para_perfil_no_twitter(self):
         self.assertIn("twitter", self.field_names)
 
