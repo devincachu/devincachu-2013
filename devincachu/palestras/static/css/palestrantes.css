@@ -134,7 +134,7 @@ license that can be found in the LICENSE file.
 #team .people .bio_box .info a:hover span.socialicons_h{
 	display: inline-block !important;
 }
-.socialicons{
+#team .socialicons{
 	background: url('../img/socialicons2.png') no-repeat;
 	width: 265px;
 	height: 36px;
