@@ -64,7 +64,12 @@ license that can be found in the LICENSE file.
 	float: right;
 }
 #team .people .bio_box img{
+	border-radius: 85px;
+	-moz-border-radius: 85px;
+	-webkit-border-radius: 85px;
 	float: left;
+	height: 171px;
+	width: 171px;
 }
 #team .people .bio_boxr img{
 	margin-left: 38px;
