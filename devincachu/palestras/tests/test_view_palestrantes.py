@@ -132,7 +132,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
         self.assertEqual(esperado, url)
 
     def test_deve_usar_logomarca_padrao_como_og_image(self):
-        esperado = u"%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
+        esperado = u"%simg/devincachu-facebook.png" % settings.STATIC_URL
         tag = self.dom.xpath('//meta[@property="og:image"]')[0]
         image = tag.attrib["content"]
         self.assertEqual(esperado, image)
