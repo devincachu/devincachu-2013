@@ -3,6 +3,7 @@
   fields:
     nome: Hannibal Lecter
     slug: hannibal-lecter
+    headline: Canibal.
     minicurriculo: Chianti.
     foto: palestrantes/hannibal.jpg
     twitter: hlecter
@@ -13,6 +14,7 @@
   fields:
     nome: Vito Corleone
     slug: vito-corleone
+    headline: Quem sabe?
     minicurriculo: Chianti.
     foto: palestrantes/vito.jpg
     twitter: "@vito"
@@ -23,9 +25,9 @@
   fields:
     nome: James Bond
     slug: james-bond
+    headline: Agente secreto
     minicurriculo: Chianti.
     foto: palestrantes/bond.jpg
-    blog: http://bond.com
     listagem: 1
 
 - model: palestras.Palestrante
@@ -33,6 +35,7 @@
   fields:
     nome: Forrest Gump
     slug: forrest-gump
+    headline: Contador de história.
     minicurriculo: Chianti.
     foto: palestrantes/forrest.jpg
     listagem: 1
@@ -42,6 +45,7 @@
   fields:
     nome: Freddy Krueger
     slug: freddy-krueger
+    headline: Caçador de sonhos.
     minicurriculo: Chianti.
     foto: palestrantes/fred.jpg
     listagem: 0
