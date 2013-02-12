@@ -60,3 +60,7 @@ license that can be found in the LICENSE file.
 #grade-de-programacao span {
 	display: block;
 }
+
+#programacao .disclaimer {
+	color: #C00;
+}
