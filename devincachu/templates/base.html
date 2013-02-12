@@ -5,190 +5,142 @@
 {% load compress %}
 
 <!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <meta charset="utf-8" />
-        <title>{% block title %}Dev in Cachu 2012{% endblock %}</title>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}Dev in Cachu 2013{% endblock %}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        {% block meta %}
-            <meta name="description" content="{{ description }}" />
-            <meta name="keywords" content="{{ keywords }}"/>
-            <link rel="canonical" href="{{ canonical_url }}" />
-        {% endblock %}
+		{% block meta %}
+		<meta name="description" content="{{ description }}" />
+		<meta name="keywords" content="{{ keywords }}"/>
+		<link rel="canonical" href="{{ canonical_url }}" />
+		{% endblock %}
 
-        {% block og %}{% endblock %}
-        <meta property="og:site_name" content="Dev in Cachu 2012" />
-        <meta property="og:locale" content="pt_BR" />
-        <meta property="fb:app_id" content="220413784720358" />
+		{% block og %}{% endblock %}
+		<meta property="og:site_name" content="Dev in Cachu 2013" />
+		<meta property="og:locale" content="pt_BR" />
+		<meta property="fb:app_id" content="220413784720358" />
 
+		<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
 
-        <!--[if lt IE 9]>
-            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+		{% compress css %}
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/theme.css">
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/lib/animate.css" media="screen, projection">
+		{% endcompress %}
 
-        {% compress css %}
-            <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" media="screen" charset="utf-8" />
-            <link href="{{ STATIC_URL }}css/devincachu.css" rel="stylesheet" media="screen" charset="utf-8" />
-            <link href="{{ STATIC_URL }}css/index.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8" />
-            <link href="{{ STATIC_URL }}css/palestrantes.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8"/>
-            <link href="{{ STATIC_URL }}css/programacao.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8" />
-            <link href="{{ STATIC_URL }}css/inscricao.css" rel="stylesheet" type="text/css" media="screen" charset="utf-8" />
-        {% endcompress %}
+		{% block css %}{% endblock %}
 
-        <script src="{{ STATIC_URL }}js/head.load.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="{{ STATIC_URL }}js/head.load.min.js" type="text/javascript" charset="utf-8"></script>
 
-        <link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico" />
-    </head>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+	</head>
+	<body>
+		{% block menu %}
+		<div class="navbar navbar-inverse navbar-static-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</a>
+					<a class="brand" href="/">
+						<strong>Dev in Cachu 2013</strong>
+					</a>
+					<div class="nav-collapse collapse">
+						<ul class="nav pull-right">
+							<li><a href="{% url quando-e-onde %}">Quando e onde?</a></li>
+							<!-- <li class="dropdown"> -->
+							<!-- <a href="#" class="dropdown&#45;toggle" data&#45;toggle="dropdown"> -->
+							<!-- 	PAGES -->
+							<!-- 	<b class="caret"></b> -->
+							<!-- </a> -->
+							<!-- <ul class="dropdown&#45;menu"> -->
+							<!-- 	<li><a href="features.html">Features</a></li> -->
+							<!-- 	<li><a href="services.html">Services</a></li> -->
+							<!-- 	<li><a href="portfolio.html">Portfolio</a></li> -->
+							<!-- 	<li><a href="portfolio&#45;item.html">Portfolio Item</a></li> -->
+							<!-- 	<li><a href="coming&#45;soon.html">Coming Soon</a></li> -->
+							<!-- 	<li><a href="sign&#45;in.html">Sign in</a></li> -->
+							<!-- 	<li><a href="sign&#45;up.html">Sign up</a></li> -->
+							<!-- 	<li><a href="backgrounds.html">Backgrounds</a></li> -->
+							<!-- </ul> -->
+							<!-- </li> -->
+							<!-- <li><a href="pricing.html">PRICING</a></li> -->
+							<!-- <li><a href="contact.html" class="active">CONTACT US</a></li> -->
+							<!-- <li><a href="blog.html">BLOG</a></li> -->
+							<!-- <li><a class="btn&#45;header" href="sign&#45;up.html">Sign up</a></li> -->
+							<!-- <li><a class="btn&#45;header" href="sign&#45;in.html">Sign in</a></li> -->
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
 
-    <body>
+		{% block content %}{% endblock %}
 
-        {% block menu %}
-            <div class="topbar">
-                <div class="fill">
-                    <div class="container">
-                        <a class="brand" href="/" title="Dev in Cachu 2012 - 5 de maio"><img src="{{ STATIC_URL }}img/logo-site.png" alt="Logomarca Dev in Cachu 2012" /></a>
-                        <ul class="nav">
-                            <li><a href="/quando-e-onde/" title="Veja quando e onde acontecerá o Dev in Cachu 2012">Quando e onde?</a></li>
-                            <li class="dropdown">
-                                <a href="{% url programacao %}" title="Veja a programação do Dev in Cachu 2012">Programação</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url programacao %}" title="Veja a programação do Dev in Cachu 2012">Grade de programação</a></li>
-                                    <li><a href="{% url palestrantes %}" title="Conheça os palestrantes do Dev in Cachu 2012">Palestrantes</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="{% url busca_certificado %}" title="Gerar/buscar certificado">Certificado</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{% url busca_certificado %}" title="Gerar/buscar certificado">Geração/busca de certificado</a></li>
-                                    <li><a href="{% url validacao_certificado %}" title="Validar certificado">Validação de certificado</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/vagas/" title="Oportunidades de trabalho na Giran, Globo.com e Thoughtworks!">Oportunidades</a></li>
-                            <li><a href="/contato/" title="Entre em contato com a organização do Dev in Cachu 2012">Contato</a></li>
-                            <li><a href="http://2011.devincachu.com.br/" title="Veja o site da edição passada do Dev in Cachu">/2011</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        {% endblock %}
+		<footer id="footer" style="margin-top:0;">
+		<div class="container">
+			<div class="row info">
+				<div class="span6 residence">
+					<ul>
+						<li><strong>Dev in Cachu 2013</strong></li>
+						<li>04 de maio de 2013, Centro Universitário São Camilo,</li>
+						<li>Cachoeiro de Itapemirim, ES.</li>
+					</ul>
+				</div>
+				<div class="span5 touch">
+					<ul>
+						<li><strong><a href="mailto:contato@devincachu.com.br"> contato@devincachu.com.br</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="row credits">
+				<div class="span12">
+					<div class="row social">
+						<div class="span12">
+							<a href="https://www.facebook.com/events/502905693093139/" class="facebook">
+								<span class="socialicons ico1"></span>
+								<span class="socialicons_h ico1h"></span>
+							</a>
+							<a href="https://twitter.com/devincachu" class="twitter">
+								<span class="socialicons ico2"></span>
+								<span class="socialicons_h ico2h"></span>
+							</a>
+							<a href="https://plus.google.com/events/ckc1955n8v7f5hmtrpg19cc8fbc" class="gplus">
+								<span class="socialicons ico3"></span>
+								<span class="socialicons_h ico3h"></span>
+							</a>
+							<a href="https://secure.flickr.com/search/?q=devincachu&m=tags" class="flickr">
+								<span class="socialicons ico4"></span>
+								<span class="socialicons_h ico4h"></span>
+							</a>
+						</div>
+					</div>
+					<div class="row copyright">
+						<div class="span12">
+							© {% now "Y" %} Organização Dev in Cachu.<br>
+							Praticamente nenhum direito reservado.<br>
+							Tema desenvolvido por Detail Canvas.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
 
-        <div class="container">
-
-            {% block chamada %}{% endblock %}
-
-            <div class="row">
-                {% block conteudo %}
-                    <div class="span11">
-                        {% block coluna_central %}
-                            <h2>Vem aí: Dev in Cachu 2012!</h2>
-                            <p>Já começaram os preparativos para o principal evento de desenvolvimento de software do sul do Espírito Santo, o Dev in Cachu! Em <a href="/2011" title="Dev in Cachu 2011">2011</a>, o evento foi um tremendo sucesso, e estamos trabalhando para que em 2012 não seja diferente!</p>
-                            <p>Em breve teremos mais informações no site :)</p>
-                        {% endblock %}
-                    </div>
-
-                    <div class="span5">
-                        <h2 id="data-evento">5 de maio!</h2>
-                        <p>O Dev in Cachu 2012 acontecerá no dia 5 de maio de 2012, no <strong>Centro Universitário São Camilo</strong>. <a href="/quando-e-onde/" title="Quando e onde será o Dev in Cachu 2012?">Quer saber como chegar?</a>
-                        </p>
-                        {% block coluna_lateral %}
-                            <h2>Patrocinadores</h2>
-                            <h3>Diamante</h3>
-                                <ul class="logotipos">
-                                    <li><a href="http://www.giran.com.br" title="Giran Soluções e E-commerce"><img src="{{ STATIC_URL }}img/sponsor/diamond/giran-ecommerce-solutions.png" width="240" height="73" alt="Giran Soluções e E-commerce" /></a></li>
-                                    <li><a href="http://globo.com" title="globo.com - Absolutamente tudo sobre notícias, esportes e entretenimento"><img src="{{ STATIC_URL }}img/sponsor/diamond/globo.com.png" width="169" height="105" alt="Globo.com" /></a></li>
-                                </ul>
-                            <h3>Ouro</h3>
-                                <ul class="logotipos">
-                                    <li><a href="http://www.caelum.com.br" title="Caelum Ensino e Inovação"><img src="{{ STATIC_URL }}img/sponsor/gold/caelum-ensino-inovacao.png" width="192" height="61" alt="Caelum Ensino e Inovação" /></a></li>
-                                    <li><a href="http://www.thoughtworks.com" title="ThoughtWorks"><img src="{{ STATIC_URL }}img/sponsor/gold/thoughtworks.png" width="192" height="31" alt="ThoughtWorks" /></a></li>
-                                    <li><a href="http://www.agersa.es.gov.br" title="AGERSA - Agindo mais por você!"><img src="{{ STATIC_URL }}img/sponsor/gold/agersa.jpg" width="192" height="84" alt="AGERSA - Agindo mais por você!" /></a></li>
-                                </ul>
-                            <h3>Prata</h3>
-                                <ul class="logotipos">
-                                    <li><a href="http://www.dataci.es.gov.br" title="DATACI"><img src="{{ STATIC_URL }}img/sponsor/silver/dataci.jpg" alt="DATACI" /></a></li>
-                                </ul>
-                            <h3>Bronze</h3>
-                                <ul class="logotipos">
-                                    <li><a href="http://www.tecsystem.com.br" title="Tecsystem - Tecnologia em Software"><img src="{{ STATIC_URL }}img/sponsor/bronze/tecsystem.png" width="124" height="35" alt="Tecsystem - Tecnologia em Software" /></a></li>
-                                </ul>
-                            <h2>Realização</h2>
-                            <ul class="logotipos">
-                                <li><a href="http://www.nerdes.org/" title="nerdes;"><img src="{{ STATIC_URL }}img/nerdes.jpg" alt="nerdes;" width="196" height="45" /></a></li>
-                            </ul>
-                            <h2>Idealizadores</h2>
-                            <ul class="idealizadores">
-                                <li><a href="http://twitter.com/agnhesi" title="Andressa Agnhesi" rel="nofollow">@agnhesi</a></li>
-                                <li><a href="http://twitter.com/franciscosouza" title="Francisco Souza" rel="nofollow">@franciscosouza</a></li>
-                                <li><a href="http://twitter.com/isaurarangel" title="Isaura Rangel" rel="nofollow">@isaurarangel</a></li>
-                                <li><a href="http://twitter.com/magnomp" title="Magno Machado" rel="nofollow">@magnomp</a></li>
-                                <li><a href="http://twitter.com/martinusso" title="Breno Martinusso" rel="nofollow">@martinusso</a></li>
-                            </ul>
-                            <h2>Apoio</h2>
-                            <ul class="logotipos">
-                                <li><a href="http://saocamilo-es.br" title="Centro Universitário São Camilo"><img src="{{ STATIC_URL }}img/support/sao-camilo.png" alt="Centro Universitário São Camilo" width="115" height="36" /></a></li>
-                                <li><a href="http://www.ci.ifes.edu.br" title="IFES - Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo, Campus Cachoeiro de Itapemirim"><img src="{{ STATIC_URL }}img/support/ifes.jpg" alt="IFES - Instituto Federal de Educação, Ciência e Tecnologia do Espírito Santo, Campus Cachoeiro de Itapemirim" width="115" height="63" /></a></li>
-                                <li><a href="http://unes.br" title="Faculdade do Espírito Santo"><img src="{{ STATIC_URL }}img/support/unes.jpg" alt="Faculdade do Espírito Santo" width="115" height="69" /></a></li>
-                                <li><a href="http://sneer.me" title="sneer - Sovereign peer-to-peer"><img src="{{ STATIC_URL }}img/support/sneer-red.png" alt="sneer" width="115" height="41" /></a></li>
-                                <li><a href="http://novatec.com.br" title="Editora Novatec"><img src="{{ STATIC_URL }}img/support/editora-novatec.png" alt="Editora Novatec" width="115" height="46" /></a></li>
-                                <li><a href="http://www.es.sebrae.com.br" title="SEBRAE Espírito Santo"><img src="{{ STATIC_URL }}img/support/sebrae.png" alt="SEBRAE Espírito Santo" width="115" height="95" /></a></li>
-                                <li><a href="http://www.sindinfo.com.br" title="Sindicato das Empresas de Informática / ES"><img src="{{ STATIC_URL }}img/support/sindinfo.jpg" alt="Sindicato das Empresas de Informática / ES" width="115" height="71" /></a></li>
-                                <li><a href="http://flexait.com.br" title="Flexa Information Technology"><img src="{{ STATIC_URL}}img/support/flexa-it.png" width="115" height="63" alt="Flexa Information Technology" /></a></li>
-                            </ul>
-                        {% endblock %}
-                    </div>
-                {% endblock %}
-            </div>
-
-            <footer>
-            {% block rodape %}
-                <p>
-                    &copy; {% now "Y" %} - Organização do Dev in Cachu<br />
-                    <em>Praticamente nenhum direito reservado :)</em>
-                </p>
-            {% endblock %}
-            </footer>
-
-        </div>
-
-        <a href="http://github.com/devincachu/devincachu" id="github-ribbon" title="Fork o site do Dev in Cachu no Github!" rel="nofollow">
-            <img src="{{ STATIC_URL }}img/fork-me.png" alt="Fork me on Github" width="149" height="149" />
-        </a>
-
-        <div id="fb-root"></div>
-        {% compress js %}
-            {% block js %}
-                <script src="{{ STATIC_URL }}js/init.menu.js" type="text/javascript" charset="utf-8"></script>
-            {% endblock %}
-            <script>
-                window._gaq = window._gaq || [];
-                _gaq.push(['_setAccount', 'UA-8088829-10']);
-                _gaq.push(['_trackPageview']);
-
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-
-                !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-                (function(d, s, id) {
-                  var js, fjs = d.getElementsByTagName(s)[0];
-                  if (d.getElementById(id)) return;
-                  js = d.createElement(s); js.id = id;
-                  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=220413784720358";
-                  js.async = true;
-                  fjs.parentNode.insertBefore(js, fjs);
-                })(document, 'script', 'facebook-jssdk');
-
-                  window.___gcfg = {lang: 'pt-BR'};
-
-                  (function() {
-                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                    po.src = 'https://apis.google.com/js/plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                  })();
-            </script>
-        {% endcompress %}
-    </body>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		{% compress js %}
+		{% block js %}{% endblock %}
+		<script src="{{ STATIC_URL }}js/init.menu.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+		<script src="{{ STATIC_URL }}js/theme.js"></script>
+		{% endcompress %}
+	</body>
 </html>
