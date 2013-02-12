@@ -154,7 +154,7 @@ class PalestraViewTestCase(unittest.TestCase):
         dom = html.fromstring(response.content.decode("utf-8"))
         tag = dom.xpath('//meta[@property="og:site_name"]')[0]
         obtido = tag.attrib["content"]
-        self.assertEqual("Dev in Cachu 2012", obtido)
+        self.assertEqual("Dev in Cachu 2013", obtido)
 
     def test_deve_ter_og_description_com_descricao_da_palestra(self):
         palestra = models.Palestra.objects.get(pk=1)
