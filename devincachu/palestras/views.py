@@ -23,7 +23,7 @@ class PalestrantesView(list.ListView):
             u"keywords": u"dev in cachu, palestrantes, %s" % u", "
                          .join([p.nome for p in
                                 context["palestrantes"]]),
-            u"description": u"Palestrantes do Dev in Cachu 2012",
+            u"description": u"Palestrantes do Dev in Cachu 2013",
             u"canonical_url": u"%s/palestrantes/" % settings.BASE_URL
         })
 

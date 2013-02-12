@@ -110,13 +110,13 @@ class TemplatePalestrantesTestCase(test.TestCase):
         self.assertEqual(esperado, keywords)
 
     def test_description_deve_descrever_a_pagina_de_palestrantes(self):
-        esperado = u"Palestrantes do Dev in Cachu 2012"
+        esperado = u"Palestrantes do Dev in Cachu 2013"
         tag = self.dom.xpath('//meta[@name="description"]')[0]
         description = tag.attrib["content"]
         self.assertEqual(esperado, description)
 
     def test_deve_ter_og_title(self):
-        esperado = u"Palestrantes do Dev in Cachu 2012"
+        esperado = u"Palestrantes do Dev in Cachu 2013"
         tag = self.dom.xpath('//meta[@property="og:title"]')[0]
         title = tag.attrib["content"]
         self.assertEqual(esperado, title)
@@ -139,7 +139,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
 
     def test_og_description(self):
         esperado = u"Veja mais informações dos palestrantes do " +\
-                   u"Dev in Cachu 2012. Conheça quem são e de onde " +\
+                   u"Dev in Cachu 2013. Conheça quem são e de onde " +\
                    u"vêm os palestrantes dessa edição"
         tag = self.dom.xpath('//meta[@property="og:description"]')[0]
         description = tag.attrib["content"]
