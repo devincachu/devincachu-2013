@@ -9,9 +9,9 @@ from django.views.decorators import csrf
 from django.contrib import admin
 admin.autodiscover()
 
-from destaques import views as dviews
-from inscricao import views as iviews
-from palestras import views as pviews
+from devincachu.destaques import views as dviews
+from devincachu.inscricao import views as iviews
+from devincachu.palestras import views as pviews
 
 from purger import connect
 connect()
