@@ -8,47 +8,160 @@
 
 {% block title %}Palestrantes | {{ block.super }}{% endblock %}
 
-{% block og %}
-    <meta property="og:title" content="Palestrantes do Dev in Cachu 2012" />
-    <meta property="og:type" content="public_figure" />
-    <meta property="og:url" content="{{ BASE_URL }}/palestrantes/" />
-    <meta property="og:image" content="{{ STATIC_URL }}img/logo-devincachu-facebook.png" />
-    <meta property="og:description" content="Veja mais informações dos palestrantes do Dev in Cachu 2012. Conheça quem são e de onde vêm os palestrantes dessa edição" />
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/palestrantes.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/lib/flexslider.css" type="text/css" media="screen" charset="utf-8">
 {% endblock %}
 
-{% block coluna_central %}
-    <h1>Palestrantes</h1>
+{% block og %}
+<meta property="og:title" content="Palestrantes do Dev in Cachu 2013" />
+<meta property="og:type" content="public_figure" />
+<meta property="og:url" content="{{ BASE_URL }}/palestrantes/" />
+<meta property="og:image" content="{{ STATIC_URL }}img/devincachu-facebook.png" />
+<meta property="og:description" content="Veja mais informações dos palestrantes do Dev in Cachu 2013. Conheça quem são e de onde vêm os palestrantes desta edição." />
+{% endblock %}
 
-    <div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
-    <div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
-    <div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
+{% block conteudo %}
+<div id="palestrantes">
+	<div class="container">
+		<div class="section_header">
+			<h3>Palestrantes</h3>
+		</div>
+		<div class="row">
+			<div class="span6 intro">
+				<h6>O Dev in Cachu traz para Cachoeiro de Itapemirim palestras sobre temas relevantes, com alto nível técnico, apresentadas por palestrantes reconhecidos no Brasil e no mundo.</h6>
+				<p>Nos anos de 2011 e 2012, a organização do Dev in Cachu se preocupou em compor a grade de programação com temas de relevância, e garantir que tais temas seriam abordados por palestrantes com propriedade sobre os assuntos.<br><br>Em 2013, esta preocupação se mantém presente, e você pode conferir abaixo a lista de palestrantes do evento, para saber mais detalhes sobre o palestrante e sobre o que ele vai falar, basta clicar no nome dele :-)</p>
+			</div>
+			<div class="span6 flexslider">
+				<ul class="slides">
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5677258011_ee5115e676_o.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5677264073_9545efb4b8_o.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5677806790_b85d6ef96c_o.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5680876700_1e8bcd5903_o.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5685167817_6bc47fba19_o.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5685744574_cd55de84f5_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5685749366_3185a3f14a_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/5685836908_d86d55f5a8_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003833174_7e4afa6f13_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003842710_ee9a617fa5_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003848990_18721bb474_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003853144_2fb45f3d2f_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003855924_865a3a00ab_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003858212_154074faec_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003898652_7f45532a56_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003899398_416f2de8e0_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003899954_f7277d6f0f_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003900378_5e73f709c2_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7003902144_faba3d0289_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149923375_8b8c8b9ec2_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149926389_71f40dd52d_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149929873_c5bebd13bf_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149930419_18d5a356cb_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149940063_87a28ee230_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149941835_ea6336d4af_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149948133_8a4182a7a5_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149989387_74e11f245f_b.jpg"></li>
+					<li><img src="{{ STATIC_URL }}img/slides_palestrantes/7149992793_ca6ee3aaec_b.jpg"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="team">
+	<div class="container">
+		<div class="section_header">
+			<h3>Conheça os palestrantes</h3>
+		</div>
 
-    {% if palestrantes %}
-        <ul class="palestrantes">
-            {% for palestrante in palestrantes %}
-            <li>
-                <h2>{{ palestrante.nome }}</h2>
-                <img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}" width="100" height="100" alig="right" />
-                {{ palestrante.minicurriculo|markdown }}
+		<div class="row people">
+			<div class="row row1">
+				<div class="span6 bio_box">
+					<img src="{{ STATIC_URL }}img/ale.png" alt="">
+					<div class="info">
+						<p class="name">Alejandra Galvan Castillo</p>
+						<p class="area">Creative Director</p>
+						<a href="#" class="facebook">
+							<span class="socialicons ico1"></span>
+							<span class="socialicons_h ico1h"></span>
+						</a>
+						<a href="#" class="twitter">
+							<span class="socialicons ico2"></span>
+							<span class="socialicons_h ico2h"></span>
+						</a>
+						<a href="#" class="flickr">
+							<span class="socialicons ico4"></span>
+							<span class="socialicons_h ico4h"></span>
+						</a>
+					</div>
+				</div>
 
-                {% if palestrante.palestras.all %}
-                    <div>
-                        <strong>Palestra{{ palestrante.palestras.all|length|pluralize }}: </strong>
-                        {% for palestra in palestrante.palestras.all %}<a href="{{ palestra.get_absolute_url }}" title="{{ palestra.titulo }}">{{ palestra.titulo }}</a>{% if not forloop.last %}, {% else %}.{% endif %}{% endfor %}
-                    </div>
-                {% endif %}
-                <div class="links-palestrante">
-                    {% if palestrante.blog %}
-                        <a href="{{ palestrante.blog }}" rel="nofollow" title="Blog de {{ palestrante.nome }}">Blog</a>
-                    {% endif %}
-                    {% if palestrante.twitter %}
-                        <a href="http://twitter.com/{{ palestrante.twitter|cut:"@" }}" rel="nofollow" title="{{ palestrante.nome }} no Twitter">Twitter</a>
-                    {% endif %}
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Não há palestrantes ainda :( Envie sua ideia para contato@devincachu.com.br!</p>
-    {% endif %}
+				<div class="span6 bio_box bio_boxr">
+					<img src="{{ STATIC_URL }}img/ale.png" alt="">
+					<div class="info">
+						<p class="name">Alejandra Galvan Castillo</p>
+						<p class="area">Creative Director</p>
+						<a href="#" class="facebook">
+							<span class="socialicons ico1"></span>
+							<span class="socialicons_h ico1h"></span>
+						</a>
+						<a href="#" class="twitter">
+							<span class="socialicons ico2"></span>
+							<span class="socialicons_h ico2h"></span>
+						</a>
+						<a href="#" class="flickr">
+							<span class="socialicons ico4"></span>
+							<span class="socialicons_h ico4h"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="row row1">
+				<div class="span6 bio_box">
+					<img src="{{ STATIC_URL }}img/ale.png" alt="">
+					<div class="info">
+						<p class="name">Alejandra Galvan Castillo</p>
+						<p class="area">Creative Director</p>
+						<a href="#" class="facebook">
+							<span class="socialicons ico1"></span>
+							<span class="socialicons_h ico1h"></span>
+						</a>
+						<a href="#" class="twitter">
+							<span class="socialicons ico2"></span>
+							<span class="socialicons_h ico2h"></span>
+						</a>
+						<a href="#" class="flickr">
+							<span class="socialicons ico4"></span>
+							<span class="socialicons_h ico4h"></span>
+						</a>
+					</div>
+				</div>
+
+				<div class="span6 bio_box bio_boxr">
+					<img src="{{ STATIC_URL }}img/ale.png" alt="">
+					<div class="info">
+						<p class="name">Alejandra Galvan Castillo</p>
+						<p class="area">Creative Director</p>
+						<a href="#" class="facebook">
+							<span class="socialicons ico1"></span>
+							<span class="socialicons_h ico1h"></span>
+						</a>
+						<a href="#" class="twitter">
+							<span class="socialicons ico2"></span>
+							<span class="socialicons_h ico2h"></span>
+						</a>
+						<a href="#" class="flickr">
+							<span class="socialicons ico4"></span>
+							<span class="socialicons_h ico4h"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ STATIC_URL }}js/flexslider.js" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
