@@ -44,11 +44,11 @@ urlpatterns = p("",
                 url(r"^certificado/(?P<slug>[0-9a-f]+)/$",
                     iviews.Certificado.as_view(),
                     name="certificado"),
-                url(r"^quando-e-onde/$",
+                url(r"^quando-e-aonde/$",
                     base.TemplateView.as_view(
-                        template_name="quando-e-onde.html",
+                        template_name="quando-e-aonde.html",
                     ),
-                    name="quando-e-onde"),
+                    name="quando-e-aonde"),
                 url(r"^$", dviews.IndexView.as_view(), name="index"),
                 )
 
