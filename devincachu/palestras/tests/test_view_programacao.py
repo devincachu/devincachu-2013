@@ -19,7 +19,8 @@ class ProgramacaoViewTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        management.call_command("loaddata", "palestrantes", "palestras", verbosity=0)
+        management.call_command("loaddata", "palestrantes",
+                                "palestras", verbosity=0)
 
     @classmethod
     def tearDownClass(cls):
@@ -36,27 +37,33 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(models.Palestra, views.ProgramacaoView.model)
 
     def test_deve_ter_context_object_name_para_palestras(self):
-        self.assertEqual("palestras", views.ProgramacaoView.context_object_name)
+        self.assertEqual("palestras",
+                         views.ProgramacaoView.context_object_name)
 
-    def test_deve_trazer_palestras_no_contexto_ordenadas_pelo_horario_de_inicio(self):
+    def test_listagem_palestras_ordenadas(self):
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         palestras = response.context_data["palestras"]
-        titulos_esperados = [u"Recepção e credenciamento", u"Escalando aplicações Django", u"Arquitetura escalável de aplicação de alto desempenho", u"Almoço"]
+        titulos_esperados = [
+            u"Recepção e credenciamento",
+            u"Escalando aplicações Django",
+            u"Arquitetura escalável de aplicação de alto desempenho",
+            u"Almoço",
+        ]
         titulos_obtidos = [p.titulo for p in palestras]
         self.assertEqual(titulos_esperados, titulos_obtidos)
 
     def test_nao_deve_incluir_tags_html_no_title_da_grade_de_programacao(self):
         palestra = models.Palestra.objects.get(pk=1)
-        palestra.descricao = u"[Oi](http://www.google.com.br), você vem sempre aqui?"
+        palestra.descricao = u"[Oi](http://www.google.com.br), " +\
+                             u"você vem sempre aqui?"
         palestra.save()
-
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
-
         dom = html.fromstring(response.content.decode("utf-8"))
-        title_obtido = dom.xpath('//a[@href="%s"]' % palestra.get_absolute_url())[0].attrib["title"]
+        tag = dom.xpath('//a[@href="%s"]' % palestra.get_absolute_url())[0]
+        title_obtido = tag.attrib["title"]
         self.assertEqual(u"Oi, você vem sempre aqui?", unicode(title_obtido))
 
     def test_deve_definir_canonical_url(self):
@@ -65,10 +72,12 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content)
-        self.assertEqual(esperado, dom.xpath('//link[@rel="canonical"]')[0].attrib["href"])
+        obtido = dom.xpath('//link[@rel="canonical"]')[0].attrib["href"]
+        self.assertEqual(esperado, obtido)
 
     def test_deve_ter_meta_keywords(self):
-        esperado = u"devincachu, dev in cachu 2012, palestras, programação, desenvolvimento de software"
+        esperado = u"devincachu, dev in cachu 2012, palestras, " +\
+                   u"programação, desenvolvimento de software"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
@@ -86,12 +95,14 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(esperado, obtido)
 
     def test_deve_ter_og_description(self):
-        esperado = u"Conheça as atrações e os convidados especiais do Dev in Cachu 2012"
+        esperado = u"Conheça as atrações e os convidados especiais " +\
+                   u"do Dev in Cachu 2012"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
         dom = html.fromstring(response.content.decode("utf-8"))
-        obtido = dom.xpath('//meta[@property="og:description"]')[0].attrib["content"]
+        tag = dom.xpath('//meta[@property="og:description"]')[0]
+        obtido = tag.attrib["content"]
         self.assertEqual(esperado, unicode(obtido))
 
     def test_deve_ter_og_title_descrevendo_a_pagin(self):

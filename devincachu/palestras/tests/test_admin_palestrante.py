@@ -28,11 +28,13 @@ class PalestranteAdminTestCase(unittest.TestCase):
     def test_model_Palestrante_deve_estar_registrado_no_site_do_admin(self):
         self.assertIn(models.Palestrante, django_admin.site._registry)
 
-    def test_model_Palestrante_deve_estar_registrado_com_classe_PalestranteAdmin(self):
-        self.assertIsInstance(django_admin.site._registry[models.Palestrante], admin.PalestranteAdmin)
+    def test_model_Palestrante_eh_registrado_com_classe_PalestranteAdmin(self):
+        self.assertIsInstance(django_admin.site._registry[models.Palestrante],
+                              admin.PalestranteAdmin)
 
     def test_PalestranteAdmin_deve_usar_PalestranteAdminForm(self):
-        self.assertEqual(forms.PalestranteAdminForm, admin.PalestranteAdmin.form)
+        self.assertEqual(forms.PalestranteAdminForm,
+                         admin.PalestranteAdmin.form)
 
     def test_nome_deve_estar_na_listagem(self):
         self.assertIn('nome', admin.PalestranteAdmin.list_display)

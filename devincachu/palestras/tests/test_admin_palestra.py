@@ -39,8 +39,9 @@ class AdminPalestraTestCase(unittest.TestCase):
     def test_model_Palestra_deve_estar_registrado_no_site_do_admin(self):
         self.assertIn(models.Palestra, django_admin.site._registry)
 
-    def test_model_Palestra_deve_estar_registrado_com_classe_PalestraAdmin(self):
-        self.assertIsInstance(django_admin.site._registry[models.Palestra], admin.PalestraAdmin)
+    def test_model_Palestra_eh_registrado_com_classe_PalestraAdmin(self):
+        self.assertIsInstance(django_admin.site._registry[models.Palestra],
+                              admin.PalestraAdmin)
 
     def test_PalestraAdmin_deve_usar_PalestraAdminForm(self):
         self.assertEqual(forms.PalestraAdminForm, admin.PalestraAdmin.form)
@@ -70,14 +71,16 @@ class AdminPalestraTestCase(unittest.TestCase):
         self.assertIsNotNone(palestra.pk)
         self.assertEqual("aprendendo-python", palestra.slug)
 
-    def test_metodo_palestrantes_do_admin_deve_trazer_nomes_de_palestrantes_separados_por_virgula(self):
+    def test_metodo_palestrantes(self):
         palestra = models.Palestra(**self.dados)
         adm = admin.PalestraAdmin(palestra, None)
         adm.save_model(self.request, palestra, None, None)
         palestra.palestrantes = models.Palestrante.objects.filter(pk__lt=4)
         palestra.save()
+        self.assertEqual(u"Hannibal Lecter, James Bond, Vito Corleone",
+                         adm.nomes_palestrantes(palestra))
 
-        self.assertEqual(u"Hannibal Lecter, James Bond, Vito Corleone", adm.nomes_palestrantes(palestra))
-
-    def test_metodo_palestrantes_deve_ter_short_description_indicando_singular_ou_plural(self):
-        self.assertEqual(u"Palestrante(s)", admin.PalestraAdmin.nomes_palestrantes.short_description)
+    def test_metodo_palestrantes_short_decription(self):
+        self.assertEqual(u"Palestrante(s)",
+                         admin.PalestraAdmin.nomes_palestrantes
+                         .short_description)

@@ -31,7 +31,8 @@ class PalestraAdmin(admin.ModelAdmin):
         obj.save()
 
     def nomes_palestrantes(self, obj):
-        palestrantes = [p.nome for p in obj.palestrantes.only("nome").all().order_by("nome")]
+        palestrantes = [p.nome for p in
+                        obj.palestrantes.only("nome").all().order_by("nome")]
         return ", ".join(palestrantes)
 
     nomes_palestrantes.short_description = u"Palestrante(s)"

@@ -16,7 +16,10 @@ class Palestrante(models.Model):
     blog = models.URLField(verify_exists=False, max_length=255, blank=True)
     twitter = models.CharField(max_length=50, blank=True)
     foto = models.ImageField(upload_to=u"palestrantes")
-    listagem = models.BooleanField(verbose_name=u"Exibir na página de palestrantes?", default=False)
+    listagem = models.BooleanField(
+        verbose_name=u"Exibir na página de palestrantes?",
+        default=False,
+    )
 
     def __repr__(self):
         return u'<Palestrante: "%s">' % self.nome
@@ -31,7 +34,9 @@ class Palestra(models.Model):
     descricao = models.CharField(max_length=2000, verbose_name=u"Descrição")
     inicio = models.TimeField(verbose_name=u"Horário de início")
     termino = models.TimeField(verbose_name=u"Horário de término")
-    palestrantes = models.ManyToManyField(Palestrante, blank=True, related_name="palestras")
+    palestrantes = models.ManyToManyField(Palestrante,
+                                          blank=True,
+                                          related_name="palestras")
 
     def nomes_palestrantes(self, palestrantes=None):
         palestrantes = palestrantes or self.palestrantes.order_by("nome")

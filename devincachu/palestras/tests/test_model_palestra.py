@@ -16,7 +16,8 @@ class ModelPalestraTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        management.call_command("loaddata", "palestrantes", "palestras", verbosity=0)
+        management.call_command("loaddata", "palestrantes",
+                                "palestras", verbosity=0)
         cls.field_names = models.Palestra._meta.get_all_field_names()
 
     @classmethod
@@ -109,23 +110,26 @@ class ModelPalestraTestCase(unittest.TestCase):
         field = models.Palestra._meta.get_field_by_name("palestrantes")[0]
         self.assertEqual(u"palestras", field.rel.related_name)
 
-    def test_nomes_palestrantes_deve_retornar_nomes_dos_palestrantes_com_virgula_e_e(self):
+    def test_nomes_palestrantes(self):
         palestra = models.Palestra.objects.get(pk=1)
-        self.assertEqual(u"Hannibal Lecter e Vito Corleone", palestra.nomes_palestrantes())
+        self.assertEqual(u"Hannibal Lecter e Vito Corleone",
+                         palestra.nomes_palestrantes())
 
-    def test_deve_ter_representacao_simples_que_utilize_titulo_da_palestra(self):
+    def test_Palestra_repr(self):
         palestra = models.Palestra(titulo=u"Testando aplicativos web")
-        self.assertEqual(u'<Palestra: Testando aplicativos web>', repr(palestra))
+        self.assertEqual(u'<Palestra: Testando aplicativos web>',
+                         repr(palestra))
 
     def test_deve_exibir_titulo_como_unicode(self):
         palestra = models.Palestra(titulo=u"Testando aplicações web")
         self.assertEqual(palestra.titulo, unicode(palestra))
 
-    def test_get_absolute_url_deve_retornar_url_para_palestra_quando_a_palestra_tem_palestrante(self):
+    def test_get_absolute_url_com_palestrante(self):
         palestra = models.Palestra.objects.get(pk=1)
-        url_esperada = "/programacao/hannibal-lecter/vito-corleone/%s/" % palestra.slug
+        url_esperada = "/programacao/hannibal-lecter/vito-corleone/%s/" %\
+                       palestra.slug
         self.assertEqual(url_esperada, palestra.get_absolute_url())
 
-    def test_get_absolute_url_deve_retornar_tralha_quando_a_palestra_nao_tem_palestrante(self):
+    def test_get_absolute_url_sem_palestrante(self):
         palestra = models.Palestra.objects.get(pk=2)
         self.assertEqual("#", palestra.get_absolute_url())

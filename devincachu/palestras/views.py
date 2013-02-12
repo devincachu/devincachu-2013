@@ -14,12 +14,15 @@ class PalestrantesView(list.ListView):
     context_object_name = u"palestrantes"
     model = models.Palestrante
     template_name = u"palestrantes.html"
-    queryset = models.Palestrante.objects.filter(listagem=True).order_by(u"nome")
+    queryset = models.Palestrante.objects.filter(listagem=True)
+    queryset = queryset.order_by(u"nome")
 
     def get_context_data(self, **kwargs):
         context = super(PalestrantesView, self).get_context_data(**kwargs)
         context.update({
-            u"keywords": u"dev in cachu, palestrantes, %s" % u", ".join([p.nome for p in context["palestrantes"]]),
+            u"keywords": u"dev in cachu, palestrantes, %s" % u", "
+                         .join([p.nome for p in
+                                context["palestrantes"]]),
             u"description": u"Palestrantes do Dev in Cachu 2012",
             u"canonical_url": u"%s/palestrantes/" % settings.BASE_URL
         })
@@ -35,8 +38,10 @@ class ProgramacaoView(list.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProgramacaoView, self).get_context_data(**kwargs)
+        keywords = [u"devincachu", u"dev in cachu 2012", u"palestras",
+                    u"programação", u"desenvolvimento de software"]
         context.update({
-            u"keywords": u"devincachu, dev in cachu 2012, palestras, programação, desenvolvimento de software",
+            u"keywords": u", ".join(keywords),
             u"description": u"Grade de programação do Dev in Cachu 2012",
             u"canonical_url": u"%s/programacao/" % settings.BASE_URL,
         })
@@ -50,13 +55,23 @@ class PalestraView(detail.DetailView):
 
     def get_queryset(self):
         slugs_palestrantes = self.kwargs[u"palestrantes"].split(u"/")
-        return models.Palestra.objects.filter(slug=self.kwargs[u"slug"], palestrantes__slug__in=slugs_palestrantes).distinct()
+        qs = models.Palestra.objects.filter(
+            slug=self.kwargs[u"slug"],
+            palestrantes__slug__in=slugs_palestrantes,
+        )
+        return qs.distinct()
 
     def get_context_data(self, **kwargs):
         context = super(PalestraView, self).get_context_data(**kwargs)
+        keywords = [u"dev in cachu 2012", u"palestra",
+                    context[u"palestra"].titulo,
+                    context[u"palestra"].nomes_palestrantes()
+                    .replace(u" e ", u", ")]
         context.update({
-            u"keywords": u"dev in cachu 2012, palestra, %s, %s" % (context[u"palestra"], context[u"palestra"].nomes_palestrantes().replace(u" e ", u", ")),
+            u"keywords": u", ".join(keywords),
             u"description": context[u"palestra"].descricao,
-            u"canonical_url": u"%s/programacao/%s/%s/" % (settings.BASE_URL, self.kwargs[u"palestrantes"], self.kwargs[u"slug"]),
+            u"canonical_url": u"%s/programacao/%s/%s/" %
+            (settings.BASE_URL, self.kwargs[u"palestrantes"],
+             self.kwargs[u"slug"]),
         })
         return context
