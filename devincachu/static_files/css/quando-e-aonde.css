@@ -1,26 +1,26 @@
-#quando-e-onde {
+#quando-e-aonde {
 	margin-top: 70px;
 }
-#quando-e-onde .contact{
+#quando-e-aonde .contact{
 	margin: 40px 0 100px 0;
 }
-#quando-e-onde .contact p{
+#quando-e-aonde .contact p{
 	color: #939394;
 	font-size: 19px;
 	margin-bottom: 47px;
 	font-style: italic;
 	line-height: 24px;
 }
-#quando-e-onde .form{
+#quando-e-aonde .form{
 	margin: 0;
 }
-#quando-e-onde .contact form{
+#quando-e-aonde .contact form{
 	margin: 0;
 }
-#quando-e-onde .form .box{
+#quando-e-aonde .form .box{
 	margin: 0;
 }
-#quando-e-onde .form .box input[type="text"]{
+#quando-e-aonde .form .box input[type="text"]{
 	padding-left: 39px;
 	margin-bottom: 10px;
 	color: black;
@@ -28,39 +28,39 @@
 	border-radius: 3px;
 	width: 89%;
 }
-#quando-e-onde .form .box input.name{
+#quando-e-aonde .form .box input.name{
 	background: url('../img/formname.png') #fff no-repeat 5px;
 }
-#quando-e-onde .form .box input.mail{
+#quando-e-aonde .form .box input.mail{
 	background: url('../img/formmail.png') #fff no-repeat 5px;
 }
-#quando-e-onde .form .box input.phone{
+#quando-e-aonde .form .box input.phone{
 	background: url('../img/formphone.png') #fff no-repeat 5px;
 }
-#quando-e-onde .form .box_r{
+#quando-e-aonde .form .box_r{
 	float: right;
 }
-#quando-e-onde .form .box textarea{
+#quando-e-aonde .form .box textarea{
 	padding: 11px;
 	width: 94%;
 	margin: 0;
 	border-radius: 3px;
 	height: 113px;
 }
-#quando-e-onde .contact .submit{
+#quando-e-aonde .contact .submit{
 	margin: 0;
 }
-#quando-e-onde .contact .submit .box{
+#quando-e-aonde .contact .submit .box{
 	margin: 0
 }
-#quando-e-onde .contact .submit label.checkbox{
+#quando-e-aonde .contact .submit label.checkbox{
 	color: #394350;
 	font-style: 14px;
 }
-#quando-e-onde .contact .submit .right{
+#quando-e-aonde .contact .submit .right{
 	float: right;
 }
-#quando-e-onde .contact .submit .right input[type="submit"]{
+#quando-e-aonde .contact .submit .right input[type="submit"]{
 	float: right;
 	text-transform: uppercase;
 	color: #fff;
@@ -74,16 +74,16 @@
 	-o-transition: background linear .2s, box-shadow linear .2s;
 	transition: background linear .2s, box-shadow linear .2s;
 }
-#quando-e-onde .contact .submit .right input[type="submit"]:hover{
+#quando-e-aonde .contact .submit .right input[type="submit"]:hover{
 	background: #252528;
 }
-#quando-e-onde .map{
+#quando-e-aonde .map{
 	margin: 0;
 }
-#quando-e-onde .map iframe{
+#quando-e-aonde .map iframe{
 	display: block;
 }
-#quando-e-onde .map .box_wrapp{
+#quando-e-aonde .map .box_wrapp{
 	position: absolute;
 	margin: 0;
 	box-shadow: 0 0 7px 0 rgba(26, 26, 26, 0.4);
@@ -92,16 +92,16 @@
 	top: 41%;
 	border-radius: 4px;
 }
-#quando-e-onde .map .box_wrapp .box_cont{
+#quando-e-aonde .map .box_wrapp .box_cont{
 	margin: 0 auto;
 	width: 76%;
 }
-#quando-e-onde .map .box_wrapp .head{
+#quando-e-aonde .map .box_wrapp .head{
 	width: 100%;
 	margin-bottom: 17px;
 	overflow: hidden;
 }
-#quando-e-onde .map .box_wrapp .head h6{
+#quando-e-aonde .map .box_wrapp .head h6{
 	font-size: 24px;
 	margin: 0;
 	font-style: italic;
@@ -110,51 +110,51 @@
 	border-bottom: 1px solid;
 	font-weight: normal;
 }
-#quando-e-onde .map .box_wrapp ul.street{
+#quando-e-aonde .map .box_wrapp ul.street{
 	list-style: none;
 	margin: 0;
 	padding:0;
 }
-#quando-e-onde .map .box_wrapp ul.street li{
+#quando-e-aonde .map .box_wrapp ul.street li{
 	color: #777777;
 	font-size: 14px;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icon{
+#quando-e-aonde .map .box_wrapp ul.street li.icon{
 	margin-top: 3px;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icon span.ico1{
+#quando-e-aonde .map .box_wrapp ul.street li.icon span.ico1{
 	float: left;
 	height: 20px;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icon span.ico2{
+#quando-e-aonde .map .box_wrapp ul.street li.icon span.ico2{
 	float: left;
 	height: 20px;
 	background-position: 0px -23px;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icon .text{
+#quando-e-aonde .map .box_wrapp ul.street li.icon .text{
 	font-size: 15px;
 	color: #777777;
 	margin-left: 6px;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icon a:hover{
+#quando-e-aonde .map .box_wrapp ul.street li.icon a:hover{
 	color: #187CCC;
     -webkit-transition: all .2s;
     -moz-transition: all .2s;
     -ms-transition: all .2s;
     transition: all .2s;
 }
-#quando-e-onde .map .box_wrapp ul.street li.icontop{
+#quando-e-aonde .map .box_wrapp ul.street li.icontop{
 	margin-top: 13px;
 }
-#quando-e-onde .map .box_wrapp .headbottom{
+#quando-e-aonde .map .box_wrapp .headbottom{
 	margin-top: 42px;
 }
-#quando-e-onde .map .box_wrapp p{
+#quando-e-aonde .map .box_wrapp p{
 	color: #777777;
 	font-size: 14px;
 	margin-bottom: 32px;
 }
-#quando-e-onde .map .box_wrapp a.btn{
+#quando-e-aonde .map .box_wrapp a.btn{
 	text-transform: uppercase;
 	color: #fff;
 	font-size: 15px;
@@ -173,7 +173,7 @@
 	-o-transition: background linear .2s, box-shadow linear .2s;
 	transition: background linear .2s, box-shadow linear .2s;
 }
-#quando-e-onde .map .box_wrapp a.btn:hover{
+#quando-e-aonde .map .box_wrapp a.btn:hover{
 	background: #252528;
 }
 .contacticos{
@@ -201,36 +201,36 @@
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
-	#quando-e-onde .contact .submit .box{
+	#quando-e-aonde .contact .submit .box{
 		margin: 10px 0 24px;
 	}
-	#quando-e-onde .form .box input[type="text"]{
+	#quando-e-aonde .form .box input[type="text"]{
 		width: 87%;
 	}
-	#quando-e-onde .contact .submit .right input[type="submit"]{
+	#quando-e-aonde .contact .submit .right input[type="submit"]{
 		margin: 0 auto;
 		float: none;
 		width: 53%;
 		display: block;
 		padding: 7px;
 	}
-	#quando-e-onde .map .box_wrapp{
+	#quando-e-aonde .map .box_wrapp{
 		width: 90%;
 		position: relative;
 		margin: 0 auto 80px;
 	}
-	#quando-e-onde .map .box_wrapp .box_cont{
+	#quando-e-aonde .map .box_wrapp .box_cont{
 	}
-	#quando-e-onde .map iframe{
+	#quando-e-aonde .map iframe{
 		display: none;
 	}
-	#quando-e-onde .map .box_wrapp a.btn{
+	#quando-e-aonde .map .box_wrapp a.btn{
 		width: 65%;
 	}
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-	#quando-e-onde .map .box_wrapp{
+	#quando-e-aonde .map .box_wrapp{
 		width: 100%;
 	}
 }
