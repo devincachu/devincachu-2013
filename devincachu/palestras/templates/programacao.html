@@ -23,42 +23,46 @@
 {% block conteudo %}
 <div id="programacao">
 	<div class="container">
-		<h1>Programação</h1>
+		<div class="row">
+			<div class="span8">
+				<h1>Programação</h1>
+				<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+				<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+				<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
+				<p>
+				Confira abaixo a programação do Dev in Cachu 2013. Para ver mais informações de uma palestra, basta clicar na linha correspondente à palestra. Você terá acesso a uma descrição mais detalhada da palestra e ao(s) currículo(s) do(s) palestrante(s).
+				</p>
 
-		<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
-		<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
-		<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
+				<p class="disclaimer"><strong>Observação:</strong> a programação está sujeita a alteração sem aviso prévio.</p>
 
-		<p>
-		Confira abaixo a programação do Dev in Cachu 2013. Para ver mais informações de uma palestra, basta clicar na linha correspondente à palestra. Você terá acesso a uma descrição mais detalhada da palestra e ao(s) currículo(s) do(s) palestrante(s).
-		</p>
+				{% if palestras %}
+				<table id="grade-de-programacao">
+					<tr>
+						<th>Horário</th>
+						<th>Programação</th>
+					</tr>
+					{% for palestra in palestras %}
+					{% with url=palestra.get_absolute_url descricao=palestra.descricao|markdown|striptags|truncatewords:21 %}
+					<tr>
+						<td class="horario">
+							<a href="{{ url }}" title="{{ descricao }}">
+								{{ palestra.inicio|time:"H:i" }} - {{ palestra.termino|time:"H:i" }}
+							</a>
+						</td>
+						<td>
+							<a href="{{ url }}" title="{{ descricao }}">
+								<strong>{{ palestra.titulo }}</strong><span>{{ palestra.nomes_palestrantes }}</span>
+							</a>
+						</td>
+					</tr>
+					{% endwith %}
+					{% endfor %}
+				</table>
+				{% endif %}
+			</div>
+			{% include "sidebar.html" %}
+		</div>
 
-		<p class="disclaimer"><strong>Observação:</strong> a programação está sujeita a alteração sem aviso prévio.</p>
-
-		{% if palestras %}
-		<table id="grade-de-programacao">
-			<tr>
-				<th>Horário</th>
-				<th>Programação</th>
-			</tr>
-			{% for palestra in palestras %}
-			{% with url=palestra.get_absolute_url descricao=palestra.descricao|markdown|striptags|truncatewords:21 %}
-			<tr>
-				<td class="horario">
-					<a href="{{ url }}" title="{{ descricao }}">
-						{{ palestra.inicio|time:"H:i" }} - {{ palestra.termino|time:"H:i" }}
-					</a>
-				</td>
-				<td>
-					<a href="{{ url }}" title="{{ descricao }}">
-						<strong>{{ palestra.titulo }}</strong><span>{{ palestra.nomes_palestrantes }}</span>
-					</a>
-				</td>
-			</tr>
-			{% endwith %}
-			{% endfor %}
-		</table>
-		{% endif %}
 	</div>
 </div>
 
