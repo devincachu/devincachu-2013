@@ -134,7 +134,7 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Dev in Cachu 2012"
+        esperado = u"Dev in Cachu 2013"
         obtido = dom.xpath('//meta[@property="og:title"]')[0].attrib["content"]
         self.assertEqual(esperado, obtido)
 
@@ -158,7 +158,7 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
+        esperado = u"%simg/devincachu-facebook.png" % settings.STATIC_URL
         obtido = dom.xpath('//meta[@property="og:image"]')[0].attrib["content"]
         self.assertEqual(esperado, obtido)
 
@@ -166,10 +166,10 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Maior evento de desenvolvimento de software do sul " +\
+        esperado = u"Maior evento de desenvolvimento de software " +\
                    u"do Espírito Santo. Organizado com o objetivo de " +\
                    u"difundir técnicas e práticas de desenvolvimento de " +\
-                   u"software, trazendo diversos temas"
+                   u"software, trazendo diversos temas."
         tag = dom.xpath('//meta[@property="og:description"]')[0]
         self.assertEqual(esperado, tag.attrib["content"])
 
