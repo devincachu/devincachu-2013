@@ -76,7 +76,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(esperado, obtido)
 
     def test_deve_ter_meta_keywords(self):
-        esperado = u"devincachu, dev in cachu 2012, palestras, " +\
+        esperado = u"devincachu, dev in cachu 2013, palestras, " +\
                    u"programação, desenvolvimento de software"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
@@ -86,7 +86,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(esperado, unicode(obtido))
 
     def test_deve_ter_meta_description(self):
-        esperado = u"Grade de programação do Dev in Cachu 2012"
+        esperado = u"Grade de programação do Dev in Cachu 2013"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
@@ -96,7 +96,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
 
     def test_deve_ter_og_description(self):
         esperado = u"Conheça as atrações e os convidados especiais " +\
-                   u"do Dev in Cachu 2012"
+                   u"do Dev in Cachu 2013"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
@@ -106,7 +106,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(esperado, unicode(obtido))
 
     def test_deve_ter_og_title_descrevendo_a_pagin(self):
-        esperado = u"Grade de programação do Dev in Cachu 2012"
+        esperado = u"Grade de programação do Dev in Cachu 2013"
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()
@@ -132,7 +132,7 @@ class ProgramacaoViewTestCase(unittest.TestCase):
         self.assertEqual(esperado, unicode(obtido))
 
     def test_deve_ter_og_image_apontando_para_logo_do_devincachu(self):
-        esperado = "%simg/logo-devincachu-facebook.png" % settings.STATIC_URL
+        esperado = "%simg/devincachu-facebook.png" % settings.STATIC_URL
         view = views.ProgramacaoView.as_view()
         response = view(self.request)
         response.render()

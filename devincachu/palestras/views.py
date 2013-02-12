@@ -38,11 +38,11 @@ class ProgramacaoView(list.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProgramacaoView, self).get_context_data(**kwargs)
-        keywords = [u"devincachu", u"dev in cachu 2012", u"palestras",
+        keywords = [u"devincachu", u"dev in cachu 2013", u"palestras",
                     u"programação", u"desenvolvimento de software"]
         context.update({
             u"keywords": u", ".join(keywords),
-            u"description": u"Grade de programação do Dev in Cachu 2012",
+            u"description": u"Grade de programação do Dev in Cachu 2013",
             u"canonical_url": u"%s/programacao/" % settings.BASE_URL,
         })
         return context
