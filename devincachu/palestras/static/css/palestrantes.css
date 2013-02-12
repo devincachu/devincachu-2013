@@ -5,71 +5,67 @@ license that can be found in the LICENSE file.
 */
 
 ul.palestrantes {
-    list-style: none;
-    margin-left: 5px;
+	list-style: none;
+	margin-left: 5px;
 }
 
 ul.palestrantes li {
-    clear: left;
-    display: block;
-    margin-bottom: 50px;
+	clear: left;
+	display: block;
+	margin-bottom: 50px;
 }
 
 ul.palestrantes li h2 {
-    text-shadow: #666 1px 1px 1px;
+	text-shadow: #666 1px 1px 1px;
 }
 
 ul.palestrantes li p {
-    float: left;
-    width: 530px;
+	float: left;
+	width: 530px;
 }
 
 ul.palestrantes li img {
-    border-radius: 6px;
-    float: right;
+	border-radius: 6px;
+	float: right;
 }
 
 ul.palestrantes li div {
-    clear: left;
+	clear: left;
 }
 
 ul.palestrantes li .links-palestrante a {
-    float: left;
-    margin: 5px 10px 0 0;
+	float: left;
+	margin: 5px 10px 0 0;
 }
 
 div.horario {
-    color: #333;
-    float: left;
-    font-size: 12px;
-    margin-bottom: 15px;
+	color: #333;
+	float: left;
+	font-size: 12px;
+	margin-bottom: 15px;
 }
 
 div.social {
-    float: right;
-    margin-bottom: 15px;
+	float: right;
+	margin-bottom: 15px;
 }
 
 div#gplus {
-    width: 50px;
+	width: 50px;
 }
 
 div#fb {
-    width: 90px;
+	width: 90px;
 }
 
 div#twitter {
-    width: 110px;
+	width: 110px;
 }
 
 .descricao {
-    clear: both;
+	clear: both;
 }
 
 #titulo-palestra {
-    font-size: 32px;
-}
-
-.disclaimer {
-    color: #C00;
+	font-size: 32px;
 }
