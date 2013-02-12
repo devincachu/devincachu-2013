@@ -35,7 +35,7 @@ var portfolioItem = {
             $bigPics.eq(index).fadeIn();
         });
     }
-}
+};
 
 var staticHeader = {
     initialize: function () {
@@ -43,7 +43,7 @@ var staticHeader = {
             $("body").css("padding-top", 0);
         }
     }
-}
+};
 
 var servicesCircle = {
     initialize: function () {
@@ -59,5 +59,4 @@ var servicesCircle = {
             $(this).addClass("active");
         });
     }
-}
-
+};
