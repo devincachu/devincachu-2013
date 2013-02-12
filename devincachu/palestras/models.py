@@ -12,6 +12,7 @@ from django.db import models
 class Palestrante(models.Model):
     nome = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True)
+    headline = models.CharField(max_length=60)
     minicurriculo = models.CharField(max_length=1000)
     twitter = models.CharField(max_length=50, blank=True)
     foto = models.ImageField(upload_to=u"palestrantes")

@@ -125,3 +125,19 @@ class ModelPalestranteTestCase(unittest.TestCase):
     def test_str_deve_retornar_nome_do_palestrante(self):
         palestrante = models.Palestrante(nome="Francisco Souza")
         self.assertEqual("Francisco Souza", str(palestrante))
+
+    def test_deve_ter_campo_headline(self):
+        self.assertIn("headline", self.field_names)
+
+    def test_headline_deve_ser_do_tipo_CharField(self):
+        field = models.Palestrante._meta.get_field_by_name("headline")[0]
+        self.assertIsInstance(field, django_models.CharField)
+
+    def test_headline_deve_ser_obrigatorio(self):
+        field = models.Palestrante._meta.get_field_by_name("headline")[0]
+        self.assertFalse(field.blank)
+        self.assertFalse(field.null)
+
+    def test_deadline_deve_ter_no_maximo_60_caracteres(self):
+        field = models.Palestrante._meta.get_field_by_name("headline")[0]
+        self.assertEqual(60, field.max_length)
