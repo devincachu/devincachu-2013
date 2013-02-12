@@ -4,6 +4,15 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 */
 
+.patrocinadores ul {
+	list-style: none;
+	text-align: center;
+}
+
+.patrocinadores ul > li:not(:first-child) {
+	margin-top: 10px;
+}
+
 @media (min-width: 768px) {
 	div.home-social {
 		float: left;
@@ -24,6 +33,10 @@ license that can be found in the LICENSE file.
 
 	p {
 		clear: both;
+	}
+
+	.sidebar {
+		float: right;
 	}
 }
 
