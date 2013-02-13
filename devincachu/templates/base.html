@@ -41,7 +41,9 @@
 		<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
 	</head>
 	<body{% block bodyclass %}{% endblock %}>
+		{% block navbar %}
 		<div class="navbar navbar-inverse navbar-static-top">
+		{% endblock %}
 			<div class="navbar-inner">
 				<div class="container">
 					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
