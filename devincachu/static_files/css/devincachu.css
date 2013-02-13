@@ -14,10 +14,10 @@ license that can be found in the LICENSE file.
 }
 
 #github-ribbon img {
-    position: fixed;
-    right: 0;
-    top: 0;
-    z-index: 99999;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 99999;
 }
 
 @media (min-width: 768px) {
