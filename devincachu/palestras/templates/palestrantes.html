@@ -85,7 +85,15 @@
 				<div class="span6 bio_box">
 					<img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}">
 					<div class="info">
-						<p class="name">{{ palestrante.nome }}</p>
+						{% with palestrante.palestras.get as p %}
+						<p class="name">
+							{% if p %}
+							<a href="{{ p.get_absolute_url }}">{{ palestrante.nome }}</a>
+							{% else %}
+							{{ palestrante.nome }}
+							{% endif %}
+						</p>
+						{% endwith %}
 						<p class="area">{{ palestrante.headline }}</p>
 						{% if palestrante.twitter %}
 						<a href="https://twitter.com/{{ palestrante.twitter|cut:"@" }}" rel="nofollow" class="twitter">
