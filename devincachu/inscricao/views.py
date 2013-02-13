@@ -5,6 +5,7 @@
 # license that can be found in the LICENSE file.
 
 import logging
+import threading
 
 import requests
 
@@ -23,8 +24,15 @@ logger = logging.getLogger('devincachu.inscricoes')
 class MailerMixin():
 
     def enviar_email(self, assunto, corpo, destinatarios):
-        mail.send_mail(assunto, corpo, "contato@devincachu.com.br",
-                       destinatarios, fail_silently=True)
+        kw = {
+            "subject": assunto,
+            "message": corpo,
+            "from_email": "contato@devincachu.com.br",
+            "recipient_list": destinatarios,
+            "fail_silently": True,
+        }
+        t = threading.Thread(target=mail.send_mail, kwargs=kw)
+        t.start()
 
 
 class Inscricao(base.View, MailerMixin):
