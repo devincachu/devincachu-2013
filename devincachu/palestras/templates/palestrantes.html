@@ -67,6 +67,7 @@
 		</div>
 	</div>
 </div>
+{% if palestrantes %}
 <div id="team">
 	<div class="container">
 		<div class="section_header">
@@ -74,92 +75,31 @@
 		</div>
 
 		<div class="row people">
-			<div class="row row1">
+			{% for palestrante in palestrantes %}
+				{% if forloop.counter0|divisibleby:"2" %}
+					<div class="row row1">
+				{% endif %}
 				<div class="span6 bio_box">
-					<img src="{{ STATIC_URL }}img/ale.png" alt="">
+					<img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}">
 					<div class="info">
-						<p class="name">Alejandra Galvan Castillo</p>
-						<p class="area">Creative Director</p>
-						<a href="#" class="facebook">
-							<span class="socialicons ico1"></span>
-							<span class="socialicons_h ico1h"></span>
-						</a>
-						<a href="#" class="twitter">
+						<p class="name">{{ palestrante.nome }}</p>
+						<p class="area">{{ palestrante.headline }}</p>
+						{% if palestrante.twitter %}
+						<a href="https://twitter.com/{{ palestrante.twitter|cut:"@" }}" rel="nofollow" class="twitter">
 							<span class="socialicons ico2"></span>
 							<span class="socialicons_h ico2h"></span>
 						</a>
-						<a href="#" class="flickr">
-							<span class="socialicons ico4"></span>
-							<span class="socialicons_h ico4h"></span>
-						</a>
+						{% endif %}
 					</div>
 				</div>
-
-				<div class="span6 bio_box bio_boxr">
-					<img src="{{ STATIC_URL }}img/ale.png" alt="">
-					<div class="info">
-						<p class="name">Alejandra Galvan Castillo</p>
-						<p class="area">Creative Director</p>
-						<a href="#" class="facebook">
-							<span class="socialicons ico1"></span>
-							<span class="socialicons_h ico1h"></span>
-						</a>
-						<a href="#" class="twitter">
-							<span class="socialicons ico2"></span>
-							<span class="socialicons_h ico2h"></span>
-						</a>
-						<a href="#" class="flickr">
-							<span class="socialicons ico4"></span>
-							<span class="socialicons_h ico4h"></span>
-						</a>
+				{% if not forloop.counter0|divisibleby:"2" or forloop.last %}
 					</div>
-				</div>
-			</div>
-
-			<div class="row row1">
-				<div class="span6 bio_box">
-					<img src="{{ STATIC_URL }}img/ale.png" alt="">
-					<div class="info">
-						<p class="name">Alejandra Galvan Castillo</p>
-						<p class="area">Creative Director</p>
-						<a href="#" class="facebook">
-							<span class="socialicons ico1"></span>
-							<span class="socialicons_h ico1h"></span>
-						</a>
-						<a href="#" class="twitter">
-							<span class="socialicons ico2"></span>
-							<span class="socialicons_h ico2h"></span>
-						</a>
-						<a href="#" class="flickr">
-							<span class="socialicons ico4"></span>
-							<span class="socialicons_h ico4h"></span>
-						</a>
-					</div>
-				</div>
-
-				<div class="span6 bio_box bio_boxr">
-					<img src="{{ STATIC_URL }}img/ale.png" alt="">
-					<div class="info">
-						<p class="name">Alejandra Galvan Castillo</p>
-						<p class="area">Creative Director</p>
-						<a href="#" class="facebook">
-							<span class="socialicons ico1"></span>
-							<span class="socialicons_h ico1h"></span>
-						</a>
-						<a href="#" class="twitter">
-							<span class="socialicons ico2"></span>
-							<span class="socialicons_h ico2h"></span>
-						</a>
-						<a href="#" class="flickr">
-							<span class="socialicons ico4"></span>
-							<span class="socialicons_h ico4h"></span>
-						</a>
-					</div>
-				</div>
-			</div>
+				{% endif %}
+			{% endfor %}
 		</div>
 	</div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block js %}
