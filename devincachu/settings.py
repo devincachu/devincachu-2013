@@ -33,7 +33,7 @@ DATABASES = {
 if os.environ.get("DEVINCACHU_MEMCACHED"):
     CACHES = {
         'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
+            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
             'LOCATION': os.environ.get("DEVINCACHU_MEMCACHED"),
         }
     }
