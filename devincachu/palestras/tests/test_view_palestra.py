@@ -78,7 +78,7 @@ class PalestraViewTestCase(unittest.TestCase):
 
     def test_deve_definir_meta_keywords(self):
         palestra = models.Palestra.objects.get(pk=1)
-        esperado = u"dev in cachu 2012, palestra, %s, %s" %\
+        esperado = u"dev in cachu 2013, palestra, %s, %s" %\
                    (palestra.titulo,
                     palestra.nomes_palestrantes().replace(" e ", ", "))
         view = views.PalestraView.as_view()

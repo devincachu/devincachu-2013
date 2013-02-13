@@ -63,7 +63,7 @@ class PalestraView(detail.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PalestraView, self).get_context_data(**kwargs)
-        keywords = [u"dev in cachu 2012", u"palestra",
+        keywords = [u"dev in cachu 2013", u"palestra",
                     context[u"palestra"].titulo,
                     context[u"palestra"].nomes_palestrantes()
                     .replace(u" e ", u", ")]
