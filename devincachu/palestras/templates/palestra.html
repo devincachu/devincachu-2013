@@ -9,44 +9,44 @@
 {% block title %}{{ palestra.titulo }} | {{ block.super }}{% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="{{ palestra.titulo }}" />
-    <meta property="og:type" content="activity" />
-    <meta property="og:url" content="{{ BASE_URL }}{{ palestra.get_absolute_url }}" />
-    <meta property="og:image" content="{{ MEDIA_URL }}{{ palestra.palestrantes.all.0.foto }}" />
-    <meta property="og:description" content="{{ palestra.descricao|markdown|striptags }}" />
+<meta property="og:title" content="{{ palestra.titulo }}">
+<meta property="og:type" content="activity">
+<meta property="og:url" content="{{ BASE_URL }}{{ palestra.get_absolute_url }}">
+<meta property="og:image" content="{{ MEDIA_URL }}{{ palestra.palestrantes.all.0.foto }}">
+<meta property="og:description" content="{{ palestra.descricao|markdown|striptags }}">
 {% endblock %}
 
-{% block coluna_central %}
-    <h1 id="titulo-palestra">{{ palestra.titulo }}</h1>
-    <div class="horario"><strong>Horário:</strong> {{ palestra.inicio|time:"H:i" }} - {{ palestra.termino|time:"H:i" }}</div>
-    <div id="gplus" class="social"><div class="g-plusone" data-size="medium"></div></div>
-    <div id="fb" class="social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
-    <div id="twitter" class="social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/palestra.css" type="text/css" media="screen"/>
+{% endblock %}
 
-    <div class="descricao">
-        {{ palestra.descricao|markdown }}
-    </div>
-
-    {% with palestra.palestrantes.all as palestrantes %}
-        <h2>Palestrant{{ palestrantes|length|pluralize:"e,es"}}</h2>
-
-        <ul class="palestrantes">
-            {% for palestrante in palestrantes %}
-                <li>
-                    <h3>{{ palestrante.nome }}</h3>
-                    <img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}" width="100" height="100" align="right" />
-                    {{ palestrante.minicurriculo|markdown }}
-
-                    <div class="links-palestrante">
-                        {% if palestrante.blog %}
-                            <a href="{{ palestrante.blog }}" rel="nofollow" title="Blog de {{ palestrante.nome }}">Blog</a>
-                        {% endif %}
-                        {% if palestrante.twitter %}
-                            <a href="http://twitter.com/{{ palestrante.twitter|cut:"@" }}" rel="nofollow" title="{{ palestrante.nome }} no Twitter">Twitter</a>
-                        {% endif %}
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endwith %}
+{% block conteudo %}
+<div id="palestra">
+	<div class="container">
+		<div class="section_header">
+			<h1>{{ palestra.titulo }}</h1>
+			<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+			<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+			<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
+		</div>
+		<div class="descricao">
+			<div class="horario"><strong>Horário:</strong> {{ palestra.inicio|time:"H:i" }} - {{ palestra.termino|time:"H:i" }}</div>
+			{{ palestra.descricao|markdown }}
+		</div>
+		<div class="section_header palestrantes">
+			<h3>Palestrantes</h3>
+		</div>
+		{% for palestrante in palestra.palestrantes.all %}
+		<div class="row perk{% if forloop.last %} last{% endif %}">
+			<div class="span2 foto">
+				<img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>{{ palestrante.nome }}</h5>
+				{{ palestrante.minicurriculo|markdown }}
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
 {% endblock %}

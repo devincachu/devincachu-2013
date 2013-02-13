@@ -1,0 +1,81 @@
+#palestra{
+	margin: 40px 0 115px;
+}
+#palestra .perk{
+	margin-bottom: 82px;
+	margin-left: 0;
+}
+#palestra .perk .foto {
+	float: left;
+	margin-left: 5px;
+}
+#palestra .perk .foto img {
+	border-radius: 85px;
+}
+#palestra .description_wrapper{
+	float: right;
+	margin-left: 0;
+}
+#palestra .description_wrapper h5{
+	font-size: 20px;
+	margin: 5px 0 0 0;
+}
+#palestra .description_wrapper p{
+	font-size: 14px;
+	line-height: 24px;
+	color: #3F3F3F;
+	margin-bottom: 0;
+}
+#palestra .last{
+	margin-bottom: 0;
+}
+#palestra .descricao .horario {
+	margin-bottom: 10px;
+}
+#palestra .descricao p {
+	color: #3F3F3F;
+	font-size: 19px;
+	font-style: italic;
+}
+#palestra .section_header.palestrantes {
+	margin: 60px 0 30px;
+}
+
+/* Responsive
+-------------------------------------------------- */
+
+/* Large desktop */
+@media (min-width: 1200px) {
+}
+@media (min-width: 980px) {
+}
+@media (max-width: 979px) {
+}
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+	#palestra .description_wrapper{
+		width: 77%;
+	}
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	#palestra .perk{
+		text-align: center;
+		margin-bottom: 70px;
+	}
+	#palestra .description_wrapper h5{
+		margin-bottom: 15px;
+	}
+}
+/* Landscape phones and down */
+@media (max-width: 480px) {
+	#service_1 .service_wrapper .feature .img_box{
+		width: 100%;
+	}
+	#service_1 .service_wrapper .feature .text p{
+		text-align: left;
+	}
+	#process .areas{
+		margin-top: 250px;
+	}
+}
