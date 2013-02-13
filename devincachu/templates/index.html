@@ -6,32 +6,67 @@
 {% load markup %}
 
 {% block og %}
-    <meta property="og:title" content="Dev in Cachu 2012" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ BASE_URL }}/" />
-    <meta property="og:image" content="{{ STATIC_URL }}img/logo-devincachu-facebook.png" />
-    <meta property="og:description" content="Maior evento de desenvolvimento de software do sul do Espírito Santo. Organizado com o objetivo de difundir técnicas e práticas de desenvolvimento de software, trazendo diversos temas" />
+	<meta property="og:title" content="Dev in Cachu 2013">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ BASE_URL }}/">
+	<meta property="og:image" content="{{ STATIC_URL }}img/devincachu-facebook.png">
+	<meta property="og:description" content="Maior evento de desenvolvimento de software do Espírito Santo. Organizado com o objetivo de difundir técnicas e práticas de desenvolvimento de software, trazendo diversos temas.">
 {% endblock %}
 
-{% block chamada %}
-    {% if chamada %}
-        <div class="hero-unit">
-            <h1>{{ chamada.titulo }}</h1>
-            <p>{{ chamada.conteudo }}</p>
-            <p><a class="btn primary large" href="{{ chamada.url_link }}" title="{{ chamada.titulo_veja_mais }}">{{ chamada.titulo_veja_mais }} &raquo;</a></p>
-        </div>
-    {% endif %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/index.css" type="text/css" media="screen" charset="utf-8">
 {% endblock %}
 
-{% block coluna_central %}
-    <div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
-    <div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
-    <div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
-    {% for destaque in destaques %}
-        <div class="destaque">
-            <h2>{{ destaque.titulo }}</h2>
-            <div class="metadados">Postado por {{ destaque.autor.first_name }} em {{ destaque.data|date:"d/m/Y à\s H:i:s" }}</div>
-            {{ destaque.conteudo|markdown }}
-        </div>
-    {% endfor %}
+{% block bodyclass %} class="pull_top"{% endblock %}
+
+{% block navbar %}<div class="navbar transparent navbar-inverse navbar-fixed-top">{% endblock %}
+
+{% block conteudo %}
+<section id="feature_slider" class="">
+	<article class="slide" id="tour" style="background: url('{{ STATIC_URL }}img/backgrounds/color-splash.jpg') repeat-x top center;">
+		<img class="asset left-480 sp550 t120 z1" src="{{ STATIC_URL }}img/slides/scene1/macbook.png">
+		<div class="info">
+		<h2>Fully Responsive theme</h2>
+		<a href="features.html">TOUR THE PRODUCT</a>
+		</div>
+	</article>
+	<article class="slide" id="responsive" style="background: url('{{ STATIC_URL }}img/backgrounds/indigo.jpg') repeat-x top center;">
+		<img class="asset left-472 sp600 t120 z3" src="{{ STATIC_URL }}img/slides/scene4/html5.png">
+		<img class="asset left-190 sp500 t120 z2" src="{{ STATIC_URL }}img/slides/scene4/css3.png">
+		<div class="info">
+		<h2>
+			Responsive <strong>HTML5 & CSS3</strong>
+			Theme
+		</h2>
+		</div>
+	</article>
+</section>
+<div id="patrocinadores">
+	<div class="container">
+		<div class="section_header">
+			<h3>Patrocinadores</h3>
+		</div>
+		<ul>
+			<li><a href="http://www.es.sebrae.com.br"><img src="{{ STATIC_URL }}img/sponsors/diamond/home/sebrae.png"><span>Diamante</span></a></li>
+		</ul>
+	</div>
+</div>
+{% if destaques %}
+<div id="novidades">
+	<div class="container">
+		<div class="section_header">
+			<h3>Novidades</h3>
+		</div>
+		{% for destaque in destaques %}
+		<h4>{{ destaque.titulo }}</h4>
+		<div class="metadados">Postado por {{ destaque.autor.first_name }} em {{ destaque.data|date:"d/m/Y à\s H:i:s" }}</div>
+		{{ destaque.conteudo|markdown }}
+		{% endfor %}
+	</div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/index-slider.js"></script>
 {% endblock %}
