@@ -1,0 +1,87 @@
+{# Copyright 2013 Dev in Cachu authors. All rights reserved. #}
+{# Use of this source code is governed by a BSD-style #}
+{# license that can be found in the LICENSE file. #}
+
+{% extends "base.html" %}
+
+{% block title %}Sobre o evento | {{ block.super }}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/sobre.css">
+{% endblock %}
+
+{% block meta %}
+	<link rel="canonical" href="{{ BASE_URL }}/sobre/" />
+	<meta name="description" content="Conheça o Dev in Cachu, os seus organizadores e como foram as edições de 2011 e 2012." />
+	<meta name="keywords" content="devincachu, dev in cachu 2013, organização dev in cachu, dev in cachu 2011, dev in cachu 2012" />
+{% endblock %}
+
+{% block og %}
+	<meta property="og:title" content="Sobre o Dev in Cachu 2013" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="{{ BASE_URL }}/sobre/" />
+	<meta property="og:image" content="{{ STATIC_URL }}img/devincachu-facebook.png" />
+	<meta property="og:description" content="Conheça o Dev in Cachu, os seus organizadores e como foram as edições de 2011 e 2012." />
+{% endblock %}
+
+{% block conteudo %}
+<div id="sobre">
+	<div class="container">
+		<div class="section_header">
+			<h1>Sobre o Dev in Cachu</h1>
+			<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+			<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+			<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
+		</div>
+		<div class="conference">
+			<p>O <strong>Dev in Cachu</strong> é o maior evento de desenvolvimento de software do Espírito Santo. Criado em 2011, o evento chega à sua terceira edição em 2013. A <a href="http://2011.devincachu.com.br" title="Dev in Cachu 2011">primeira edição</a> aconteceu no dia 30 de abril de 2011, no Centro Universitário São Camilo, contou com sete palestras e recebeu aproximadamente 250 participantes.</p>
+			<p>A primeira edição teve uma excelente repercussão na Internet, refletida em posts e reconhecimento de pessoas que acompanharam o evento pela Internet. Esse sucesso refletiu na segunda edição. Em <a href="http://2012.devincachu.com.br">2012</a>, o evento aconteceu no dia 5 de maio, no mesmo local. A terceira edição veio com maior força, conseguindo um maior número de patrocinadores e trazendo <a href="http://2012.devincachu.com.br/palestrantes/">palestrantes reconhecidos no Brasil e no mundo</a>.</p>
+			<p>No dia 04 de maio de 2013 acontecerá a terceira edição do evento, no <a href="{% url quando-e-onde %}">Centro Universitário São Camilo</a>, e a organização do evento está trabalhando para manter o nível técnico e a relevância do evento, assim como a satisfação dos participantes.</p>
+		</div>
+		<div class="section_header organizadores">
+			<h3>Conheça os organizadores</h3>
+		</div>
+		<div class="row perk">
+			<div class="span2">
+				<img src="{{ STATIC_URL }}img/organizadores/andressa-agnhesi.jpg" alt="Andressa Agnhesi">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>Andressa Agnhesi</h5>
+			</div>
+		</div>
+		<div class="row perk">
+			<div class="span2">
+				<img src="{{ STATIC_URL }}img/organizadores/breno-martinusso.jpg" alt="Breno Martinusso">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>Breno Martinusso</h5>
+			</div>
+		</div>
+		<div class="row perk">
+			<div class="span2">
+				<img src="{{ STATIC_URL }}img/organizadores/carlos-fim.jpg" alt="Carlos Fim">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>Carlos Fim</h5>
+			</div>
+		</div>
+		<div class="row perk">
+			<div class="span2">
+				<img src="{{ STATIC_URL }}img/organizadores/francisco-souza.jpg" alt="Francisco Souza">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>Francisco Souza</h5>
+				<p>Mundialmente conhecido no interior de Cachoeiro de Itapemirim, <a href="http://f.souza.cc">Francisco Souza</a> é desenvolvedor na <a href="http://globo.com">globo.com</a>, atuando na plataforma de cloud computing <a href="http://tsuru.io">Tsuru</a>. É apaixonado por desenvolvimento de softwares, entusiasta em Python, Django, <a href="http://golang.org">Go</a> e software livre, associado à Associação Python Brasil e membro do <a href="http://cobrateam.info">#cobrateam</a>. Por último, mas não menos importante, é PMP (Professional Mario Player) certificado, com mais de 10 anos de experiência.</p>
+			</div>
+		</div>
+		<div class="row perk last">
+			<div class="span2">
+				<img src="{{ STATIC_URL }}img/organizadores/isaura-rangel.jpg" alt="Isaura Rangel">
+			</div>
+			<div class="span10 description_wrapper">
+				<h5>Isaura Rangel</h5>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
