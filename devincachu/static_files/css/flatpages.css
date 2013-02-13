@@ -1,0 +1,15 @@
+#flatpage p {
+	color: #3F3F3F;
+	font-size: 19px;
+	font-style: italic;
+	line-height: 20px;
+	margin-top: 20px;
+	padding-right: 20px;
+}
+
+@media (max-width: 767px) {
+	#flatpage p {
+		text-align: center;
+		padding-right: 0;
+	}
+}

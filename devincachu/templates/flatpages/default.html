@@ -8,6 +8,10 @@
 
 {% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/flatpages.css">
+{% endblock %}
+
 {% block conteudo %}
 <div id="flatpage">
 	<div class="container">
