@@ -23,14 +23,5 @@ class Destaque(models.Model):
         return self.titulo
 
 
-class Chamada(Destaque):
-    titulo_veja_mais = models.CharField(max_length=40)
-    url_link = models.CharField(max_length=255)
-
-    def __repr__(self):
-        return "<Chamada: %s>" % self.titulo
-
 roan.purge("/").on_save(Destaque)
 roan.purge("/").on_delete(Destaque)
-roan.purge("/").on_save(Chamada)
-roan.purge("/").on_delete(Chamada)

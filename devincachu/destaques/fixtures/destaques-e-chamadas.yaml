@@ -37,34 +37,6 @@
     autor: 10
 
 - model: destaques.Destaque
-  pk: 5
-  fields:
-    titulo: "Dev in Cachu 2012"
-    conteudo: "Em maio de 2012, estará de volta o maior evento de desenvolvimento de software do sul do Espírito Santo. Um sábado inteiro de palestras de alto nível, com palestrantes de renome nacional e internacional."
-    data: 2011-11-22 22:29:30
-    autor: 10
-
-- model: destaques.Chamada
-  pk: 5
-  fields:
-    titulo_veja_mais: "Conheça os palestrantes"
-    url_link: "/palestrantes/"
-
-- model: destaques.Destaque
-  pk: 6
-  fields:
-    titulo: "Dev in Cachu 2011"
-    conteudo: "Em maio de 2011, estará de volta o maior evento de desenvolvimento de software do sul do Espírito Santo. Um sábado inteiro de palestras de alto nível, com palestrantes de renome nacional e internacional."
-    data: 2010-11-22 22:29:30
-    autor: 10
-
-- model: destaques.Chamada
-  pk: 6
-  fields:
-    titulo_veja_mais: "Conheça os palestrantes"
-    url_link: "/palestrantes/"
-
-- model: destaques.Destaque
   pk: 7
   fields:
     titulo: "Bill Gates confirma participação no Dev in Cachu 2012"

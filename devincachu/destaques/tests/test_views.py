@@ -41,11 +41,6 @@ class IndexViewTestCase(unittest.TestCase):
         r = urlresolvers.resolve('/')
         self.assertEqual(f.func_name, r.func.func_name)
 
-    def test_metodo_obter_destaques_deve_trazer_apenas_destaques(self):
-        destaques = self.view.obter_destaques()
-        for destaque in destaques:
-            self.assertNotIsInstance(destaque, models.Chamada)
-
     def test_metodo_obter_destaque_deve_trazer_no_maximo_14_destaques(self):
         destaques = self.view.obter_destaques()
         self.assertEqual(14, len(destaques))
@@ -71,14 +66,6 @@ class IndexViewTestCase(unittest.TestCase):
         destaques = [d.titulo for d in self.view.obter_destaques()]
         self.assertEqual(esperado, destaques)
 
-    def test_metodo_obter_chamada_deve_retornar_uma_chamada(self):
-        chamada = self.view.obter_chamada()
-        self.assertIsInstance(chamada, models.Chamada)
-
-    def test_metodo_obter_chamada_deve_retornar_chamada_mais_recente(self):
-        chamada = self.view.obter_chamada()
-        self.assertEqual(u"Dev in Cachu 2012", chamada.titulo)
-
     def test_metodo_get_deve_retornar_TemplateResponse(self):
         r = self.view.get(self.request)
         self.assertIsInstance(r, response.TemplateResponse)
@@ -91,17 +78,6 @@ class IndexViewTestCase(unittest.TestCase):
         destaques = list(self.view.obter_destaques())
         r = self.view.get(self.request)
         self.assertEqual(destaques, list(r.context_data['destaques']))
-
-    def test_metodo_get_deve_colocar_chamada_no_contexto(self):
-        chamada = models.Chamada.objects.get(pk=5)
-        r = self.view.get(self.request)
-        self.assertEqual(chamada, r.context_data['chamada'])
-
-    def test_deve_exibir_div_de_chamada_quando_estiver_no_contexto(self):
-        r = self.view.get(self.request)
-        r.render()
-        dom = html.fromstring(r.content)
-        self.assertEqual(1, len(dom.xpath('//div[@class="hero-unit"]')))
 
     def test_deve_ter_canonical_url_da_home(self):
         r = self.view.get(self.request)
@@ -187,12 +163,3 @@ class IndexViewSemDados(unittest.TestCase):
 
     def test_metodo_obter_destaques_ausencia_de_dados(self):
         self.assertEqual(0, len(self.view.obter_destaques()))
-
-    def test_metodo_obter_chamada_ausencia_de_dados(self):
-        self.assertIsNone(self.view.obter_chamada())
-
-    def test_se_nao_houver_chamada_nao_deve_exibir_div(self):
-        r = self.view.get(self.request)
-        r.render()
-        dom = html.fromstring(r.content)
-        self.assertEqual([], dom.xpath('//div[@class="hero-unit"]'))

@@ -15,19 +15,11 @@ class IndexView(base.View):
 
     def obter_destaques(self):
         qs = models.Destaque.objects.select_related()
-        return qs.filter(chamada__isnull=True).order_by('-data')[:14]
-
-    def obter_chamada(self):
-        chamadas = models.Chamada.objects.select_related()
-        chamadas = chamadas.order_by('-data')[:1]
-        if chamadas:
-            return chamadas[0]
-        return None
+        return qs.order_by('-data')[:14]
 
     def get(self, request):
         contexto = {
             'destaques': self.obter_destaques(),
-            'chamada': self.obter_chamada(),
             'canonical_url': u"%s/" % settings.BASE_URL,
             'keywords': u", ".join([u"devincachu", "dev in cachu 2013",
                                     u"evento de informática",

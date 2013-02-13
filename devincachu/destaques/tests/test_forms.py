@@ -28,16 +28,3 @@ class DestaqueAdminFormTestCase(unittest.TestCase):
     def test_deve_utilizar_o_widget_de_text_area_para_conteudo(self):
         self.assertEqual(django_forms.Textarea,
                          forms.DestaqueAdminForm.Meta.widgets['conteudo'])
-
-
-class ChamadaAdminFormTestCase(unittest.TestCase):
-
-    def test_ChamadaAdminForm_deve_ser_um_ModelForm(self):
-        assert issubclass(forms.ChamadaAdminForm, django_forms.ModelForm)
-
-    def test_Meta_do_ChamadaAdminForm_herda_do_Meta_do_parent(self):
-        assert issubclass(forms.ChamadaAdminForm.Meta,
-                          forms.DestaqueAdminForm.Meta)
-
-    def test_ChamadaAdminForm_deve_ter_model_chamada_no_meta(self):
-        self.assertEqual(models.Chamada, forms.ChamadaAdminForm.Meta.model)
