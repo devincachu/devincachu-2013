@@ -115,7 +115,7 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"devincachu, dev in cachu 2012, evento de " +\
+        esperado = u"devincachu, dev in cachu 2013, evento de " +\
                    u"informática, desenvolvimento de software, " +\
                    u"cachoeiro de itapemirim"
         obtido = dom.xpath('//meta[@name="keywords"]')[0].attrib["content"]
@@ -125,7 +125,7 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Dev in Cachu 2012 - evento sobre desenvolvimento " +\
+        esperado = u"Dev in Cachu 2013 - evento sobre desenvolvimento " +\
                    u"de software no sul do Espírito Santo"
         obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
         self.assertEqual(esperado, obtido)
