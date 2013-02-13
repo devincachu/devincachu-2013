@@ -44,9 +44,9 @@ class DestaqueTestCase(unittest.TestCase):
         field = models.Destaque._meta.get_field_by_name("conteudo")[0]
         self.assertFalse(field.blank)
 
-    def test_campo_conteudo_deve_ter_no_maximo_500_caracteres(self):
+    def test_campo_conteudo_deve_ter_no_maximo_1000_caracteres(self):
         field = models.Destaque._meta.get_field_by_name("conteudo")[0]
-        self.assertEqual(500, field.max_length)
+        self.assertEqual(1000, field.max_length)
 
     def test_model_destaque_deve_ter_um_campo_autor(self):
         self.assertIn('autor', self.field_names)
