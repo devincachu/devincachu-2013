@@ -194,6 +194,10 @@
 	opacity: 1;
 }
 
+#patrocinadores {
+	margin-bottom: 30px;
+}
+
 #patrocinadores .section_header {
 	margin-bottom: 10px;
 }
@@ -221,8 +225,16 @@
 	color: #000;
 }
 
+#novidades .social {
+	padding-top: 10px;
+}
+
+#novidades .social #twitter {
+	width: 100px;
+}
+
 #novidades .section_header {
-	margin: 30px 0 20px;
+	margin: 0 0 20px;
 }
 
 #novidades h4 {
