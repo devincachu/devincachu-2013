@@ -13,6 +13,13 @@ license that can be found in the LICENSE file.
 	margin-top: 10px;
 }
 
+#github-ribbon img {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99999;
+}
+
 @media (min-width: 768px) {
 	div.home-social {
 		float: left;
@@ -42,6 +49,13 @@ license that can be found in the LICENSE file.
 
 @media (max-width: 767px) {
 	div.home-social {
+		display: none;
+	}
+
+}
+
+@media (max-width: 1200px) {
+	#github-ribbon {
 		display: none;
 	}
 }
