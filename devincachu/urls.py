@@ -44,6 +44,11 @@ urlpatterns = p("",
                 url(r"^certificado/(?P<slug>[0-9a-f]+)/$",
                     iviews.Certificado.as_view(),
                     name="certificado"),
+                url(r"^sobre/$",
+                    base.TemplateView.as_view(
+                        template_name="sobre.html",
+                    ),
+                    name="sobre-o-evento"),
                 url(r"^quando-e-onde/$",
                     base.TemplateView.as_view(
                         template_name="quando-e-onde.html",
