@@ -55,9 +55,9 @@ class TemplatePalestrantesTestCase(test.TestCase):
         self.response.render()
         self.dom = html.fromstring(self.response.content.decode("utf-8"))
 
-    def test_listagem_de_palestrantes_ul_class(self):
-        lis = self.dom.xpath('//ul[@class="palestrantes"]/li')
-        self.assertEqual(4, len(lis))
+    def test_listagem_de_palestrantes_usando_bio_boxes(self):
+        boxes = self.dom.xpath('//div[@class="span6 bio_box"]')
+        self.assertEqual(4, len(boxes))
 
     def test_listagem_de_palestrantes_em_ordem_alfabetica(self):
         lista_esperada = ["Forrest Gump", "Hannibal Lecter",
@@ -66,31 +66,15 @@ class TemplatePalestrantesTestCase(test.TestCase):
                         self.response.context_data["palestrantes"]]
         self.assertEqual(lista_esperada, lista_obtida)
 
-    def test_palestrante_com_blog(self):
-        xpath = '//ul[@class="palestrantes"]/li/div/a[@href="http://bond.com"]'
-        link = self.dom.xpath(xpath)
-        self.assertEqual(1, len(link))
-
-    def test_palestrante_sem_blog(self):
-        divs = self.dom.xpath('//ul[@class="palestrantes"]/li/div')
-        div = divs[3]
-        children = div.getchildren()
-        c = 0
-        for child in children:
-            if child.tag == 'a':
-                c += 1
-
-        self.assertEqual(1, c)
-
     def test_palestrante_com_twitter(self):
-        xpath = '//ul[@class="palestrantes"]/li/div/' +\
-                'a[@href="http://twitter.com/hlecter"]'
+        xpath = '//div[@class="span6 bio_box"]/div[@class="info"]/' +\
+                'a[@href="https://twitter.com/hlecter"]'
         link = self.dom.xpath(xpath)
         self.assertEqual(1, len(link))
 
     def test_palestrante_com_twitter_comecando_com_arroba(self):
-        xpath = '//ul[@class="palestrantes"]/li/div/' +\
-                'a[@href="http://twitter.com/vito"]'
+        xpath = '//div[@class="span6 bio_box"]/div[@class="info"]/' +\
+                'a[@href="https://twitter.com/vito"]'
         link = self.dom.xpath(xpath)
         self.assertEqual(1, len(link))
 
@@ -140,7 +124,7 @@ class TemplatePalestrantesTestCase(test.TestCase):
     def test_og_description(self):
         esperado = u"Veja mais informações dos palestrantes do " +\
                    u"Dev in Cachu 2013. Conheça quem são e de onde " +\
-                   u"vêm os palestrantes dessa edição"
+                   u"vêm os palestrantes desta edição."
         tag = self.dom.xpath('//meta[@property="og:description"]')[0]
         description = tag.attrib["content"]
         self.assertEqual(esperado, unicode(description))
@@ -156,11 +140,6 @@ class TemplatePalestranteSemPalestrantesTestCase(test.TestCase):
         self.response.render()
         self.dom = html.fromstring(self.response.content)
 
-    def test_nao_deve_renderizar_ul(self):
-        ul = self.dom.xpath('//ul[@class="palestrantes"]')
-        self.assertEqual(0, len(ul))
-
-    def test_deve_exibir_mensagem_que_nao_ha_palestrantes(self):
-        msg = "Não há palestrantes ainda :( " +\
-              "Envie sua ideia para contato@devincachu.com.br!"
-        self.assertIn(msg, self.response.content)
+    def test_nao_deve_renderizar_div(self):
+        div = self.dom.xpath('//div[@id="team"]')
+        self.assertEqual(0, len(div))
