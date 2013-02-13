@@ -11,7 +11,12 @@
 {% block conteudo %}
 <div id="flatpage">
 	<div class="container">
-		{{ flatpage.content|markdown }}
+		<div class="row">
+			<div class="span8">
+				{{ flatpage.content|markdown }}
+			</div>
+			{% include "sidebar.html" %}
+		</div>
 	</div>
 </div>
 {% endblock %}
