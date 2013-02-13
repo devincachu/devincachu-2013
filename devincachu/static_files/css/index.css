@@ -670,3 +670,8 @@
 		box-shadow:none;
 	}
 }
+@media (max-width: 767px) {
+	#novidades .social {
+		display: none;
+	}
+}
