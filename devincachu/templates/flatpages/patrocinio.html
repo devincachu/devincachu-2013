@@ -1,0 +1,16 @@
+{# Copyright 2013 Dev in Cachu authors. All rights reserved. #}
+{# Use of this source code is governed by a BSD-style #}
+{# license that can be found in the LICENSE file. #}
+
+{% extends "flatpages/default.html" %}
+
+{% block meta %}
+	<link rel="canonical" href="{{ BASE_URL }}/patrocinio/" />
+	<meta name="description" content="Conheça os patrocinadores do Dev in Cachu 2013, e saiba como patrocinar o evento." />
+	<meta name="keywords" content="devincachu, dev in cachu 2013, plano de captação de recursos, patrocínio" />
+{% endblock %}
+
+{% block og %}
+	{{ block.super }}
+	<meta property="og:description" content="Seja um patrocinador do maior evento de desenvolvimento de software do Espírito Santo!" />
+{% endblock %}

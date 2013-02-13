@@ -54,11 +54,6 @@ urlpatterns = p("",
                         template_name="quando-e-onde.html",
                     ),
                     name="quando-e-onde"),
-                url(r"^patrocinio/$",
-                    base.TemplateView.as_view(
-                        template_name="patrocinio.html",
-                    ),
-                    name="patrocinio"),
                 url(r"^$", dviews.IndexView.as_view(), name="index"),
                 )
 
