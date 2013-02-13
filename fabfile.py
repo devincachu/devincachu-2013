@@ -48,23 +48,15 @@ def syncdb():
 
 
 def start_gunicorn():
-    with cd(env.project_root):
-        run('%(virtualenv)s/bin/gunicorn --pid=gunicorn.pid --daemon ' +
-            '--workers=3 --access-logfile=devincachu_access.log ' +
-            '--error-logfile=devincachu_error.log --bind=127.0.0.1:8989 ' +
-            'devincachu.wsgi' % env)
+    run('circusctl start gunicorn-devincachu')
 
 
 def stop_gunicorn():
-    with settings(warn_only=True):
-        pid = run('cat %(project_root)s/gunicorn.pid' % env)
-        run('kill -TERM %s' % pid)
+    run('circusctl stop gunicorn-devincachu')
 
 
-def graceful_gunicorn():
-    with settings(warn_only=True):
-        pid = run('cat %(project_root)s/gunicorn.pid' % env)
-        run('kill -HUP %s' % pid)
+def restart_gunicorn():
+    run('circusctl restart gunicorn-devincachu')
 
 
 def restart_nginx():
