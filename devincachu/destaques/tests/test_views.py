@@ -20,9 +20,7 @@ class IndexViewTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        management.call_command("loaddata",
-                                "destaques-e-chamadas.yaml",
-                                verbosity=0)
+        management.call_command("loaddata", "destaques.yaml", verbosity=0)
 
     @classmethod
     def tearDownClass(cls):
