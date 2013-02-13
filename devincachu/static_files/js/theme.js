@@ -10,7 +10,11 @@ $(function () {
 
 	// Flex
 	if ($(".flexslider").length) {
-		$('.flexslider').flexslider({controlNav: false, slideshowSpeed: 2000});
+		$('.flexslider').flexslider({
+			controlNav: false,
+			directionNav: false,
+			slideshowSpeed: 2000
+		});
 	}
 
 	servicesCircle.initialize();
