@@ -9,7 +9,7 @@ import os
 ROOT = os.path.abspath(os.path.dirname(__file__))
 RESOURCES_DIRECTORY = os.path.abspath(os.path.join(ROOT, "..", "resources"))
 
-DEBUG = os.environ.get("DEVINCACHU_DEBUG", 1) != 0
+DEBUG = int(os.environ.get("DEVINCACHU_DEBUG", 1)) != 0
 TEMPLATE_DEBUG = DEBUG
 COMPRESS_ENABLED = not DEBUG
 
