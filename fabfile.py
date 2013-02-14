@@ -60,7 +60,7 @@ def restart_gunicorn():
 
 
 def restart_nginx():
-    run("su -m root -c 'restart nginx'")
+    run("su -c 'restart nginx' -")
 
 
 def clean():
