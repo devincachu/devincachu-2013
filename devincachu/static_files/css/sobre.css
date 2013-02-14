@@ -34,7 +34,13 @@
 	font-size: 19px;
 	font-style: italic;
 	line-height: 24px;
-	margin-top: 20px;
+	margin-top: 30px;
+}
+#sobre .conference p > img {
+	border-radius: 3px;
+	box-shadow: 2px 2px 4px #000;
+	float: right;
+	margin-left: 20px;
 }
 #sobre .section_header.organizadores {
 	margin: 20px 0;
@@ -69,5 +75,10 @@
 	}
 	#sobre .description_wrapper h5{
 		margin-bottom: 15px;
+	}
+	#sobre .conference p > img {
+		float: none;
+		display: block;
+		margin: 0 auto 20px;
 	}
 }
