@@ -55,7 +55,6 @@ ROAN_PURGE_URL = "%s/purge" % BASE_URL
 
 STATIC_ROOT = os.path.join(ROOT, "static")
 STATIC_URL = os.environ.get("DEVINCACHU_STATIC_URL", "/static/")
-ADMIN_MEDIA_PREFIX = "/static/admin/"
 STATICFILES_DIRS = (
     os.path.join(ROOT, "static_files"),
 )
