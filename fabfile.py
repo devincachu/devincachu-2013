@@ -64,8 +64,8 @@ def restart_nginx():
 
 
 def clean():
-    run("su -m root -c " +
-        "'rm -rf /usr/local/etc/nginx/cache/data/devincachu2013/*'")
+    run("su -c " +
+        "'rm -rf /opt/cache/data/devincachu2013/*' -")
     restart_nginx()
 
 
