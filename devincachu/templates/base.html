@@ -126,10 +126,12 @@
 		{% endblock %}
 		<div id="fb-root"></div>
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
-		{% compress js %}
-		<script src="{{ STATIC_URL }}js/init.menu.js"></script>
 		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 		<script src="{{ STATIC_URL }}js/theme.js"></script>
+		{% block uncompressed_js %}{% endblock %}
+		{% compress js %}
+		<script src="{{ STATIC_URL }}js/init.menu.js"></script>
+		{% block js %}{% endblock %}
 		<script>
 			window._gaq = window._gaq || [];
 			_gaq.push(['_setAccount', 'UA-8088829-10']);
@@ -160,7 +162,6 @@
 				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
 			})();
 		</script>
-		{% block js %}{% endblock %}
 		{% endcompress %}
 	</body>
 </html>
