@@ -36,6 +36,8 @@
 	color: #3F3F3F;
 	font-size: 19px;
 	font-style: italic;
+	line-height: 24px;
+	margin-top: 20px;
 }
 #palestra .section_header.palestrantes {
 	margin: 60px 0 30px;
