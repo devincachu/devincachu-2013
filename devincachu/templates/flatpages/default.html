@@ -17,6 +17,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="span8">
+				<h1>{{ flatpage.title }}</h1>
+				<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+				<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+				<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
 				{{ flatpage.content|markdown }}
 			</div>
 			{% include "sidebar.html" %}
