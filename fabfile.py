@@ -6,7 +6,7 @@
 
 import os
 
-from fabric.api import cd, env, run, settings
+from fabric.api import cd, env, run
 
 env.root = os.path.dirname(__file__)
 env.app = os.path.join(env.root, 'devincachu')
@@ -19,11 +19,11 @@ env.user = 'devincachu'
 
 
 def update_app():
-    run('([ -d %(project_root)s ] && ' +
+    run(('([ -d %(project_root)s ] && ' % env +
         'cd %(project_root)s && git fetch origin && ' +
         'git rebase origin/master) || (cd %(base_dir)s && ' +
         'git clone git://github.com/devincachu/devincachu-2013.git ' +
-        '%(project_root)s)' % env)
+        '%(project_root)s)') % env)
 
 
 def create_virtualenv_if_need():
@@ -31,15 +31,15 @@ def create_virtualenv_if_need():
 
 
 def pip_install():
-    run('CFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib ' +
-        '%(virtualenv)s/bin/pip install -r ' +
-        '%(project_root)s/requirements_env.txt' % env)
+    run(('CFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib ' +
+         '%(virtualenv)s/bin/pip install -r ' +
+         '%(project_root)s/requirements_env.txt') % env)
 
 
 def collect_static_files():
     with cd(env.project_root):
-        run('%(virtualenv)s/bin/python manage.py collectstatic ' +
-            '-v 0 --noinput' % env)
+        run(('%(virtualenv)s/bin/python manage.py collectstatic ' +
+             '-v 0 --noinput') % env)
 
 
 def syncdb():
