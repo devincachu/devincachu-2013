@@ -33,7 +33,9 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/devincachu.css" media="screen">
 		{% endcompress %}
 
+		{% compress css %}
 		{% block css %}{% endblock %}
+		{% endcompres %}
 
 		<script src="{{ STATIC_URL }}js/head.load.min.js" type="text/javascript" charset="utf-8"></script>
 
