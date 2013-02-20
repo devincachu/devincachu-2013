@@ -1,4 +1,4 @@
-Django==1.4.3
+Django==1.4.4
 django_compressor==1.2
 django_htmlmin==0.5
 MySQL-Python==1.2.3
