@@ -208,7 +208,7 @@
 }
 
 #patrocinadores ul > li {
-	display: inline-block;
+	float: left;
 	height: 80px;
 	position: relative;
 	text-align: center;
@@ -218,8 +218,12 @@
 	margin-top: 4px;
 }
 
+#patrocinadores ul > li.silver img {
+	margin-top: 18px;
+}
+
 #patrocinadores ul > li:not(:first-child) {
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 #patrocinadores ul > li a {
