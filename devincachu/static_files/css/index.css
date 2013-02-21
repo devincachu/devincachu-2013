@@ -251,6 +251,10 @@
 	width: 100px;
 }
 
+#novidades .social .apoio {
+	clear: left;
+}
+
 #novidades .section_header {
 	margin: 0 0 20px;
 }
