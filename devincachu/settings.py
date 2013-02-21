@@ -30,14 +30,6 @@ DATABASES = {
     }
 }
 
-if os.environ.get("DEVINCACHU_MEMCACHED"):
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-            'LOCATION': os.environ.get("DEVINCACHU_MEMCACHED"),
-        }
-    }
-
 TIME_ZONE = "America/Sao_Paulo"
 
 LANGUAGE_CODE = "pt-br"
