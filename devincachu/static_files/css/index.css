@@ -253,6 +253,16 @@
 
 #novidades .social .apoio {
 	clear: left;
+	text-align: center;
+}
+
+#novidades .social .apoio h2 {
+	border-bottom: 1px solid #b3b3b3;
+	color: #646464;
+	display: inline-block;
+	font-size: 27px;
+	font-style: italic;
+	font-weight: 300;
 }
 
 #novidades .section_header {
