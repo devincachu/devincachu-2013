@@ -10,11 +10,20 @@ license that can be found in the LICENSE file.
 
 .patrocinadores ul {
 	list-style: none;
+	margin: 0;
 	text-align: center;
 }
 
 .patrocinadores ul > li:not(:first-child) {
 	margin-top: 10px;
+}
+
+.patrocinadores.apoio ul > li {
+	display: inline-block;
+	height: 90px;
+	line-height: 90px;
+	margin: 0;
+	width: 130px;
 }
 
 #github-ribbon img {
