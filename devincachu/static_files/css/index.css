@@ -218,8 +218,13 @@
 	margin-top: 4px;
 }
 
+
 #patrocinadores ul > li.silver img {
 	margin-top: 18px;
+}
+
+#patrocinadores ul > li.bronze img {
+	margin-top: 20px;
 }
 
 #patrocinadores ul > li:not(:first-child) {
