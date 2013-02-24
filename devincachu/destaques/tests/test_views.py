@@ -13,7 +13,7 @@ from django.test import client
 from django.views.generic import base
 from lxml import html
 
-from .. import models, views
+from .. import views
 
 
 class IndexViewTestCase(unittest.TestCase):
