@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/palestra.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/palestra.css" type="text/css" media="screen">
 {% endblock %}
 
 {% block conteudo %}
@@ -33,10 +33,11 @@
 			<div class="horario"><strong>Horário:</strong> {{ palestra.inicio|time:"H:i" }} - {{ palestra.termino|time:"H:i" }}</div>
 			{{ palestra.descricao|markdown }}
 		</div>
+		{% with palestra.palestrantes.all as palestrantes %}
 		<div class="section_header palestrantes">
-			<h3>Palestrantes</h3>
+			<h3>Palestrante{{ palestrantes|length|pluralize:"s" }}</h3>
 		</div>
-		{% for palestrante in palestra.palestrantes.all %}
+		{% for palestrante in palestrantes %}
 		<div class="row perk{% if forloop.last %} last{% endif %}">
 			<div class="span2 foto">
 				<img src="{{ MEDIA_URL }}{{ palestrante.foto }}" alt="{{ palestrante.nome }}">
@@ -47,6 +48,7 @@
 			</div>
 		</div>
 		{% endfor %}
+		{% endwith %}
 	</div>
 </div>
 {% endblock %}
