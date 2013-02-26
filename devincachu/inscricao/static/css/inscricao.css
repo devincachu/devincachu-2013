@@ -4,65 +4,73 @@ Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 */
 
+#inscricao p {
+	color: #3f3f3f;
+	font-size: 19px;
+	font-style: italic;
+	line-height: 23px;
+	margin-top: 20px;
+}
+
 #form-inscricao {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 #form-inscricao .botoes {
-    margin: 15px 0 0 260px;
+	margin: 15px 0 0 260px;
 }
 
 #form-inscricao .obrigatorio label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 #form-inscricao button {
-    margin-right: 5px;
+	margin-right: 5px;
 }
 
 #form-inscricao label {
-    clear: left;
-    margin-right: 10px;
-    width: 250px;
+	clear: left;
+	margin-right: 10px;
+	width: 250px;
 }
 
 #form-inscricao p {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 #form-inscricao ul.errorlist {
-    list-style: none;
-    margin-left: 265px;
+	list-style: none;
+	margin-left: 265px;
 }
 
 #form-inscricao ul.errorlist li {
-    color: #B94A48;
+	color: #B94A48;
 }
 
 #url-pagseguro {
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    background-color: #EEE;
-    border-radius: 3px;
-    display: block;
-    margin: 5px 0;
-    padding: 5px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color: #EEE;
+	border-radius: 3px;
+	display: block;
+	margin: 5px 0;
+	padding: 5px;
 }
 
 #imagem-pagseguro {
-    margin: 20px 0;
-    text-align: center;
+	margin: 20px 0;
+	text-align: center;
 }
 
 #certificado {
-    margin-top: 20px;
+	margin-top: 20px;
 }
 
 #certificado input {
-    display: inline-block;
+	display: inline-block;
 }
 
 #certificado button {
-    display: inline-block;
-    margin-left: 10px;
+	display: inline-block;
+	margin-left: 10px;
 }
