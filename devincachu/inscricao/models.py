@@ -50,7 +50,7 @@ class Participante(models.Model):
                                         choices=TAMANHOS_DE_CAMISETA)
     instituicao_ensino = models.CharField(
         max_length=100,
-        verbose_name=u"Instituição de ensino (para estudantes)",
+        verbose_name=u"Instituição de ensino (estudantes)",
         blank=True,
         null=True)
     empresa = models.CharField(max_length=100,

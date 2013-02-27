@@ -162,7 +162,7 @@ class ParticipanteTestCase(unittest.TestCase):
     def test_instituicao_de_ensino_verbose_name_deve_citar_estudante(self):
         field = models.Participante._meta.get_field_by_name(
             "instituicao_ensino")[0]
-        self.assertEqual(u"Instituição de ensino (para estudantes)",
+        self.assertEqual(u"Instituição de ensino (estudantes)",
                          field.verbose_name)
 
     def test_deve_ter_empresa(self):
