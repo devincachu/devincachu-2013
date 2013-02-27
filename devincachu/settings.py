@@ -40,6 +40,10 @@ USE_I18N = True
 
 USE_L10N = True
 
+ALLOWED_HOSTS = (
+    "2013.devincachu.com.br",
+)
+
 MEDIA_ROOT = os.path.join(ROOT, "media")
 MEDIA_URL = os.environ.get("DEVINCACHU_MEDIA_URL", "/media/")
 BASE_URL = "http://2013.devincachu.com.br"
