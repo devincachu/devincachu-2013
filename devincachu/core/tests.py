@@ -8,6 +8,7 @@ import unittest
 
 from django.conf import settings
 from django.test import client
+from django.utils import safestring
 
 from . import processors
 from .templatetags import devincachu
@@ -45,3 +46,7 @@ class MarkdownTestCase(unittest.TestCase):
     def test_deve_estar_registrado(self):
         self.assertEqual(devincachu.markdown,
                          devincachu.register.filters["markdown"])
+
+    def test_deve_ser_safe(self):
+        obtido = devincachu.markdown("#alguma coisa")
+        self.assertIsInstance(obtido, safestring.SafeText)
