@@ -4,14 +4,15 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-import unittest
+import time
 
 from django.core import mail
+from django import test
 
 from .. import views
 
 
-class MailerMixinTestCase(unittest.TestCase):
+class MailerMixinTestCase(test.TestCase):
 
     def setUp(self):
         mail.outbox = []
@@ -19,6 +20,7 @@ class MailerMixinTestCase(unittest.TestCase):
     def test_enviar_email_deve_enviar_email_com_parametros_passados(self):
         mailer = views.MailerMixin()
         mailer.enviar_email(u"Assunto", u"Corpo", ["eu@gmail.com"])
+        time.sleep(1)
         email = mail.outbox[0]
         self.assertEqual(u"Assunto", email.subject)
         self.assertEqual(u"Corpo", email.body)
@@ -27,5 +29,6 @@ class MailerMixinTestCase(unittest.TestCase):
     def test_enviar_email_deve_enviar_email_como_contato_at_devincachu(self):
         mailer = views.MailerMixin()
         mailer.enviar_email(u"Assunto", u"Corpo", ["eu@gmail.com"])
+        time.sleep(1)
         email = mail.outbox[0]
         self.assertEqual("contato@devincachu.com.br", email.from_email)
