@@ -12,39 +12,53 @@ license that can be found in the LICENSE file.
 	margin-top: 20px;
 }
 
-#form-inscricao {
+#inscricao ul {
+	font-size: 15px;
+	margin-top: 20px;
+}
+
+#inscricao form {
 	margin-top: 30px;
 }
 
-#form-inscricao .botoes {
-	margin: 15px 0 0 260px;
-}
-
-#form-inscricao .obrigatorio label {
+#inscricao form .obrigatorio label {
 	font-weight: bold;
 }
 
-#form-inscricao button {
+#inscricao form button {
 	margin-right: 5px;
 }
 
-#form-inscricao label {
+#inscricao form label {
 	clear: left;
 	margin-right: 10px;
-	width: 250px;
 }
 
-#form-inscricao p {
-	margin-bottom: 10px;
+#inscricao form div {
+	float: left;
+	font-style: normal;
+	margin: 0 0 10px;
+	min-height: 90px;
 }
 
-#form-inscricao ul.errorlist {
+#inscricao form input, #inscricao form select {
+	margin-bottom: 1px;
+}
+
+#inscricao form ul.errorlist {
+	display: inline;
 	list-style: none;
-	margin-left: 265px;
+	margin: 0;
 }
 
-#form-inscricao ul.errorlist li {
+#inscricao form ul.errorlist li {
 	color: #B94A48;
+}
+
+#inscricao form .botoes {
+	clear: both;
+	display: block;
+	float: none;
 }
 
 #url-pagseguro {
@@ -73,4 +87,10 @@ license that can be found in the LICENSE file.
 #certificado button {
 	display: inline-block;
 	margin-left: 10px;
+}
+
+@media(min-width: 480px) {
+	#inscricao form div.left {
+		margin-left: 30px;
+	}
 }
