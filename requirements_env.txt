@@ -3,7 +3,7 @@ django_compressor==1.2
 django_htmlmin==0.5
 MySQL-Python==1.2.3
 gunicorn==0.17.2
-Markdown==2.0.3
+Markdown==2.2.1
 roan==0.1
 PIL==1.1.7
 slimit==0.5.5
