@@ -4,41 +4,40 @@
 
 {% extends "inscricao_base.html" %}
 
-{% block h1 %}Inscreva-se no Dev in Cachu 2012{% endblock %}
+{% block h1 %}Inscreva-se no Dev in Cachu 2013{% endblock %}
 
 {% block conteudo_inscricao %}
-    <p class="descricao">Preencha o formulário abaixo para se inscrever no Dev in Cachu. Na próxima página você poderá ir para a página de pagamento do PagSeguro. Campos em negrito são de preenchimento obrigatório.</p>
+	<p class="descricao">Preencha o formulário abaixo para se inscrever no Dev in Cachu. Na próxima página você terá acesso à página de pagamento do PagSeguro. Campos em negrito são de preenchimento obrigatório.</p>
 
-    <p>
-        <strong>Valor inicial da inscrição:</strong> R$ {{ configuracao.valor_inscricao|floatformat:2 }}.
-    </p>
+	<p>
+		<strong>Valor da inscrição:</strong> R$ {{ configuracao.valor_inscricao|floatformat:2 }}.
+	</p>
 
-    <p>
-        Como participante do Dev in Cachu 2012, você tem direito a:
+	<p>
+		Como participante do Dev in Cachu 2013, você tem direito a:
+		<ul>
+			<li>acesso a todas as palestras da grade de programação</li>
+			<li>coffee break na parte da manhã e na parte da tarde</li>
+			<li>camiseta do evento</li>
+		</ul>
+	</p>
 
-        <ul>
-            <li>acesso a todas as palestras da grade de programação</li>
-            <li>coffee break na parte da manhã e na parte da tarde</li>
-            <li>camiseta do evento</li>
-        </ul>
-    </p>
+	<p>Se inscreva já! As vagas são limitadas, e depois do dia <strong>02 de abril</strong>, a taxa de inscrição será de 50 reais!</p>
 
-    <p>Se inscreva já! As vagas são limitadas, e depois do dia <strong>5 de abril</strong>, a taxa de inscrição será de 45 reais!</p>
+	<p class="disclaimer"><strong>Atenção:</strong> Sua inscrição só estará confirmada após o pagamento da taxa.</p>
 
-    <p class="disclaimer"><strong>Atenção:</strong> Sua inscrição só estará confirmada após o pagamento da taxa.</p>
-
-    <form action="{% url "inscricao" %}" method="post" accept-charset="utf-8" id="form-inscricao">
-        {% csrf_token %}
-        {% for field in form %}
-        <p class="clearfix {{ field.css_classes }}">
-            {{ field.label_tag }}{{ field }}
-            {{ field.errors }}
-        </p>
-        {% endfor %}
-        <p class="botoes">
-            <button type="submit" class="btn primary">Enviar dados</button>
-            <button type="reset" class="btn">Cancelar</button>
-        </p>
-    </form>
+	<form action="{% url "inscricao" %}" method="post" accept-charset="utf-8" id="form-inscricao">
+		{% csrf_token %}
+		{% for field in form %}
+		<div class="{{ field.css_classes }} {% cycle "right" "left" %}">
+			{{ field.label_tag }}{{ field }}
+			{{ field.errors }}
+		</div>
+		{% endfor %}
+		<div class="botoes">
+			<button type="submit" class="btn primary">Enviar dados</button>
+			<button type="reset" class="btn">Cancelar</button>
+		</div>
+	</form>
 {% endblock %}
 
