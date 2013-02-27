@@ -67,6 +67,9 @@ license that can be found in the LICENSE file.
 	background-color: #EEE;
 	border-radius: 3px;
 	display: block;
+	font-family: monospace;
+	font-size: 14px;
+	font-style: normal;
 	margin: 5px 0;
 	padding: 5px;
 }
