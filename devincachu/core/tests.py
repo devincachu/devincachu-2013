@@ -10,6 +10,7 @@ from django.conf import settings
 from django.test import client
 
 from . import processors
+from .templatetags import devincachu
 
 
 class ProcessorsTestCase(unittest.TestCase):
@@ -27,3 +28,20 @@ class ProcessorsTestCase(unittest.TestCase):
             "devincachu.core.processors.get_base_url",
             settings.TEMPLATE_CONTEXT_PROCESSORS,
         )
+
+
+class MarkdownTestCase(unittest.TestCase):
+
+    def test_deve_aceitar_raw_html(self):
+        input = u"""#Something
+
+<a href="http://2013.devincachu.com.br">visite o dev in cachu</a>"""
+        esperado = u"<h1>Something</h1>\n<p>" +\
+                   u"<a href=\"http://2013.devincachu.com.br\">visite o " +\
+                   u"dev in cachu</a></p>"
+        obtido = devincachu.markdown(input)
+        self.assertEqual(esperado, obtido)
+
+    def test_deve_estar_registrado(self):
+        self.assertEqual(devincachu.markdown,
+                         devincachu.register.filters["markdown"])
