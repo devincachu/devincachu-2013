@@ -15,7 +15,7 @@ class ParticipanteForm(forms.ModelForm):
 
     class Meta:
         model = models.Participante
-        exclude = ("status",)
+        exclude = ("status", "presente",)
 
 
 class ValidacaoCertificado(forms.Form):
