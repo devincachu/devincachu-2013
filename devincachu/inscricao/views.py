@@ -224,8 +224,11 @@ class Certificado(detail.DetailView):
     slug_field = u"hash"
     template_name = u"certificado.html"
 
-    def dispatch(self, *args, **kwargs):
-        resp = super(Certificado, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        self.args = args
+        self.kwargs = kwargs
+        self.request = request
+        resp = super(Certificado, self).dispatch(request, *args, **kwargs)
         resp["Cache-Control"] = "max-age=31536000"
         return resp
 
