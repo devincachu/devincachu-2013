@@ -3,7 +3,7 @@
 # license that can be found in the LICENSE file.
 
 from django.conf import settings
-from django.conf.urls.defaults import include, patterns, url
+from django.conf.urls import include, patterns, url
 from django.views.decorators import csrf
 from django.views.generic import base
 
