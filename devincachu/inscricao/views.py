@@ -74,13 +74,13 @@ class Inscricao(base.View, MailerMixin):
     def enviar_email_sucesso(self, checkout):
         conteudo = loader.render_to_string("email_aguardando.html",
                                            {"checkout": checkout})
-        assunto = u"[Dev in Cachu 2012] Inscrição recebida"
+        assunto = u"[Dev in Cachu 2013] Inscrição recebida"
         self.enviar_email(assunto, conteudo, [checkout.participante.email])
 
     def enviar_email_falha(self, participante):
         conteudo = loader.render_to_string("email_falha.html",
                                            {"participante": participante})
-        assunto = u"[Dev in Cachu 2012] Inscrição recebida"
+        assunto = u"[Dev in Cachu 2013] Inscrição recebida"
         self.enviar_email(assunto, conteudo,
                           [participante.email, "contato@devincachu.com.br"])
 
@@ -149,7 +149,7 @@ class Notificacao(base.View, MailerMixin):
         }
 
     def enviar_email_confirmacao(self, participante):
-        assunto = u"[Dev in Cachu 2012] Inscrição confirmada"
+        assunto = u"[Dev in Cachu 2013] Inscrição confirmada"
         conteudo = loader.render_to_string("inscricao_confirmada.html",
                                            {"participante": participante})
         destinatarios = [participante.email]
@@ -163,7 +163,7 @@ class Notificacao(base.View, MailerMixin):
         self.enviar_email_confirmacao(participante)
 
     def enviar_email_cancelamento(self, participante):
-        assunto = u"[Dev in Cachu 2012] Inscrição cancelada"
+        assunto = u"[Dev in Cachu 2013] Inscrição cancelada"
         conteudo = loader.render_to_string("inscricao_cancelada.html",
                                            {"participante": participante})
         destinatarios = [participante.email]
