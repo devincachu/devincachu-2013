@@ -107,6 +107,36 @@
 	color: #fff;
 	font-weight: normal;
 }
+.slide#inscricoes-abertas .info {
+	left: 20%;
+	position: absolute;
+	top: 150px;
+	width: 35%;
+}
+.slide#inscricoes-abertas .info h2 {
+	color: #fff;
+	font-size: 52px;
+	font-weight: normal;
+	margin-bottom: 50px;
+	text-shadow: 1px 1px 1px #3b3262;
+	line-height: 57px;
+}
+.slide#inscricoes-abertas .info a {
+	color: #000;
+	font-weight: bold;
+	background-color: #FFF;
+	padding: 13px 30px;
+	font-size: 19px;
+	border-radius: 5px;
+	margin-top: 40px;
+	display: inline-block;
+	-webkit-transition: opacity .1s linear;
+	-moz-transition: opacity .1s linear;
+	transition: opacity .1s linear;
+}
+.slide#inscricoes-abertas img {
+	border-radius: 2px;
+}
 
 /* Slide 3 */
 .slide#tour .info {
