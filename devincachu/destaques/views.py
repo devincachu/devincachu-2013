@@ -25,8 +25,8 @@ class IndexView(base.View):
                                     u"evento de informática",
                                     u"desenvolvimento de software",
                                     u"cachoeiro de itapemirim"]),
-            'description': u"Dev in Cachu 2013 - evento sobre " +
-                           u"desenvolvimento de software no sul do " +
+            'description': u"Dev in Cachu 2013 - principal evento sobre " +
+                           u"desenvolvimento de software do " +
                            u"Espírito Santo",
         }
         return response.TemplateResponse(request, "index.html", contexto)
