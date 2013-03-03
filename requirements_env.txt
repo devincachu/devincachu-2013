@@ -1,6 +1,6 @@
 Django==1.5
 django_compressor==1.2
-django_htmlmin==0.6
+django_htmlmin==0.6.1
 MySQL-Python==1.2.3
 gunicorn==0.17.2
 Markdown==2.2.1
