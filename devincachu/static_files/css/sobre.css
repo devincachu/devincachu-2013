@@ -45,6 +45,17 @@
 #sobre .section_header.organizadores {
 	margin: 20px 0;
 }
+#sobre p.edicoes_anteriores {
+	font-size: 20px;
+	letter-spacing: 1px;
+	line-height: 40px;
+}
+#sobre p.edicoes_anteriores a {
+	color: #666;
+}
+#sobre p.edicoes_anteriores a:hover {
+	color: #333;
+}
 
 /* Responsive
 -------------------------------------------------- */
