@@ -248,6 +248,9 @@
 	margin-top: 4px;
 }
 
+#patrocinadores ul > li.gold img {
+	margin-top: 7px;
+}
 
 #patrocinadores ul > li.silver img {
 	margin-top: 18px;
