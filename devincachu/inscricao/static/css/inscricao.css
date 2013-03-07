@@ -12,6 +12,14 @@ license that can be found in the LICENSE file.
 	margin-top: 20px;
 }
 
+#inscricao p.disclaimer {
+	color: #C00;
+}
+
+#inscricao p.observacao {
+	font-size: 14px;
+}
+
 #inscricao ul {
 	font-size: 15px;
 	margin-top: 20px;
@@ -59,6 +67,7 @@ license that can be found in the LICENSE file.
 	clear: both;
 	display: block;
 	float: none;
+	min-height: 0;
 }
 
 #url-pagseguro {
