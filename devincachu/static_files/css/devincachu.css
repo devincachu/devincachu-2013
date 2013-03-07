@@ -29,10 +29,6 @@ license that can be found in the LICENSE file.
 	z-index: 99999;
 }
 
-p.disclaimer {
-	color: #C00;
-}
-
 @media (min-width: 768px) {
 	div.home-social {
 		float: left;

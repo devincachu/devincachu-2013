@@ -61,6 +61,10 @@ license that can be found in the LICENSE file.
 	display: block;
 }
 
+#programacao .disclaimer {
+	color: #C00;
+}
+
 #programacao p {
 	color: #3F3F3F;
 	font-size: 19px;
