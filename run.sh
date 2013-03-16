@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 my_dir=`dirname $0`
 cd $my_dir
