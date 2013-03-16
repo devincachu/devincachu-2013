@@ -11,3 +11,4 @@ cssmin==0.1.4
 PyYAML==3.10
 requests==1.1.0
 lxml==2.3.2
+xmltodict==0.4.6
