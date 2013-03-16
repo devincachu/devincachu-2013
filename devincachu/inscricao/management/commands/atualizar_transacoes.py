@@ -19,6 +19,7 @@ from devincachu.inscricao import models, views
 
 
 class Command(base.BaseCommand):
+    args = u"<quantidade_de_dias>"
     help = u"Obtém transações do PagSeguro e atualiza informações no banco de dados."
 
     def get_transactions(self, initial_date, final_date):
@@ -56,8 +57,11 @@ class Command(base.BaseCommand):
         return transactions
 
     def handle(self, *args, **kwargs):
+        qt_dias = 1
+        if len(args) > 0:
+            qt_dias = int(args[0])
         now = datetime.datetime.now()
-        yesterday = now - datetime.timedelta(days=30)
+        yesterday = now - datetime.timedelta(days=qt_dias)
         start = yesterday.strftime("%Y-%m-%dT%H:%M:%S-02:00")
         end = now.strftime("%Y-%m-%dT%H:%M:%S-02:00")
         whole_transactions = self.get_transactions(start, end)
