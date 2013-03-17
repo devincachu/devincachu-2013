@@ -99,8 +99,8 @@ class IndexViewTestCase(unittest.TestCase):
         r = self.view.get(self.request)
         r.render()
         dom = html.fromstring(r.content.decode("utf-8"))
-        esperado = u"Dev in Cachu 2013 - evento sobre desenvolvimento " +\
-                   u"de software no sul do Espírito Santo"
+        esperado = u"Dev in Cachu 2013 - principal evento sobre desenvolvimento " +\
+                   u"de software do Espírito Santo"
         obtido = dom.xpath('//meta[@name="description"]')[0].attrib["content"]
         self.assertEqual(esperado, obtido)
 
