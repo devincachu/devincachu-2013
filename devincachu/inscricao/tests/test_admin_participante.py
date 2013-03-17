@@ -41,9 +41,6 @@ class AdminParticipanteTestCase(unittest.TestCase):
     def test_deve_exibir_cidade_na_listagem(self):
         self.assertIn("cidade", admin.ParticipanteAdmin.list_display)
 
-    def test_deve_exibir_sexo_na_listagem(self):
-        self.assertIn("sexo", admin.ParticipanteAdmin.list_display)
-
     def test_deve_exibir_email_na_listagem(self):
         self.assertIn("email", admin.ParticipanteAdmin.list_display)
 
@@ -53,9 +50,6 @@ class AdminParticipanteTestCase(unittest.TestCase):
     def test_deve_exibir_instituicao_ensino_na_listagem(self):
         self.assertIn("instituicao_ensino",
                       admin.ParticipanteAdmin.list_display)
-
-    def test_deve_exibir_tamanho_de_camiseta_na_listagem(self):
-        self.assertIn("tamanho_camiseta", admin.ParticipanteAdmin.list_display)
 
     def test_deve_exibir_status_na_listagem(self):
         self.assertIn("status", admin.ParticipanteAdmin.list_display)
