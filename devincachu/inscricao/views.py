@@ -155,9 +155,11 @@ class Notificacao(base.View, MailerMixin):
         destinatarios = [participante.email]
         self.enviar_email(assunto, conteudo, destinatarios)
 
-    def inscricao_paga(self, referencia):
+    def inscricao_paga(self, referencia, descricao):
         participante = models.Participante.objects.get(pk=referencia)
         participante.status = u"CONFIRMADO"
+        if "Caravana" in descricao:
+            participante.status = u"CARAVANA"
         participante.save()
 
         self.enviar_email_confirmacao(participante)
@@ -169,7 +171,7 @@ class Notificacao(base.View, MailerMixin):
         destinatarios = [participante.email]
         self.enviar_email_cancelamento(assunto, conteudo, destinatarios)
 
-    def inscricao_cancelada(self, referencia):
+    def inscricao_cancelada(self, referencia, descricao):
         participante = models.Participante.objects.get(pk=referencia)
         participante.status = u"CANCELADO"
         participante.save()
@@ -191,7 +193,8 @@ class Notificacao(base.View, MailerMixin):
             dom = etree.fromstring(response.content)
             status_transacao = int(dom.xpath("//status")[0].text)
             referencia = int(dom.xpath("//reference")[0].text)
-            return status_transacao, referencia
+            descricao = dom.xpath("//item/description")[0].text
+            return descricao, status_transacao, referencia
 
         logger.error(u"\n\n")
         logger.error(u"ERROR: Erro ao fazer requisição para o PagSeguro")
@@ -203,17 +206,17 @@ class Notificacao(base.View, MailerMixin):
         ))
         logger.error(u"\n\n")
 
-        return None, None
+        return None, None, None
 
     def post(self, request):
         codigo_notificacao = request.POST.get("notificationCode")
 
         if codigo_notificacao:
-            status, referencia = self.consultar_transacao(codigo_notificacao)
+            status, descricao, referencia = self.consultar_transacao(codigo_notificacao)
             metodo = self.metodos_por_status.get(status)
 
             if metodo:
-                metodo(referencia)
+                metodo(referencia, descricao)
 
         return http.HttpResponse("OK")
 

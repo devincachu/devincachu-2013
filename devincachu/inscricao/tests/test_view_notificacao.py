@@ -6,6 +6,7 @@
 
 import unittest
 
+from django.conf import settings
 from django.test import client
 from django.views.generic import base
 
@@ -43,27 +44,27 @@ class NotificacaoTestCase(unittest.TestCase):
 
     def test_deve_retornar_200(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (3, self.participante.pk)
+        view.consultar_transacao = lambda x: (3, settings.PAGSEGURO["itemDescription1"], self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
         self.assertEqual(200, response.status_code)
 
     def test_deve_retornar_OK(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (3, self.participante.pk)
+        view.consultar_transacao = lambda x: (3, settings.PAGSEGURO["itemDescription1"], self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
         self.assertEqual("OK", response.content)
 
     def test_apenas_retornar_OK_quando_der_erro_no_response(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (None, None)
+        view.consultar_transacao = lambda x: (None, None, None)
         response = view.post(self.request)
         self.assertEqual("OK", response.content)
 
     def test_apenas_retornar_OK_quando_status_for_diferente_de_3_e_7(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (2, self.participante.pk)
+        view.consultar_transacao = lambda x: (2, settings.PAGSEGURO["itemDescription1"], self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         response = view.post(self.request)
         self.assertEqual("OK", response.content)
@@ -76,16 +77,26 @@ class NotificacaoTestCase(unittest.TestCase):
 
     def test_status_para_transacao_confirmada(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (3, self.participante.pk)
+        view.consultar_transacao = lambda x: (3, settings.PAGSEGURO["itemDescription1"],  self.participante.pk)
         view.enviar_email_confirmacao = lambda p: None
         view.post(self.request)
 
         participante = models.Participante.objects.get(pk=self.participante.pk)
         self.assertEqual(u"CONFIRMADO", participante.status)
 
+    def test_status_para_transacao_confirmada_de_caravana(self):
+        desc = settings.PAGSEGURO["itemDescription1"] + "- Caravana Secreta"
+        view = views.Notificacao()
+        view.consultar_transacao = lambda x: (3, desc,  self.participante.pk)
+        view.enviar_email_confirmacao = lambda p: None
+        view.post(self.request)
+
+        participante = models.Participante.objects.get(pk=self.participante.pk)
+        self.assertEqual(u"CARAVANA", participante.status)
+
     def test_status_para_transacao_cancelada(self):
         view = views.Notificacao()
-        view.consultar_transacao = lambda x: (7, self.participante.pk)
+        view.consultar_transacao = lambda x: (7, settings.PAGSEGURO["itemDescription1"], self.participante.pk)
         view.enviar_email_cancelamento = lambda p: None
         view.post(self.request)
 
