@@ -30,7 +30,7 @@ class Command(base.BaseCommand, views.MailerMixin):
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         }
         payload = copy.deepcopy(settings.PAGSEGURO)
-        payload["itemDescription1"] += "- %s" % sufixo
+        payload["itemDescription1"] += " - %s" % sufixo
         payload["itemAmount1"] = "%.2f" % valor
         payload["reference"] = "%s" % participante.pk
         response = requests.post(settings.PAGSEGURO_CHECKOUT,
