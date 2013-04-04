@@ -45,19 +45,19 @@ class Command(base.BaseCommand, views.MailerMixin):
         sufixo = sys.stdin.readline().strip("\n")
         emails = [l.strip("\n") for l in sys.stdin.readlines()]
         for email in emails:
-            print "Gerando cobrança para %s... " % email,
+            print u"Gerando cobrança para %s... " % email,
             try:
                 participante = models.Participante.objects.get(email=email)
             except models.Participante.DoesNotExist:
-                print u"NÃO ESTÁ INSCRITO NO SITE"
+                print u"NAO ESTA INSCRITO NO SITE"
                 continue
             cod_checkout = self.gerar_cobranca(participante, sufixo, valor)
             if cod_checkout is None:
-                print "FALHOU"
+                print u"FALHOU"
                 continue
             checkout = models.Checkout.objects.create(
                 codigo=cod_checkout,
                 participante=participante,
             )
             self.enviar_email_cobranca(checkout, sufixo)
-            print "OK"
+            print u"OK"
