@@ -151,6 +151,7 @@ LOGGING = {
             "filename": "devincachu_djerror.log",
             "maxBytes": "1024",
             "backupCount": "1",
+            "formatter": "verbose",
         },
         "inscricoes": {
             "level": "INFO",
