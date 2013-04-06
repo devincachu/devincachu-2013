@@ -134,6 +134,11 @@ LOGGING = {
             "()": "django.utils.log.RequireDebugFalse",
         },
     },
+    "formatters": {
+        "verbose": {
+            "format": '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+        },
+    },
     "handlers": {
         "mail_admins": {
             "level": "ERROR",
@@ -153,6 +158,7 @@ LOGGING = {
             "filename": "inscricoes.log",
             "maxBytes": "2048",
             "backupCount": "3",
+            "formatter": "verbose",
         }
     },
     "loggers": {
