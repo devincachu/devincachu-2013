@@ -211,6 +211,26 @@ class ParticipanteTestCase(unittest.TestCase):
         field = models.Participante._meta.get_field_by_name("presente")[0]
         self.assertEqual(False, field.default)
 
+    def test_deve_ter_campo_observacao(self):
+        self.assertIn("observacao", self.field_names)
+
+    def test_observacao_deve_ter_char_field(self):
+        field = models.Participante._meta.get_field_by_name("observacao")[0]
+        self.assertIsInstance(field, django_models.CharField)
+
+    def test_observacao_deve_ter_no_maximo_1000_chars(self):
+        field = models.Participante._meta.get_field_by_name("observacao")[0]
+        self.assertEqual(1000, field.max_length)
+
+    def test_observacao_nao_deve_ser_obrigatorio(self):
+        field = models.Participante._meta.get_field_by_name("observacao")[0]
+        self.assertTrue(field.blank)
+        self.assertTrue(field.null)
+
+    def test_observacao_deve_ter_verbose_name(self):
+        field = models.Participante._meta.get_field_by_name("observacao")[0]
+        self.assertEqual(u"Observação", field.verbose_name)
+
     def test__repr__deve_ter_nome(self):
         participante = models.Participante(nome=u"Francisco Souza")
         self.assertEqual(u"<Participante: Francisco Souza>",

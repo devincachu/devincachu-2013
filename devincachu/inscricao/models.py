@@ -56,6 +56,9 @@ class Participante(models.Model):
     empresa = models.CharField(max_length=100,
                                verbose_name=u"Empresa onde trabalha",
                                blank=True, null=True)
+    observacao = models.CharField(max_length=1000,
+                                  verbose_name=u"Observação",
+                                  blank=True, null=True)
     presente = models.BooleanField(default=False)
 
     def __unicode__(self):
