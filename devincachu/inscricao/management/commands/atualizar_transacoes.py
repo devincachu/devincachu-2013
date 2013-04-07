@@ -68,13 +68,14 @@ class Command(base.BaseCommand):
 
         paid = [t for t in whole_transactions
                 if "reference" in t
-                and t["status"] in ("3", "4")
-                and t["grossAmount"] in ("35.00", "50.00")]
+                and t["status"] in ("3", "4")]
         for transaction in paid:
             notificacao = views.Notificacao()
             subscription_id = transaction["reference"]
             participante = models.Participante.objects.get(pk=subscription_id)
             if participante.status not in (u"CONFIRMADO", u"CARAVANA"):
                 participante.status = u"CONFIRMADO"
+                if transaction["grossAmount"] not in ("35.00", "50.00"):
+                    participante.status = u"CARAVANA"
                 participante.save()
                 notificacao.enviar_email_confirmacao(participante)
