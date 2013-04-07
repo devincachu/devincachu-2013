@@ -4,7 +4,10 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+import os
 import unittest
+
+import mock
 
 from django.conf import settings
 from django.test import client
@@ -102,3 +105,19 @@ class NotificacaoTestCase(unittest.TestCase):
 
         participante = models.Participante.objects.get(pk=self.participante.pk)
         self.assertEqual(u"CANCELADO", participante.status)
+
+    @mock.patch("requests.get")
+    def test_consultar_transacao(self, get):
+        p = os.path.join(os.path.dirname(__file__), "testdata", "resposta_pagseguro.xml")
+        f = open(p)
+        content = f.read()
+        f.close()
+        m = mock.Mock()
+        m.ok = True
+        m.content = content
+        get.return_value = m
+        view = views.Notificacao()
+        status, descricao, reference = view.consultar_transacao("something")
+        self.assertEqual(4, status)
+        self.assertEqual(u"Dev in Cachu 2013", descricao)
+        self.assertEqual(24, reference)

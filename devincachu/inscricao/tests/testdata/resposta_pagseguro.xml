@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<transaction>
+	<date>2013-03-06T10:08:24.000-03:00</date>
+	<code>something</code>
+	<reference>24</reference>
+	<type>1</type>
+	<status>4</status>
+	<lastEventDate>2013-03-21T05:53:42.000-03:00</lastEventDate>
+	<paymentMethod>
+		<type>2</type>
+		<code>202</code>
+	</paymentMethod>
+	<paymentLink>https://pagseguro.uol.com.br/checkout/imprimeBoleto.jhtml?code=abcd</paymentLink>
+	<grossAmount>35.00</grossAmount>
+	<discountAmount>0.00</discountAmount>
+	<feeAmount>2.15</feeAmount>
+	<netAmount>32.85</netAmount>
+	<extraAmount>0.00</extraAmount>
+	<escrowEndDate>2013-03-21T05:23:58.000-03:00</escrowEndDate>
+	<installmentCount>1</installmentCount>
+	<itemCount>1</itemCount>
+	<items>
+		<item>
+			<id>0001</id>
+			<description>Dev in Cachu 2013</description>
+			<quantity>1</quantity>
+			<amount>35.00</amount>
+		</item>
+	</items>
+	<sender>
+		<name>Fulano de Tal</name>
+		<email>fulano@devincachu.com.br</email>
+		<phone>
+			<areaCode>28</areaCode>
+			<number>35554722</number>
+		</phone>
+	</sender>
+	<shipping>
+		<address>
+			<street>Rua 1</street>
+			<number>SN</number>
+			<complement>Segredo</complement>
+			<district>Copacabana</district>
+			<city>Rio de Janeiro</city>
+			<state>RJ</state>
+			<country>BRA</country>
+			<postalCode>22222222</postalCode>
+		</address>
+		<type>3</type>
+		<cost>0.00</cost>
+	</shipping>
+</transaction>

@@ -194,7 +194,7 @@ class Notificacao(base.View, MailerMixin):
             status_transacao = int(dom.xpath("//status")[0].text)
             referencia = int(dom.xpath("//reference")[0].text)
             descricao = dom.xpath("//item/description")[0].text
-            return descricao, status_transacao, referencia
+            return status_transacao, descricao, referencia
 
         logger.error(u"\n\n")
         logger.error(u"ERROR: Erro ao fazer requisição para o PagSeguro")
