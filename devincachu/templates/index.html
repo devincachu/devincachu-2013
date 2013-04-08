@@ -24,11 +24,12 @@
 
 {% block conteudo %}
 <section id="feature_slider" class="">
-	<article class="slide" id="inscricoes-abertas" style="background: url('{{ STATIC_URL }}img/backgrounds/black.jpg') repeat-x top center;">
+	<article class="slide" id="inscricoes-encerradas" style="background: url('{{ STATIC_URL }}img/backgrounds/black.jpg') repeat-x top center;">
 		<img class="asset left100 sp850 t180 z1" src="{{ STATIC_URL }}img/slides/screenshot-inscricao.jpg">
 		<div class="info">
-		<h2>Inscrições abertas!</h2>
-		<a href="{% url "inscricao" %}">Inscreva-se agora!</a>
+		<h2>Inscrições encerradas</h2>
+		<p>As inscrições estão encerradas, mas novas vagas podem surgir, fique de olho!</p>
+		<a href="https://twitter.com/devincachu">Siga o @devincachu!</a>
 		</div>
 	</article>
 	<article class="slide" id="ideas" style="background: url('{{ STATIC_URL }}img/backgrounds/aqua.jpg') repeat-x top center;">

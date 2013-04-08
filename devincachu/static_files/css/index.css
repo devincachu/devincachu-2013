@@ -107,21 +107,24 @@
 	color: #fff;
 	font-weight: normal;
 }
-.slide#inscricoes-abertas .info {
+.slide#inscricoes-encerradas .info {
 	left: 20%;
 	position: absolute;
 	top: 150px;
 	width: 35%;
 }
-.slide#inscricoes-abertas .info h2 {
+.slide#inscricoes-encerradas .info h2 {
 	color: #fff;
 	font-size: 52px;
 	font-weight: normal;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 	text-shadow: 1px 1px 1px #3b3262;
 	line-height: 57px;
 }
-.slide#inscricoes-abertas .info a {
+.slide#inscricoes-encerradas .info p {
+	color: #999;
+}
+.slide#inscricoes-encerradas .info a {
 	color: #000;
 	font-weight: bold;
 	background-color: #FFF;
@@ -134,7 +137,7 @@
 	-moz-transition: opacity .1s linear;
 	transition: opacity .1s linear;
 }
-.slide#inscricoes-abertas img {
+.slide#inscricoes-encerradas img {
 	border-radius: 2px;
 }
 
