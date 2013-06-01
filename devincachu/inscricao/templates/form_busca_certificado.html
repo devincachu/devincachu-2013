@@ -7,31 +7,43 @@
 {% block title %}Busca e geração de certificado | {{ block.super }}{% endblock %}
 
 {% block meta %}
-	<link rel="canonical" href="{{ BASE_URL }}/certificado/" />
-	<meta name="description" content="Busca e geração de certificado do Dev in Cachu 2012" />
-	<meta name="keywords" content="devincachu, dev in cachu 2012, certificado" />
+	<link rel="canonical" href="{{ BASE_URL }}/certificado/">
+	<meta name="description" content="Busca e geração de certificado do Dev in Cachu 2013">
+	<meta name="keywords" content="devincachu, dev in cachu 2013, certificado">
 {% endblock %}
 
 {% block og %}
-	<meta property="og:title" content="Busca e geração de certificado" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="{{ BASE_URL }}/certificado/" />
-	<meta property="og:image" content="{{ STATIC_URL }}img/logo-devincachu-facebook.png" />
-	<meta property="og:description" content="Página para buscar e gerar um certificado do Dev in Cachu 2012" />
+	<meta property="og:title" content="Busca e geração de certificado">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="{{ BASE_URL }}/certificado/">
+	<meta property="og:image" content="{{ STATIC_URL }}img/devincachu-facebook.png">
+	<meta property="og:description" content="Página para buscar e gerar um certificado do Dev in Cachu 2013">
 {% endblock %}
 
-{% block coluna_central %}
-	<h1>Busca e geração de certificado</h1>
+{% block conteudo %}
+<div id="busca-certificado">
+	<div class="container">
+		<div class="row">
+			<div class="span8">
+				<h1>Busca e geração de certificado</h1>
+				<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+				<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+				<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
 
-	<p>Informe o seu e-mail abaixo para ver seu certificado! O certificado será exibido em formato HTML, e poderá salvo ou impresso. <strong>Lembre-se de utilizar o mesmo e-mail que você utilizou para se inscrever no evento.</strong></p>
+				<p>Informe o seu e-mail abaixo para ver seu certificado! O certificado será exibido em formato HTML, e poderá salvo ou impresso. <strong>Lembre-se de utilizar o mesmo e-mail que você utilizou para se inscrever no evento.</strong></p>
 
-	{% if msg %}
-		<div class="disclaimer">{{ msg }}</div>
-	{% endif %}
+				{% if msg %}
+					<div class="disclaimer">{{ msg }}</div>
+				{% endif %}
 
-	<form action="" method="post" accept-charset="utf-8" id="certificado">
-		{% csrf_token %}
-		{{ form.email }}
-		<button type="submit" class="btn primary">Ok</submit>
-	</form>
+				<form action="" method="post" accept-charset="utf-8" id="certificado">
+					{% csrf_token %}
+					{{ form.email }}
+					<button type="submit" class="btn primary">Ok</submit>
+				</form>
+			</div>
+			{% include "sidebar.html" %}
+		</div>
+	</div>
+</div>
 {% endblock %}
