@@ -20,18 +20,34 @@
 	<meta property="og:description" content="Página para confirmar a validade de um certificado do Dev in Cachu 2013" />
 {% endblock %}
 
-{% block coluna_central %}
-	<h1>Validação de certificado</h1>
+{% block css %}
+	<link rel="stylesheet" href="{{STATIC_URL}}css/certificado.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
 
-	<p>Informe o código presente no certificado para assegurar a validade do mesmo:</p>
+{% block conteudo %}
+<div id="busca-certificado">
+	<div class="container">
+		<div class="row">
+			<div class="span8">
+				<h1>Validação de certificado</h1>
+				<div id="twitter" class="home-social"><a href="https://twitter.com/share" class="twitter-share-button" data-via="devincachu" data-hashtags="devincachu">Tweet</a></div>
+				<div id="fb" class="home-social"><div class="fb-like" data-send="false" data-layout="button_count" data-width="45" data-show-faces="false"></div></div>
+				<div id="gplus" class="home-social"><div class="g-plusone" data-size="medium"></div></div>
 
-	{% if msg %}
-		<div class="disclaimer">{{ msg }}</div>
-	{% endif %}
+				<p>Informe o código presente no certificado para assegurar a validade do mesmo:</p>
 
-	<form action="" method="post" accept-charset="utf-8" id="certificado">
-		{% csrf_token %}
-		{{ form.codigo }}
-		<button type="submit" class="btn primary">Ok</submit>
-	</form>
+				{% if msg %}
+					<div class="disclaimer">{{ msg }}</div>
+				{% endif %}
+
+				<form action="" method="post" accept-charset="utf-8" id="certificado">
+					{% csrf_token %}
+					{{ form.codigo }}
+					<button type="submit" class="btn primary">Ok</submit>
+				</form>
+			</div>
+			{% include "sidebar.html" %}
+		</div>
+	</div>
+</div>
 {% endblock %}
