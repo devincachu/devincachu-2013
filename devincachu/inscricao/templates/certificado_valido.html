@@ -20,10 +20,19 @@
 	<meta property="og:description" content="Página para confirmar a validade de um certificado do Dev in Cachu 2013" />
 {% endblock %}
 
-{% block coluna_central %}
-	<h1>Certificado válido</h1>
+{% block conteudo %}
+<div id="busca-certificado">
+	<div class="container">
+		<div class="row">
+			<div class="span8">
+				<h1>Certificado válido</h1>
 
-	<p>Este certificado é válido! <strong>{{ certificado.participante.nome }}</strong> participou do Dev in Cachu 2013, com uma carga horária total de <strong>{{ certificado.horas }} horas</strong>.</p>
+				<p>Este certificado é válido! <strong>{{ certificado.participante.nome }}</strong> participou do Dev in Cachu 2013, com uma carga horária total de <strong>{{ certificado.horas }} horas</strong>.</p>
 
-	<p>Em caso de qualquer dúvida, por favor entre em contato com a organização do Dev in Cachu 2013 através do e-mail contato@devincachu.com.br.</p>
+				<p>Em caso de qualquer dúvida, por favor entre em contato com a organização do Dev in Cachu 2013 através do e-mail contato@devincachu.com.br.</p>
+			</div>
+			{% include "sidebar.html" %}
+		</div>
+	</div>
+</div>
 {% endblock %}
