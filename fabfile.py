@@ -69,11 +69,6 @@ def clean():
     restart_nginx()
 
 
-def createsuperuser():
-    with cd(env.project_root):
-        run("%(virtualenv)s/bin/python manage.py createsuperuser" % env)
-
-
 def deploy():
     update_app()
     create_virtualenv_if_need()
