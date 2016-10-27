@@ -104,8 +104,7 @@ class Certificado(models.Model):
     def _calcular_hash(cls, participante):
         rand = random.randint(1, 9999)
         now = datetime.datetime.now()
-        bstr = "%s%s%04d%s" % (participante.nome,
-                               participante.email,
+        bstr = "%s%s%04d%s" % (participante.email,
                                rand,
                                now.isoformat())
         return hashlib.sha1(bstr).hexdigest()
